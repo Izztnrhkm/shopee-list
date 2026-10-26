@@ -1,0 +1,451 @@
+{
+ "shopeeList": 1,
+ "list": "Hiking",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Hiking shoes (Quechua MH500 waterproof)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Pain point C4: feet and heat. Mid boots give ankle support; the Light \"Faster\" is cooler on hot trails.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20hiking%20shoes",
+     "shop": "Decathlon Malaysia",
+     "price": 249.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.6,
+     "ratingCount": 141,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20light%20faster",
+     "shop": "Decathlon Malaysia",
+     "price": 179.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "On sale (was RM249); check if waterproof",
+     "rating": 4.6,
+     "ratingCount": 395,
+     "tag": "ALT"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20mid%20waterproof%20boots",
+     "shop": "Decathlon Malaysia",
+     "price": 299.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Mid boot, more ankle support",
+     "rating": 4.6,
+     "ratingCount": 504,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Hiking socks (Hike 500 mid, 2 pairs)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=hike%20500%20mid%20socks",
+     "shop": "Decathlon Malaysia",
+     "price": 39.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 4887,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Anti-leech socks (Forclaz Tropic 500)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Only anti-leech sock Decathlon sells.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=anti%20leech%20socks",
+     "shop": "Decathlon Malaysia",
+     "price": 25.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Relaxed rule: only 60 reviews, but the only anti-leech sock Decathlon sells",
+     "rating": 4.7,
+     "ratingCount": 60,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Long-sleeve anti-UV shirt (Quechua MH500)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20anti-uv%20long%20sleeve",
+     "shop": "Decathlon Malaysia",
+     "price": 79.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "RM79 to RM129 by colour",
+     "rating": 4.8,
+     "ratingCount": 732,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Hiking trousers (Quechua MH500 Light)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Lighter for tropical heat.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20light%20hiking%20trousers",
+     "shop": "Decathlon Malaysia",
+     "price": 99.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 271,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%20hiking%20pants",
+     "shop": "Decathlon Malaysia",
+     "price": 129.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 306,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Sun hat (Forclaz MT100 anti-UV)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mt100%20anti-uv%20trekking%20hat",
+     "shop": "Decathlon Malaysia",
+     "price": 35.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 70,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Daypack 25 L (Quechua MH500)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mh500%2025l%20hiking%20backpack",
+     "shop": "Decathlon Malaysia",
+     "price": 219.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 2196,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Water bottle 1.5 L (Quechua aluminium)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=1.5%20l%20aluminium%20water%20bottle",
+     "shop": "Decathlon Malaysia",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.5,
+     "ratingCount": 2562,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=1%20l%20aluminium%20water%20bottle",
+     "shop": "Decathlon Malaysia",
+     "price": 49.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.6,
+     "ratingCount": 4680,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Pack rain cover 20/40 L (Simond)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=rain%20cover%20hiking%20backpack%2020%2040",
+     "shop": "Decathlon Malaysia",
+     "price": 29.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 2802,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Rain poncho 60 L (Simond MT500)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Buy a second one for your wife, or share.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=mt500%20rain%20poncho",
+     "shop": "Decathlon Malaysia",
+     "price": 99.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.6,
+     "ratingCount": 1993,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Headlamp (Simond HL500, 300 lm, USB-C)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=hl500%20headlamp",
+     "shop": "Decathlon Malaysia",
+     "price": 79.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 2422,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "First aid kit (Decathlon 100, 41 pieces)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=100%20first%20aid%20kit",
+     "shop": "Decathlon Malaysia",
+     "price": 49.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 827,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Trekking poles (Forclaz MT100)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Added for knee load on descents (pain point C4).",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "eOrthopod: hiking poles reduce joint load",
+     "url": "https://eorthopod.com/news/hiking-poles-reduce-the-load-on-joints/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=hiking%20trekking%20pole%20mt100",
+     "shop": "Decathlon Malaysia",
+     "price": 29.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Price is per pole",
+     "rating": 4.8,
+     "ratingCount": 7426,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=mt500%20hiking%20pole",
+     "shop": "Decathlon Malaysia",
+     "price": 79.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Quick-adjust, per pole",
+     "rating": 4.8,
+     "ratingCount": 6094,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Power bank (Xiaomi 20000, integrated cable)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "The 10000 integrated version did not show in Xiaomi official today. Avoid RM9 \"Xiaomi\" power banks: fakes.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1201573855/40758965556",
+     "shop": "Xiaomi official",
+     "price": 129.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "sold": "802",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Sunscreen (Biore UV Aqua Rich SPF50+, 50 g)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.watsons.com.my/uv-aqua-rich-watery-essence-spf-50-1s/p/BP_39046",
+     "shop": "Watsons Malaysia",
+     "price": 24.5,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Insect repellent (OFF! aerosol 170 g)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Check the DEET % on the can.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.watsons.com.my/off-insect-repellent-aerosol-spray-170g/p/BP_11950",
+     "shop": "Watsons Malaysia",
+     "price": 28.62,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

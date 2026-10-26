@@ -1,0 +1,136 @@
+{
+ "shopeeList": 1,
+ "list": "Travel",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Cabin backpack (Quechua Travel 500, 30 L)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Confirmed local stock. CABINZERO Classic 36L is the alternative but Malaysian stock was not confirmed.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=30l%20suitcase-style%20opening%20backpack%20travel%20500",
+     "shop": "Decathlon Malaysia",
+     "price": 199.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 144,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Toiletry bag (Forclaz Travel Wash Bag)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=travel%20wash%20bag",
+     "shop": "Decathlon Malaysia",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 1466,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=trekking%20foldable%20toiletry%20bag%20ultra%20light",
+     "shop": "Decathlon Malaysia",
+     "price": 29.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Lighter and cheaper",
+     "rating": 4.7,
+     "ratingCount": 1304,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Eye mask (Forclaz trekking travel)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=travel%20sleep%20mask",
+     "shop": "Decathlon Malaysia",
+     "price": 19.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 1250,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Fast charger (Anker 735 GaNPrime 65W)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Check for a Malaysian 3-pin plug.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1067124434/25361371586",
+     "shop": "Anker store",
+     "price": 159.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "sold": "1k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Tracker (Apple AirTag, 4-pack)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "About RM107 each in the 4-pack.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.apple.com/my/shop/product/MX542ZP/A/airtag",
+     "shop": "Apple Malaysia",
+     "price": 429.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

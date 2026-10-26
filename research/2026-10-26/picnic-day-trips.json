@@ -1,0 +1,139 @@
+{
+ "shopeeList": 1,
+ "list": "Picnic & Day Trips",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Cooler 20 L (Quechua Compact 100)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=20l%20cool%20box%20compact",
+     "shop": "Decathlon Malaysia",
+     "price": 79.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 923,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Sun shade (Decathlon Paruv 2-person umbrella)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=compact%20beach%20umbrella%202-person%20paruv",
+     "shop": "Decathlon Malaysia",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "On sale, was RM99",
+     "rating": 4.7,
+     "ratingCount": 1027,
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.decathlon.my/search?query=paruv%20windstop",
+     "shop": "Decathlon Malaysia",
+     "price": 149.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Windstop version for windy days",
+     "rating": 4.7,
+     "ratingCount": 528,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Parasol screw-in base (Paruv)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=screw-in%20parasol%20base%20paruv",
+     "shop": "Decathlon Malaysia",
+     "price": 19.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 2022,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Folding chair (Quechua MH500 low)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=low%20folding%20camping%20chair%20mh500",
+     "shop": "Decathlon Malaysia",
+     "price": 169.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 2232,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Camping table, 2 people (Quechua compact)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=compact%20camping%20table%202%20people",
+     "shop": "Decathlon Malaysia",
+     "price": 199.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.9,
+     "ratingCount": 566,
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

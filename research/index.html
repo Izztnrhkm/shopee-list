@@ -9,11 +9,16 @@
   <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
-    .research-card { display: flex; flex-direction: column; gap: 8px; }
+    .research-card { display: flex; flex-direction: column; gap: 8px; padding: 16px; }
+    .research-card h2, .research-card p { margin: 0; }
     .research-card .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .research-card details { font-size: 0.9rem; }
     .research-card ul { margin: 6px 0 0; padding-left: 18px; }
     .research-card li { margin: 3px 0; }
+    .jump { display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 0; z-index: 2; padding: 8px 0; background: var(--bg, #fff); }
+    .group-title { margin: 12px 0 0; font-size: 1.1rem; scroll-margin-top: 56px; }
+    .research-card { scroll-margin-top: 56px; }
+    .total { font-weight: 600; }
   </style>
 </head>
 <body>
@@ -22,13 +27,14 @@
   </header>
   <main class="container stack">
     <div class="title-row"><h1 class="page-title">Research library</h1></div>
-    <p class="muted small" id="intro">Lists researched by Claude. Tap <b>Add to Shopee List</b> to import one: the app opens its import screen (sign in first if asked). Items already in that list are updated, not duplicated.</p>
+    <p class="muted small" id="intro">Lists researched by Claude. Tap <b>Add to Shopee List</b> to import one: the app opens its import screen (sign in first if asked). Items already in that list are updated, not duplicated. Totals add up each pick not marked Skip; some lists share items (for example the Top 10 and Workstation), so group totals can count an item twice.</p>
+    <nav class="jump" id="jump" aria-label="Jump to a list"></nav>
     <div id="lists" class="stack"><p class="muted">Loading…</p></div>
   </main>
   <script type="module">
     const VERDICT = { buy: 'Worth it', consider: 'Consider', skip: 'Skip' };
     const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const rm = (n) => 'RM' + Number(n).toFixed(2);
+    const rm = (n) => 'RM' + Number(n).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     function toImportLink(text) {
       const bytes = new TextEncoder().encode(text);
       let bin = '';
@@ -41,24 +47,39 @@
       try {
         const index = await (await fetch('index.json', { cache: 'no-cache' })).json();
         document.getElementById('intro').insertAdjacentHTML('beforeend', ` Last updated ${esc(index.updated)}.`);
-        const cards = await Promise.all(index.lists.map(async (l) => {
+        const cards = await Promise.all(index.lists.map(async (l, n) => {
           const text = await (await fetch(l.file, { cache: 'no-cache' })).text();
           const data = JSON.parse(text);
+          let total = 0;
           const picks = data.items.map((it) => {
             const pick = it.listings.find((x) => x.tag === 'PICK') || it.listings[0];
-            return `<li><b>${esc(it.name)}</b>${it.qty > 1 ? ` ×${it.qty}` : ''} · ${esc(VERDICT[it.verdict] || '')}${pick ? ` · ${rm(pick.price)}` : ''}</li>`;
+            const qty = it.qty > 1 ? it.qty : 1;
+            if (pick && it.verdict !== 'skip') total += Number(pick.price) * qty;
+            return `<li><b>${esc(it.name)}</b>${qty > 1 ? ` ×${qty}` : ''} · ${esc(VERDICT[it.verdict] || '')}${pick ? ` · ${rm(pick.price)}` : ''}</li>`;
           }).join('');
-          return `<section class="card research-card">
+          return { l, total, html: `<section class="card research-card" id="list-${n}">
             <h2>${esc(l.name)}</h2>
             <p class="muted small">${esc(l.about)} ${l.items} items, ${l.listings} listings, researched ${esc(data.researchedAt)}.</p>
+            <p class="small total">About ${rm(total)} for every pick not marked Skip</p>
             <div class="row">
               <a class="btn primary small" href="${toImportLink(text)}">Add to Shopee List</a>
               <a class="btn ghost small" href="${esc(l.file)}" download>Download JSON</a>
             </div>
             <details><summary>What's inside</summary><ul>${picks}</ul></details>
-          </section>`;
+          </section>` };
         }));
-        box.innerHTML = cards.join('');
+        const groups = index.groups || [...new Set(index.lists.map((l) => l.group || 'Lists'))];
+        let out = '';
+        groups.forEach((g, gi) => {
+          const inGroup = cards.filter((c) => (c.l.group || 'Lists') === g);
+          if (!inGroup.length) return;
+          const sum = inGroup.reduce((a, c) => a + c.total, 0);
+          out += `<h2 class="group-title" id="group-${gi}">${esc(g)} <span class="muted small">(${inGroup.length} lists, about ${rm(sum)})</span></h2>`;
+          out += inGroup.map((c) => c.html).join('');
+        });
+        box.innerHTML = out;
+        document.getElementById('jump').innerHTML = groups.map((g, gi) =>
+          `<a class="btn ghost small" href="#group-${gi}">${esc(g)}</a>`).join('');
       } catch (err) {
         box.innerHTML = `<div class="card"><p>Could not load the research files: ${esc(err.message)}</p></div>`;
       }
