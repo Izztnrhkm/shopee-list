@@ -1,16 +1,21 @@
 # Shopee List
 
-A personal shopping list for Shopee Malaysia (shopee.com.my) that syncs between your phone and computer.
+A phone-first shopping list for Shopee Malaysia (shopee.com.my) that syncs between your devices.
 
-- Keep several lists, e.g. "Raya" or "Kitchen".
-- Add items with a quantity and tick them off when bought.
-- For each item, save the Shopee listings you are considering and compare them side by side: price, shipping, total, rating, sold count, seller type, where it ships from, vouchers and notes.
-- The cheapest total, top rating and most sold are highlighted. Mark one listing as **Chosen** and the list totals use it; otherwise they use the cheapest.
+- Keep several lists, e.g. "Raya" or "Kitchen". Each item shows its photo, price, verdict and the reason it is the pick.
+- Set a priority (Must-have, Should have, Nice to have) and tag items for the next Shopee double-day sale (11.11, 12.12…).
+- **Buy next** gathers every must-have across your lists with a total, and a second view lists everything waiting for the sale.
+- For each item, compare the Shopee listings you are considering: price, shipping, rating, sold count, seller type, where it ships from, vouchers and notes. The pick drives the list totals.
+- **Price history:** every re-check (typed in, or a new import from Claude) adds a dated price, so the item shows up or down since research and the lowest price seen.
 
-- **Import from Claude:** ask Claude to research what you want to buy and paste its import block. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
+- **Add from Claude:** pick one or several lists from the research library in the app, or paste an import block from a chat. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
 - **Research library:** ready-made researched lists at [/research/](https://izztnrhkm.github.io/shopee-list/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
 
 The app itself does not read Shopee: Shopee blocks automated access, so research happens in a Claude chat that can use your Chrome browser, or you type details in yourself.
+
+## Tests
+
+`node --test tests/*.test.mjs` checks the import, price history and sale-date logic (Node 18 or later, no installs).
 
 ## How it works
 
@@ -63,6 +68,8 @@ Open http://localhost:8000. `localhost` is an authorized domain in Firebase by d
 | `js/importer.js` | Reads and checks import data from Claude |
 | `docs/IMPORT.md` | Import format and the prompt to use with Claude |
 | `js/firebase-config.js` | Firebase project config |
+| `fonts/` | Plus Jakarta Sans, self-hosted (SIL Open Font License, `fonts/OFL.txt`) |
+| `tests/` | Logic tests, run with `node --test tests/*.test.mjs` |
 | `firestore.rules` | Database security rules |
 | `research/index.html` | Research library page (import links built in the browser) |
 | `research/index.json` | List of research files shown in the library |

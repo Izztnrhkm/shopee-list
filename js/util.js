@@ -117,3 +117,49 @@ export function todayISO() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
+
+// Priority set by the user, else a default from the research verdict.
+export function priorityOf(product) {
+  if (product.priority === 'must' || product.priority === 'should' || product.priority === 'nice') return product.priority;
+  return product.research && product.research.verdict === 'consider' ? 'nice' : 'should';
+}
+
+// First sentence of a research summary, for one-line reasons on list rows.
+export function firstSentence(text, max = 110) {
+  const t = String(text || '').trim();
+  if (!t) return '';
+  const end = t.search(/[.!?](\s|$)/);
+  const s = end === -1 ? t : t.slice(0, end + 1);
+  return s.length > max ? `${s.slice(0, max - 1).trimEnd()}…` : s;
+}
+
+function isoOf(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+// Whole days from local date a to b (YYYY-MM-DD strings).
+export function daysBetween(a, b) {
+  const pa = Date.UTC(...a.split('-').map((n, i) => Number(n) - (i === 1 ? 1 : 0)));
+  const pb = Date.UTC(...b.split('-').map((n, i) => Number(n) - (i === 1 ? 1 : 0)));
+  return Math.round((pb - pa) / 86400000);
+}
+
+// Shopee's monthly double-day sale (1.1, 2.2 … 12.12) on or after the given date.
+export function nextSale(from = new Date()) {
+  let y = from.getFullYear();
+  let m = from.getMonth() + 1;
+  if (from.getDate() > m) {
+    m += 1;
+    if (m > 12) { m = 1; y += 1; }
+  }
+  const date = isoOf(new Date(y, m - 1, m));
+  return { label: `${m}.${m}`, date, days: daysBetween(isoOf(from), date) };
+}
+
+// "today", "1 day ago", "12 days ago"; '' when the date is unknown.
+export function ageText(iso, today = todayISO()) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return '';
+  const n = daysBetween(iso, today);
+  if (n <= 0) return 'today';
+  return n === 1 ? '1 day ago' : `${n} days ago`;
+}

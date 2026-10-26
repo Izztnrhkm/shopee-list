@@ -2,7 +2,7 @@
 
 Shopee List can add researched items in one go. Ask Claude to research what you want to buy, and it gives you an import block (or link). In the app, tap **Import from Claude** (on the lists page) or **Import** (inside a list), paste it, and tap **Import**. Every item is added with its listings and a verdict.
 
-- Items whose name already exists in the target list are updated, not duplicated: new listings are added (links already saved are skipped) and the research is replaced.
+- Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced.
 - The listing tagged `PICK` becomes the item's **Chosen** listing, so list totals use it.
 - Items with verdict `skip` are kept for reference but left out of the totals.
 - An import link (`https://izztnrhkm.github.io/shopee-list/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
@@ -38,6 +38,8 @@ Finish with a Shopee List import block: a single ```json code block in the forma
       "qty": 1,
       "notes": "Optional note for the item",
       "verdict": "buy",
+      "priority": "must",
+      "image": "https://down-my.img.susercontent.com/file/...",
       "summary": "Why it is or is not worth buying, in 1 to 3 sentences.",
       "pros": ["Short point"],
       "cons": ["Short point"],
@@ -57,7 +59,8 @@ Finish with a Shopee List import block: a single ```json code block in the forma
           "voucher": "RM20 off min spend RM300",
           "notes": "Variant checked: 4.1 L, UK plug",
           "tag": "PICK",
-          "checked": "2026-10-26"
+          "checked": "2026-10-26",
+          "image": "https://down-my.img.susercontent.com/file/..."
         }
       ]
     }
@@ -70,6 +73,8 @@ Finish with a Shopee List import block: a single ```json code block in the forma
 | `list` | Name of the list. The app picks a list with the same name, or offers to create it. You can change the target before importing. |
 | `researchedAt` | Date as `YYYY-MM-DD`. Defaults to today. |
 | `verdict` | `buy` (shown as "Worth it"), `consider`, or `skip`. |
+| `priority` | Optional: `must`, `should` or `nice`. Left out, the app uses Should have (Nice to have for `consider`); you can change it on the item. |
+| `image` | Optional product photo, on the item or a listing: an `https` link to the Shopee photo (the `down-my.img.susercontent.com` address). Only `https` links are kept. The item uses its own photo, else the pick's. |
 | `price`, `shipping` | Ringgit, as numbers or text like `"RM12.90"`. A listing without a price is dropped. `shipping: 0` shows as Free. |
 | `rating` | 0 to 5. |
 | `ratingCount`, `sold` | Numbers or Shopee-style text: `856`, `"1.2k"`, `"10k+"`. |
