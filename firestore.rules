@@ -1,11 +1,103 @@
 rules_version = '2';
 
-// Each signed-in user can read and write only their own data under users/{their uid}.
-// Everything else is denied.
+// Shopee List security rules.
+//
+// Lists live in a household that one or more people share:
+//   households/{hid}                    { name, ownerUid, createdAt }
+//   households/{hid}/members/{uid}      { name, role: owner|member, invite?, joinedAt }
+//   households/{hid}/invites/{code}     { createdBy, from (inviter's name), createdAt, expiresAt, usedBy, usedAt }
+//   households/{hid}/lists/{id}, households/{hid}/products/{id}
+//   users/{uid}                         { householdId } — which household this person uses
+// Only members can read or write a household's lists. A person joins only by using an
+// unused, unexpired invite code, once. Older data under users/{uid}/... stays readable by
+// its owner so the app can copy it into the household; nothing else is allowed.
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{uid}/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+    function signedIn() { return request.auth != null; }
+    function me() { return request.auth.uid; }
+    function hh(hid) { return /databases/$(database)/documents/households/$(hid); }
+    function isMember(hid) { return signedIn() && exists(/databases/$(database)/documents/households/$(hid)/members/$(me())); }
+    function onlyChanges(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+
+    match /users/{uid} {
+      allow read, write: if signedIn() && me() == uid;
+
+      // Lists from before households: the owner may read them (to copy) and nothing more.
+      match /{document=**} {
+        allow read: if signedIn() && me() == uid;
+      }
+    }
+
+    match /households/{hid} {
+      allow read: if isMember(hid);
+      // Create your own household; your owner membership is written in the same batch.
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == me()
+        && request.resource.data.keys().hasOnly(['name', 'ownerUid', 'createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 80
+        && existsAfter(/databases/$(database)/documents/households/$(hid)/members/$(me()));
+      allow update: if isMember(hid) && onlyChanges(['name'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 80;
+      allow delete: if false;
+
+      match /members/{uid} {
+        allow read: if isMember(hid);
+
+        // The owner adds themself when creating the household.
+        allow create: if (signedIn() && me() == uid
+          && request.resource.data.role == 'owner'
+          && request.resource.data.keys().hasOnly(['name', 'role', 'joinedAt'])
+          && !exists(hh(hid))
+          && getAfter(hh(hid)).data.ownerUid == me())
+          // Or: a new member joins with an unused, unexpired invite that this same batch marks as used by them.
+          || (signedIn() && me() == uid
+          && request.resource.data.role == 'member'
+          && request.resource.data.keys().hasOnly(['name', 'role', 'joinedAt', 'invite'])
+          && request.resource.data.invite is string
+          && exists(/databases/$(database)/documents/households/$(hid)/invites/$(request.resource.data.invite))
+          && get(/databases/$(database)/documents/households/$(hid)/invites/$(request.resource.data.invite)).data.usedBy == null
+          && request.time < get(/databases/$(database)/documents/households/$(hid)/invites/$(request.resource.data.invite)).data.expiresAt
+          && getAfter(/databases/$(database)/documents/households/$(hid)/invites/$(request.resource.data.invite)).data.usedBy == me());
+
+        // Change your own display name.
+        allow update: if signedIn() && me() == uid && onlyChanges(['name'])
+          && request.resource.data.name is string && request.resource.data.name.size() <= 60;
+
+        // Leave yourself, or the owner removes someone else. The owner never leaves.
+        allow delete: if signedIn()
+          && ((me() == uid && resource.data.role != 'owner')
+            || (get(hh(hid)).data.ownerUid == me() && uid != me()));
+      }
+
+      match /invites/{code} {
+        // Knowing the code is the permission to look at it (codes are 24 random characters).
+        allow get: if signedIn();
+        allow list: if isMember(hid);
+        allow create: if isMember(hid)
+          && code.size() >= 20
+          && request.resource.data.keys().hasOnly(['createdBy', 'from', 'createdAt', 'expiresAt', 'usedBy', 'usedAt'])
+          && request.resource.data.createdBy == me()
+          && request.resource.data.from is string && request.resource.data.from.size() <= 60
+          && request.resource.data.usedBy == null
+          && request.resource.data.expiresAt is timestamp
+          && request.resource.data.expiresAt <= request.time + duration.value(7, 'd');
+        // Use an invite: only once, before it expires, and only together with your membership.
+        allow update: if signedIn()
+          && resource.data.usedBy == null
+          && request.time < resource.data.expiresAt
+          && onlyChanges(['usedBy', 'usedAt'])
+          && request.resource.data.usedBy == me()
+          && existsAfter(/databases/$(database)/documents/households/$(hid)/members/$(me()));
+        allow delete: if isMember(hid);
+      }
+
+      match /lists/{id} {
+        allow read, write: if isMember(hid);
+      }
+      match /products/{id} {
+        allow read, write: if isMember(hid);
+      }
     }
   }
 }

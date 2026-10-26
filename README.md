@@ -8,6 +8,7 @@ A phone-first shopping list for Shopee Malaysia (shopee.com.my) that syncs betwe
 - For each item, compare the Shopee listings you are considering: price, shipping, rating, sold count, seller type, where it ships from, vouchers and notes. The pick drives the list totals.
 - **Price history:** every re-check (typed in, or a new import from Claude) adds a dated price, so the item shows up or down since research and the lowest price seen.
 
+- **Household:** invite your partner with a link (WhatsApp works). You both see and edit the same lists, and ticks show who bought what.
 - **Add from Claude:** pick one or several lists from the research library in the app, or paste an import block from a chat. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
 - **Research library:** ready-made researched lists at [/research/](https://izztnrhkm.github.io/shopee-list/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
 
@@ -15,13 +16,14 @@ The app itself does not read Shopee: Shopee blocks automated access, so research
 
 ## Tests
 
-`node --test tests/*.test.mjs` checks the import, price history and sale-date logic (Node 18 or later, no installs).
+- `node --test tests/logic.test.mjs`: import, price history and sale-date logic (Node 18 or later, no installs).
+- Security rules and the household flow need the Firestore emulator (Java). From `tests/`: `npm install`, then `npm run test:rules` (12 checks), and with the repo served on port 8765 (`python3 -m http.server 8765` in the repo root) `npm run test:e2e` (16 checks: copy of old lists, invite, join, shared ticks, refused reuse, removal).
 
 ## How it works
 
 - A static site (HTML, CSS, plain JavaScript modules, no build step), hosted on GitHub Pages.
 - Google sign-in through Firebase Authentication.
-- Data in Cloud Firestore, under `users/{uid}/...`. `firestore.rules` lets each signed-in user read and write only their own data.
+- Data in Cloud Firestore, in a **household** (`households/{id}/...`) that you share with the people you invite. `firestore.rules` lets only members read or write a household's lists; a person joins only with an unused invite link, within 7 days. Lists made before households (`users/{uid}/...`) are copied into your household the first time you open the app, and the originals are kept as a backup.
 - Firestore's offline cache keeps the app usable without a connection. Changes sync when you are back online.
 
 The Firebase config in `js/firebase-config.js` is public by design. It identifies the project but does not grant access; the security rules do that.
