@@ -1,0 +1,175 @@
+{
+ "shopeeList": 1,
+ "list": "Home Fitness",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Exercise mat (Kimjaly 8 mm)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=8mm%20yoga%20mat",
+     "shop": "Decathlon Malaysia",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.6,
+     "ratingCount": 2859,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Dumbbell set 20 kg (Domyos cast iron)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Cheaper ADSports sets on the same site have 0 to 1 reviews.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=domyos%20dumbbell%20kit%2020kg",
+     "shop": "Decathlon Malaysia",
+     "price": 199.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 5150,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Resistance band 10 kg (Domyos)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=10kg%20resistance%20training%20elastic%20band",
+     "shop": "Decathlon Malaysia",
+     "price": 15.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 507,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Resistance band 15 kg (Domyos)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=15kg%20resistance%20training%20elastic%20band",
+     "shop": "Decathlon Malaysia",
+     "price": 19.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 545,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Jump rope (Domyos JR100)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=jr100%20skipping%20rope",
+     "shop": "Decathlon Malaysia",
+     "price": 4.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 6863,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Pull-up bar (Corength doorway, no screws)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Measure the door frame first.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=locking%20doorway%20pull-up%20bar",
+     "shop": "Decathlon Malaysia",
+     "price": 99.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.6,
+     "ratingCount": 2498,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Foam roller (Decathlon 500 Hard)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.decathlon.my/search?query=500%20hard%20massage%20roller",
+     "shop": "Decathlon Malaysia",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.8,
+     "ratingCount": 231,
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

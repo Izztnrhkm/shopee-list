@@ -1,0 +1,268 @@
+{
+ "shopeeList": 1,
+ "list": "Workstation & Home Lab",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Under-desk cable tray (TTRacing Titus)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Made for the Titus desk.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://ttracing.my/products/ttracing-titus-cable-organizer",
+     "shop": "TTRacing MY",
+     "price": 109.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Monitor arm (TTRacing NOX)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "9 kg, VESA 75/100; the MSI is 100x100.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://ttracing.my/products/ttracing-nox-monitor-arm",
+     "shop": "TTRacing MY",
+     "price": 159.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Surge-protected power strip",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "A joule-rated strip is worth it for a RM5k PC.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/33245961/4114016444",
+     "shop": "reTouch",
+     "price": 159.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "SIRIM, 1700 J surge",
+     "sold": "414",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://mypowertools.easy.co/products/sum-3-4-5-extension-socket-with-surge-protect-2-usb-port-sirim-approved-",
+     "shop": "SUM via mypowertools",
+     "price": 50.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Basic surge only, no joule rating",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Desk mat (TTRacing DAX)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/296677843/21791187103",
+     "shop": "TTRacing official",
+     "price": 144.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "1k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "USB hub with LAN for the laptop",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "The HP 15s has no Ethernet port.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/82080415/2217774744",
+     "shop": "Ugreen Flagship Store",
+     "price": 44.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.9,
+     "ratingCount": 952,
+     "sold": "3k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Webcam (Logitech Brio 100)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "\"A decent budget webcam\" (Trusted Reviews).",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Trusted Reviews: Brio 100",
+     "url": "https://www.trustedreviews.com/reviews/logitech-brio-100"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://www.allithypermarket.com.my/products/logitech-brio-100-fhd-1080p-webcam-with-auto-light-privacy-shutter-and-built-in-mic-rose-graphite",
+     "shop": "ALL IT",
+     "price": 179.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Headset (HyperX Cloud III wired)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Very comfortable; mic is fine for calls (Tom's Hardware).",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Tom's Hardware: HyperX Cloud III",
+     "url": "https://www.tomshardware.com/reviews/hyperx-cloud-iii"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://www.allithypermarket.com.my/products/hyperx-cloud-iii-wired-dts-x-gaming-headset-with-signature-comfort-angled-53mm-drivers-crystal-clear-microphone",
+     "shop": "ALL IT",
+     "price": 299.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Footrest (IKEA DAGOTTO)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Only if your feet do not rest flat.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/p/dagotto-foot-rest-black-20240990/",
+     "shop": "IKEA",
+     "price": 59.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.5,
+     "ratingCount": 69,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "UPS (APC BX1200MI-MS)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Protects the PC from short power dips.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.allithypermarket.com.my/products/apc-easy-ups-backup-battery-1200va-230v-4-universal-outlets",
+     "shop": "ALL IT",
+     "price": 689.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Confirm the model on the page",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Managed switch (TP-Link TL-SG108E)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "None passed on Shopee today: cheapest listings ship from Indonesia, local ones have 5 to 13 reviews. Buy at a physical IT shop.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": []
+  },
+  {
+   "name": "Backup SSD (Samsung T7 Shield 2 TB)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Back up the laptop before moving the 990 PRO into the desktop. Avoid RM77 \"T7 Shield\" listings from China: fakes.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/44569675/19885139721",
+     "shop": "",
+     "price": 1199.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Card price; variant not opened",
+     "rating": 4.7,
+     "sold": "52",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

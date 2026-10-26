@@ -1,0 +1,97 @@
+{
+ "shopeeList": 1,
+ "list": "House Cleaning",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Cordless vacuum-mop (Dreame H13 FlexReach / H14S Ultra)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Dreame H14 Pro is the \"best vacuum-mop combo\" in Homes & Gardens tested roundup (May 2026); hard floors only. The Corvan K18 from the old list is held: most coverage is sponsored. Budget route: manual flat mop plus your current vacuum.",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Homes & Gardens: best vacuum-mop combos",
+     "url": "https://homesandgardens.com/solved/best-vacuum-mop-combos"
+    },
+    {
+     "title": "Vulcan Post: Corvan K18 review (sponsored)",
+     "url": "https://vulcanpost.com/782411/review-corvan-k18-cordless-201aw-vacuum-mop/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://www.senheng.com.my/?p=84336",
+     "shop": "Senheng",
+     "price": 1899.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "H13 FlexReach, extra 1-year warranty",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://www.oneshop.com.my/product/dreame-h14s-ultra-wet-and-dry-vacuum-cleaner",
+     "shop": "ONESHOP",
+     "price": 1899.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "H14S Ultra",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Mould and stain remover (Magiclean 400 ml)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Contains sodium hypochlorite: gloves, mask, ventilate, never mix with other cleaners.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.watsons.com.my/magiclean-stain-mold-remover-400ml/p/BP_14802",
+     "shop": "Watsons Malaysia",
+     "price": 12.5,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Dehumidifier (Sharp DW-E16FA-W)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "skip",
+   "summary": "Hold: use aircond Dry mode first and watch the hygrometer. Buy only if rooms stay above 70% humidity. The Xiaomi Mijia 22 L from the old list has no Malaysian version.",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "ProductNation: best dehumidifiers Malaysia",
+     "url": "https://productnation.co/my/12642/best-dehumidifiers-malaysia/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://my.priceshop.com/product/sharp-plasmacluster-dehumidifying-air-purifier-dwe16faw",
+     "shop": "Kien Fatt Electric (priceshop)",
+     "price": 1230.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Up to 24 m2, HEPA, Malaysian warranty",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

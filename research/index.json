@@ -6,70 +6,134 @@
    "name": "Toothbrush & Toothpaste",
    "items": 4,
    "listings": 14,
-   "about": "Sonicare 3100 for both of you plus Sensodyne Sensitivity & Gum Whitening; manual option included."
+   "about": "Sonicare 3100 for both of you plus Sensodyne Sensitivity & Gum Whitening; manual option included.",
+   "group": "Personal & tech"
   },
   {
    "file": "2026-10-26/top-10-wishlist.json",
    "name": "Top 10 Wishlist",
    "items": 11,
    "listings": 14,
-   "about": "Desk setup, sleep, dashcam and PC, with prices re-checked on the shops' own sites."
+   "about": "Desk setup, sleep, dashcam and PC, with prices re-checked on the shops' own sites.",
+   "group": "Personal & tech"
   },
   {
    "file": "2026-10-26/iphone-17-accessories.json",
    "name": "iPhone 17 Accessories",
    "items": 6,
    "listings": 14,
-   "about": "MagSafe case, screen protector, 45W charger, Qi2.2 power bank, car mount."
+   "about": "MagSafe case, screen protector, 45W charger, Qi2.2 power bank, car mount.",
+   "group": "Personal & tech"
   },
   {
    "file": "2026-10-26/hp-15s-accessories.json",
    "name": "HP 15s Accessories",
    "items": 7,
    "listings": 22,
-   "about": "Stand, mouse, keyboard, USB hub with LAN, sleeve."
+   "about": "Stand, mouse, keyboard, USB hub with LAN, sleeve.",
+   "group": "Personal & tech"
+  },
+  {
+   "file": "2026-10-26/workstation-home-lab.json",
+   "name": "Workstation & Home Lab",
+   "items": 11,
+   "listings": 11,
+   "about": "Cable tray, monitor arm, surge strip, webcam, headset, UPS, backup SSD.",
+   "group": "Personal & tech"
   },
   {
    "file": "2026-10-26/nx150s.json",
    "name": "NX150S",
    "items": 38,
    "listings": 38,
-   "about": "Matte-safe bike care, top box, locks, rider and pillion gear, styling."
-  },
-  {
-   "file": "2026-10-26/kitchen.json",
-   "name": "Kitchen",
-   "items": 11,
-   "listings": 16,
-   "about": "Rice cooker, kettle, blender, knife, pans, plus cheap IKEA swaps for boards, utensils and containers."
+   "about": "Matte-safe bike care, top box, locks, rider and pillion gear, styling.",
+   "group": "Vehicles"
   },
   {
    "file": "2026-10-26/car-wash.json",
    "name": "Car Wash",
    "items": 8,
    "listings": 13,
-   "about": "Kärcher K2 and foam jet, Meguiar's wax and tyre gel, iron remover, vacuum."
+   "about": "Kärcher K2 and foam jet, Meguiar's wax and tyre gel, iron remover, vacuum.",
+   "group": "Vehicles"
   },
   {
-   "file": "2026-10-26/tools-electrical.json",
-   "name": "Tools & Electrical",
-   "items": 14,
-   "listings": 19,
-   "about": "Fluke 101, voltage tester, Pinecil, Bosch drills and bits, safety gear, tyre inflator."
-  },
-  {
-   "file": "2026-10-26/home-safety.json",
-   "name": "Home Safety",
-   "items": 5,
-   "listings": 8,
-   "about": "Smoke alarms, fire blanket, extinguisher, camera, lamp."
+   "file": "2026-10-26/kitchen.json",
+   "name": "Kitchen",
+   "items": 11,
+   "listings": 16,
+   "about": "Rice cooker, kettle, blender, knife, pans, plus cheap IKEA swaps for boards, utensils and containers.",
+   "group": "Home"
   },
   {
    "file": "2026-10-26/bedroom.json",
    "name": "Bedroom",
    "items": 5,
    "listings": 7,
-   "about": "Cotton sheets, mattress protector, hygrometer, lamp, earplugs."
+   "about": "Cotton sheets, mattress protector, hygrometer, lamp, earplugs.",
+   "group": "Home"
+  },
+  {
+   "file": "2026-10-26/house-cleaning.json",
+   "name": "House Cleaning",
+   "items": 3,
+   "listings": 4,
+   "about": "Vacuum-mop options, Magiclean, and a dehumidifier on hold.",
+   "group": "Home"
+  },
+  {
+   "file": "2026-10-26/home-safety.json",
+   "name": "Home Safety",
+   "items": 5,
+   "listings": 8,
+   "about": "Smoke alarms, fire blanket, extinguisher, camera, lamp.",
+   "group": "Home"
+  },
+  {
+   "file": "2026-10-26/tools-electrical.json",
+   "name": "Tools & Electrical",
+   "items": 14,
+   "listings": 19,
+   "about": "Fluke 101, voltage tester, Pinecil, Bosch drills and bits, safety gear, tyre inflator.",
+   "group": "Home"
+  },
+  {
+   "file": "2026-10-26/hiking.json",
+   "name": "Hiking",
+   "items": 16,
+   "listings": 21,
+   "about": "Shoes, socks, leech socks, rain gear, headlamp, poles and first aid, mostly Decathlon.",
+   "group": "Outdoors, fitness & travel"
+  },
+  {
+   "file": "2026-10-26/picnic-day-trips.json",
+   "name": "Picnic & Day Trips",
+   "items": 5,
+   "listings": 6,
+   "about": "Cool box, Paruv umbrella and base, two low chairs, compact table.",
+   "group": "Outdoors, fitness & travel"
+  },
+  {
+   "file": "2026-10-26/home-fitness.json",
+   "name": "Home Fitness",
+   "items": 7,
+   "listings": 7,
+   "about": "Mat, 20 kg dumbbells, bands, rope, pull-up bar, foam roller from Decathlon.",
+   "group": "Outdoors, fitness & travel"
+  },
+  {
+   "file": "2026-10-26/travel.json",
+   "name": "Travel",
+   "items": 5,
+   "listings": 6,
+   "about": "Travel 500 cabin backpacks, wash bag, eye masks, Anker 65W charger, AirTags.",
+   "group": "Outdoors, fitness & travel"
   }
+ ],
+ "groups": [
+  "Personal & tech",
+  "Vehicles",
+  "Home",
+  "Outdoors, fitness & travel"
  ]
 }
