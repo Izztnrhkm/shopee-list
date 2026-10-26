@@ -2,8 +2,10 @@
 //
 // Firestore layout, all private to the signed-in user:
 //   users/{uid}/lists/{listId}     { name, createdAt, updatedAt }
-//   users/{uid}/products/{id}      { listId, name, qty, bought, notes,
-//                                    chosenListingId, listings: [...], createdAt, updatedAt }
+//   users/{uid}/products/{id}      { listId, name, qty, bought, boughtBy, boughtAt, notes, image,
+//                                    priority (must|should|nice|null), saleDay, research,
+//                                    chosenListingId, listings: [... each with history: [{date, price}]],
+//                                    createdAt, updatedAt }
 // Products sit in one collection so a single listener gives counts and totals for every list.
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
@@ -163,6 +165,9 @@ export function importItems(listId, listName, { creates, updates }) {
       qty: item.qty,
       bought: false,
       notes: item.notes,
+      image: item.image || '',
+      priority: item.priority || null,
+      saleDay: false,
       chosenListingId: item.chosenListingId,
       listings: item.listings,
       research: item.research,

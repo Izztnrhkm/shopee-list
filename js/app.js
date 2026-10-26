@@ -13,8 +13,12 @@ import {
   productEstimate,
   newId,
   todayISO,
+  priorityOf,
+  firstSentence,
+  nextSale,
+  ageText,
 } from './util.js';
-import { parseImport, planImport, VERDICTS, TAGS } from './importer.js';
+import { parseImport, planImport, historyOf, VERDICTS, TAGS, PRIORITIES } from './importer.js';
 
 const BADGES = {
   none: 'Regular seller',
@@ -28,14 +32,39 @@ const state = {
   lists: [],
   products: [],
   loaded: false,
-  filter: 'all',
+  filter: 'buy',
   stopWatching: null,
   dataError: null,
+  library: null, // research library index, loaded on the Add page
+  libraryError: null,
+  picked: new Set(),
 };
 
 const main = document.getElementById('main');
 const headerUser = document.getElementById('header-user');
+const tabbar = document.getElementById('tabbar');
 const toastEl = document.getElementById('toast');
+
+// ---------- icons (fixed strings, never user text) ----------
+
+const ICONS = {
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  more: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
+  photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>',
+  refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 10-2.3 5.7"/><path d="M20 4v7h-7"/></svg>',
+  open: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>',
+  copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3"/></svg>',
+  lists: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
+  cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>',
+};
+
+function icon(name) {
+  const t = document.createElement('template');
+  t.innerHTML = ICONS[name];
+  return t.content.firstChild;
+}
 
 // ---------- feedback ----------
 
@@ -71,6 +100,15 @@ function save(promise, doneMessage) {
   });
 }
 
+async function copyText(text, doneMessage) {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast(doneMessage);
+  } catch {
+    textDialog('Copy this', text);
+  }
+}
+
 // ---------- routing ----------
 
 function parseRoute() {
@@ -79,6 +117,8 @@ function parseRoute() {
     return { view: 'product', listId: parts[1], productId: parts[3] };
   }
   if (parts[0] === 'l' && parts[1]) return { view: 'list', listId: parts[1] };
+  if (parts[0] === 'next') return { view: 'next', mode: parts[1] === 'sale' ? 'sale' : 'must' };
+  if (parts[0] === 'add') return { view: 'add' };
   return { view: 'lists' };
 }
 
@@ -92,11 +132,82 @@ function takeImportLink() {
   history.replaceState(null, '', `${location.pathname}${location.search}#/`);
 }
 
+let lastView = '';
 window.addEventListener('hashchange', () => {
   takeImportLink();
+  const before = lastView;
   render();
-  window.scrollTo(0, 0);
+  if (before !== lastView) window.scrollTo(0, 0);
 });
+
+// ---------- data helpers ----------
+
+const productsOf = (listId) => state.products.filter((p) => p.listId === listId);
+const isSkip = (p) => !!(p.research && p.research.verdict === 'skip');
+const isMust = (p) => !p.bought && !isSkip(p) && priorityOf(p) === 'must';
+const isSale = (p) => !p.bought && !isSkip(p) && !!p.saleDay;
+
+function sumEstimates(products) {
+  let total = 0;
+  let missing = 0;
+  for (const p of products) {
+    if (isSkip(p)) continue; // researched as not worth buying
+    const est = productEstimate(p);
+    if (est === null) missing += 1;
+    else total += est;
+  }
+  return { total: Math.round(total * 100) / 100, missing };
+}
+
+// "Rice cooker 1.8 L (Panasonic SR-DA182)" → short name + model.
+function splitName(name) {
+  const m = String(name).match(/^(.{3,}?)\s*\(([^()]{2,})\)\s*$/);
+  return m ? { short: m[1], model: m[2] } : { short: name, model: '' };
+}
+
+function productImage(p) {
+  if (p.image) return p.image;
+  const pick = pickListing(p);
+  if (pick && pick.image) return pick.image;
+  const any = (p.listings || []).find((l) => l.image);
+  return any ? any.image : '';
+}
+
+function sellerLine(l) {
+  if (!l) return '';
+  const parts = [];
+  if (l.shop) parts.push(l.shop);
+  if (l.badge === 'mall' && !/mall/i.test(l.shop || '')) parts.push('Mall');
+  else if (!l.shop && l.badge && l.badge !== 'none') parts.push(BADGES[l.badge]);
+  if (Number.isFinite(l.rating)) parts.push(`★ ${l.rating.toFixed(1)}${Number.isFinite(l.ratingCount) ? ` (${formatCount(l.ratingCount)})` : ''}`);
+  if (Number.isFinite(l.sold)) parts.push(`${formatCount(l.sold)} sold`);
+  if (!l.shop && l.shipsFrom) parts.push(`from ${l.shipsFrom}`);
+  return parts.join(' · ');
+}
+
+function initialOf(user) {
+  return ((user && (user.displayName || user.email)) || '?').trim().charAt(0).toUpperCase();
+}
+
+function boughtPatch(bought) {
+  const u = state.user || {};
+  return bought
+    ? { bought: true, boughtBy: { uid: u.uid || '', name: (u.displayName || u.email || '').slice(0, 60) }, boughtAt: Date.now() }
+    : { bought: false, boughtBy: null, boughtAt: null };
+}
+
+function photo(src, cls = '', alt = '') {
+  const box = h('div', { class: `photo ${cls}`.trim() });
+  if (src) {
+    const img = h('img', { src, alt, loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer' });
+    img.addEventListener('error', () => box.replaceChildren(icon('photo')), { once: true });
+    box.append(img);
+  } else {
+    box.append(icon('photo'));
+    box.setAttribute('aria-hidden', 'true');
+  }
+  return box;
+}
 
 // ---------- rendering ----------
 
@@ -112,22 +223,28 @@ function render() {
   renderHeader();
 
   let view;
+  let route = { view: 'none' };
   if (state.user === undefined) view = loadingView('Checking sign-in…');
   else if (state.user === null) view = signInView();
   else if (state.dataError) view = errorView(state.dataError);
   else if (!state.loaded) view = loadingView('Loading your lists…');
   else {
-    const route = parseRoute();
+    route = parseRoute();
     if (route.view === 'product') view = productView(route.listId, route.productId);
     else if (route.view === 'list') view = listView(route.listId);
+    else if (route.view === 'next') view = planView(route.mode);
+    else if (route.view === 'add') view = addView();
     else view = listsView();
   }
+  lastView = `${route.view}:${route.listId || ''}:${route.productId || ''}`;
+  renderTabbar(route.view);
 
   // Keep half-typed text and focus across re-renders caused by sync updates.
   const kept = {};
   main.querySelectorAll('[data-keep]').forEach((el) => { kept[el.dataset.keep] = el.value; });
   const focused = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.keep : null;
 
+  main.className = `container${route.view === 'list' || route.view === 'product' || route.view === 'add' ? ' has-totalbar' : ''}`;
   main.replaceChildren(view);
 
   main.querySelectorAll('[data-keep]').forEach((el) => {
@@ -151,29 +268,39 @@ function renderHeader() {
     headerUser.replaceChildren();
     return;
   }
-  const initial = (user.displayName || user.email || '?').trim().charAt(0).toUpperCase();
   const avatar = user.photoURL
     ? h('img', { class: 'avatar', src: user.photoURL, alt: '', referrerpolicy: 'no-referrer' })
-    : h('span', { class: 'avatar', 'aria-hidden': 'true' }, initial);
+    : h('span', { class: 'avatar', 'aria-hidden': 'true' }, initialOf(user));
   headerUser.replaceChildren(
-    avatar,
     h('button', {
-      class: 'btn ghost small',
-      type: 'button',
-      title: user.email || '',
-      onClick: () => {
-        if (confirm('Sign out?')) store.signOut().catch((err) => toast(describeError(err), 'error'));
-      },
-    }, 'Sign out'),
+      class: 'icon-btn', type: 'button', 'aria-label': `Account: ${user.email || user.displayName || ''}`,
+      onClick: () => menuDialog('Account', [
+        h('p', { class: 'muted small', style: 'padding: 0 8px 8px' }, user.email || ''),
+        menuButton('Sign out', () => store.signOut().catch((err) => toast(describeError(err), 'error'))),
+      ]),
+    }, avatar),
+  );
+}
+
+function renderTabbar(view) {
+  if (!state.user || !state.loaded) {
+    tabbar.hidden = true;
+    return;
+  }
+  tabbar.hidden = false;
+  const tab = (href, label, name, on) => h('a', { href, 'aria-current': on ? 'page' : null }, icon(name), label);
+  tabbar.replaceChildren(
+    tab('#/', 'Lists', 'lists', view === 'lists' || view === 'list' || view === 'product' || view === 'add'),
+    tab('#/next', 'Buy next', 'cart', view === 'next'),
   );
 }
 
 function loadingView(text) {
-  return h('div', { class: 'center muted' }, h('div', { class: 'spinner', 'aria-hidden': 'true' }), text);
+  return h('div', { class: 'center' }, h('div', { class: 'spinner', 'aria-hidden': 'true' }), text);
 }
 
 function errorView(err) {
-  return h('div', { class: 'card notice error' },
+  return h('div', { class: 'card notice' },
     h('h2', {}, 'Could not load your data'),
     h('p', {}, describeError(err)),
     h('button', { class: 'btn', type: 'button', onClick: () => location.reload() }, 'Try again'),
@@ -206,7 +333,7 @@ function signInView() {
   return h('section', { class: 'card signin' },
     h('img', { class: 'signin-logo', src: 'img/logo.png', alt: 'Shopee List', width: 180, height: 180 }),
     h('h1', { class: 'sr-only' }, 'Shopee List'),
-    h('p', {}, 'Keep shopping lists for Shopee Malaysia and compare listings side by side. Your lists sync between your phone and computer.'),
+    h('p', {}, 'Shopping lists for Shopee Malaysia, with photos, the reason behind each pick, and what to buy next.'),
     button,
     status,
     h('p', { class: 'muted small' }, 'Only your Google account can see your lists.'),
@@ -216,64 +343,71 @@ function signInView() {
 // ----- all lists -----
 
 function listsView() {
-  const lists = [...state.lists].sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+  const lastChange = (list) => Math.max(list.updatedAt || 0, ...productsOf(list.id).map((p) => p.updatedAt || 0));
+  const lists = [...state.lists].sort((a, b) => lastChange(b) - lastChange(a));
 
-  const input = h('input', {
-    type: 'text', name: 'name', placeholder: 'New list, e.g. Raya, Kitchen', maxlength: 80,
-    required: true, autocomplete: 'off', 'data-keep': 'new-list', 'aria-label': 'New list name',
-  });
-  const form = h('form', {
-    class: 'add-row',
-    onSubmit: (e) => {
-      e.preventDefault();
-      const name = input.value.trim();
-      if (!name) return;
-      input.value = '';
-      save(store.addList(name), `Added list "${name}"`);
-    },
-  }, input, h('button', { class: 'btn primary', type: 'submit' }, 'Add list'));
+  const must = state.products.filter(isMust);
+  const sale = state.products.filter(isSale);
+  const next = nextSale();
+  const mustLists = new Set(must.map((p) => p.listId)).size;
 
   const cards = lists.map((list) => {
-    const items = state.products.filter((p) => p.listId === list.id);
+    const items = productsOf(list.id);
     const bought = items.filter((p) => p.bought).length;
     const remaining = sumEstimates(items.filter((p) => !p.bought));
-    return h('a', { class: 'card link-card', href: listHref(list.id) },
-      h('div', { class: 'link-card-main' },
-        h('h2', {}, list.name),
-        h('p', { class: 'muted small' },
-          `${items.length} item${items.length === 1 ? '' : 's'}`,
-          items.length ? ` · ${bought} bought` : ''),
-      ),
-      h('div', { class: 'link-card-side' },
-        remaining.total > 0 ? h('span', { class: 'amount' }, formatRM(remaining.total)) : null,
-        remaining.total > 0 ? h('span', { class: 'muted tiny' }, 'to buy') : null,
-      ),
-      h('span', { class: 'chevron', 'aria-hidden': 'true' }, '›'),
+    const thumbs = items.filter((p) => !p.bought && !isSkip(p)).slice(0, 3);
+    return h('a', { class: 'card list-card', href: listHref(list.id) },
+      h('div', { class: 'thumbs', 'aria-hidden': 'true' },
+        (thumbs.length ? thumbs : [{}]).map((p) => photo(p.id ? productImage(p) : '', 'xs'))),
+      h('div', { class: 'main' },
+        h('span', { class: 'name' }, list.name),
+        h('span', { class: 'muted small' },
+          `${items.length} item${items.length === 1 ? '' : 's'}`, bought ? ` · ${bought} bought` : '')),
+      remaining.total > 0
+        ? h('div', { class: 'side' }, h('span', { class: 'amount' }, formatRM(remaining.total)), h('span', { class: 'muted tiny' }, 'to buy'))
+        : null,
     );
   });
 
   return h('div', { class: 'stack' },
-    h('div', { class: 'title-row' },
-      h('h1', { class: 'page-title' }, 'Your lists'),
-      h('div', { class: 'row-actions' },
-        h('a', { class: 'btn small ghost', href: 'research/' }, 'Research library'),
-        h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude'))),
-    form,
-    cards.length ? h('div', { class: 'stack' }, cards)
-      : h('div', { class: 'card empty' }, h('p', {}, 'No lists yet. Create one above to start adding Shopee items.')),
+    h('h1', { class: 'page-title' }, 'Your lists'),
+    h('div', { class: 'hero-cta' },
+      h('a', { class: 'btn primary big block', href: '#/add' }, icon('plus'), 'Add from Claude'),
+      h('p', {}, 'From the research library, with photos and prices')),
+    h('div', { class: 'summary-cards' },
+      h('a', { class: 'card summary-card', href: '#/next' },
+        h('span', { class: 'kicker' }, 'Buy next'),
+        h('span', { class: 'big-num' }, formatRM(sumEstimates(must).total)),
+        h('span', { class: 'muted' }, must.length
+          ? `${must.length} must-have${must.length === 1 ? '' : 's'} in ${mustLists} list${mustLists === 1 ? '' : 's'}`
+          : 'Mark items as Must-have')),
+      h('a', { class: 'card summary-card sale', href: '#/next/sale' },
+        h('span', { class: 'kicker' }, `${next.label} sale`),
+        h('span', { class: 'big-num' }, formatRM(sumEstimates(sale).total)),
+        h('span', { class: 'muted' }, `${sale.length} item${sale.length === 1 ? '' : 's'}, ${next.days === 0 ? 'today' : `in ${next.days} day${next.days === 1 ? '' : 's'}`}`))),
+    h('div', { class: 'row-between' },
+      h('h2', { style: 'font-size: 17px' }, `${lists.length} list${lists.length === 1 ? '' : 's'}`),
+      h('span', { class: 'muted small' }, 'Recently changed first')),
+    cards.length ? h('div', { class: 'stack tight' }, cards)
+      : h('div', { class: 'card empty' }, h('p', {}, 'No lists yet. Tap Add from Claude, or make an empty list below.')),
+    h('div', { class: 'secondary-actions' },
+      h('button', { class: 'btn ghost small', type: 'button', onClick: newListDialog }, 'New empty list'),
+      h('button', { class: 'btn ghost small', type: 'button', onClick: () => importDialog(null) }, 'Paste from chat')),
   );
 }
 
-function sumEstimates(products) {
-  let total = 0;
-  let missing = 0;
-  for (const p of products) {
-    if (p.research && p.research.verdict === 'skip') continue; // researched as not worth buying
-    const est = productEstimate(p);
-    if (est === null) missing += 1;
-    else total += est;
-  }
-  return { total: Math.round(total * 100) / 100, missing };
+function newListDialog() {
+  formDialog({
+    title: 'New list',
+    submitLabel: 'Create',
+    fields: [{ name: 'name', label: 'List name', placeholder: 'e.g. Raya, Kitchen', required: true, maxlength: 80, full: true }],
+    onSubmit: ({ name }) => {
+      const clean = name.trim();
+      if (!clean) return 'Enter a name.';
+      save(store.addList(clean), `Added list "${clean}"`);
+      return null;
+    },
+  });
 }
 
 // ----- one list -----
@@ -282,111 +416,126 @@ function listView(listId) {
   const list = state.lists.find((l) => l.id === listId);
   if (!list) return notFound('This list no longer exists.');
 
-  const items = state.products
-    .filter((p) => p.listId === listId)
-    .sort((a, b) => Number(a.bought) - Number(b.bought) || (a.createdAt || 0) - (b.createdAt || 0));
-  const shown = items.filter((p) => (state.filter === 'todo' ? !p.bought : state.filter === 'bought' ? p.bought : true));
-  const all = sumEstimates(items);
-  const todo = sumEstimates(items.filter((p) => !p.bought));
+  const items = productsOf(listId)
+    .sort((a, b) => Number(a.bought) - Number(b.bought)
+      || ['must', 'should', 'nice'].indexOf(priorityOf(a)) - ['must', 'should', 'nice'].indexOf(priorityOf(b))
+      || (a.createdAt || 0) - (b.createdAt || 0));
+  const open = items.filter((p) => !p.bought);
+  const next = nextSale();
+  const filters = {
+    buy: { label: `To buy ${open.length}`, test: (p) => !p.bought },
+    must: { label: `Must-have ${open.filter(isMust).length}`, test: isMust },
+    sale: { label: `${next.label} sale ${open.filter(isSale).length}`, test: isSale },
+    bought: { label: `Bought ${items.length - open.length}`, test: (p) => p.bought },
+  };
+  if (!filters[state.filter]) state.filter = 'buy';
+  const shown = items.filter(filters[state.filter].test);
+  const researched = items.map((p) => p.research && p.research.researchedAt).filter(Boolean).sort().pop();
+  const boughtByOther = items.filter((p) => p.bought && p.boughtBy && p.boughtBy.uid && p.boughtBy.uid !== (state.user && state.user.uid));
 
-  const nameInput = h('input', {
-    type: 'text', name: 'name', placeholder: 'Add item, e.g. Air fryer', maxlength: 120,
-    required: true, autocomplete: 'off', 'data-keep': `new-item-${listId}`, 'aria-label': 'Item name',
-  });
-  const qtyInput = h('input', {
-    type: 'number', name: 'qty', value: 1, min: 1, max: 999, step: 1, inputmode: 'numeric',
-    class: 'qty', 'aria-label': 'Quantity',
-  });
-  const addForm = h('form', {
-    class: 'add-row',
-    onSubmit: (e) => {
-      e.preventDefault();
-      const name = nameInput.value.trim();
-      const qty = Math.min(999, Math.max(1, Math.round(Number(qtyInput.value) || 1)));
-      if (!name) return;
-      nameInput.value = '';
-      qtyInput.value = 1;
-      save(store.addProduct(listId, { name, qty }), `Added "${name}"`);
-      nameInput.focus();
-    },
-  }, nameInput, qtyInput, h('button', { class: 'btn primary', type: 'submit' }, 'Add'));
+  const rows = shown.map((p) => itemRow(listId, p));
 
-  const filterBtn = (key, label) => h('button', {
-    type: 'button',
-    class: `chip${state.filter === key ? ' active' : ''}`,
-    'aria-pressed': String(state.filter === key),
-    onClick: () => { state.filter = key; render(); },
-  }, label);
+  const more = () => menuDialog(list.name, [
+    menuButton('Add an item yourself', () => addItemDialog(listId)),
+    menuButton('Paste research from chat', () => importDialog(listId)),
+    menuButton('Copy re-check request for Claude', () => copyText(recheckRequest(list.name, open), 'Copied. Paste it to Claude to re-check prices.')),
+    menuButton('Rename list', () => renameListDialog(list)),
+    menuButton('Delete list', () => {
+      const ids = items.map((p) => p.id);
+      if (!confirm(`Delete "${list.name}" and its ${ids.length} item(s)? This cannot be undone.`)) return;
+      location.hash = '#/';
+      save(store.deleteList(list.id, ids), 'List deleted');
+    }, 'danger'),
+  ]);
 
-  const rows = shown.map((p) => {
-    const listing = pickListing(p);
-    const est = productEstimate(p);
-    const count = (p.listings || []).length;
-    const check = h('input', {
-      type: 'checkbox', checked: !!p.bought, 'aria-label': `Mark ${p.name} as bought`,
-      onChange: (e) => save(store.updateProduct(p.id, { bought: e.target.checked })),
-    });
-    return h('li', { class: `item${p.bought ? ' bought' : ''}` },
-      h('label', { class: 'check' }, check),
-      h('a', { class: 'item-main', href: productHref(listId, p.id) },
-        h('span', { class: 'item-name' },
-          p.name,
-          p.research && p.research.verdict
-            ? h('span', { class: `verdict-badge ${p.research.verdict}` }, VERDICTS[p.research.verdict]) : null),
-        h('span', { class: 'muted small' },
-          p.qty > 1 ? `Qty ${p.qty} · ` : '',
-          count ? `${count} listing${count === 1 ? '' : 's'}` : 'No listings yet',
-          listing && p.chosenListingId === listing.id ? ' · chosen' : ''),
-      ),
-      h('span', { class: 'item-price' }, est !== null ? formatRM(est) : ''),
-      h('span', { class: 'chevron', 'aria-hidden': 'true' }, '›'),
-    );
-  });
+  const todo = sumEstimates(open);
+  const mustTotal = sumEstimates(open.filter(isMust));
 
   return h('div', { class: 'stack' },
-    h('a', { class: 'back', href: '#/' }, '‹ All lists'),
-    h('div', { class: 'title-row' },
-      h('h1', { class: 'page-title' }, list.name),
-      h('div', { class: 'actions' },
-        h('button', { class: 'btn ghost small', type: 'button', onClick: () => importDialog(list.id) }, 'Import'),
-        h('button', { class: 'btn ghost small', type: 'button', onClick: () => renameListDialog(list) }, 'Rename'),
-        h('button', {
-          class: 'btn ghost small danger', type: 'button',
-          onClick: () => {
-            const ids = items.map((p) => p.id);
-            if (!confirm(`Delete "${list.name}" and its ${ids.length} item(s)? This cannot be undone.`)) return;
-            location.hash = '#/';
-            save(store.deleteList(list.id, ids), 'List deleted');
-          },
-        }, 'Delete'),
-      ),
-    ),
-    h('div', { class: 'summary card' },
-      stat('Items', `${items.filter((p) => p.bought).length}/${items.length} bought`),
-      stat('Still to buy', formatRM(todo.total)),
-      stat('Whole list', formatRM(all.total)),
-      all.missing ? h('p', { class: 'muted tiny full' }, `${all.missing} item(s) have no priced listing yet and are not counted.`) : null,
-    ),
-    addForm,
-    items.length ? h('div', { class: 'chips', role: 'group', 'aria-label': 'Filter items' },
-      filterBtn('all', 'All'), filterBtn('todo', 'To buy'), filterBtn('bought', 'Bought')) : null,
-    shown.length ? h('ul', { class: 'items card' }, rows)
-      : h('div', { class: 'card empty' }, h('p', {}, items.length ? 'Nothing here for this filter.' : 'No items yet. Add what you want to buy above.')),
+    h('div', { class: 'nav-row' },
+      h('a', { class: 'back', href: '#/' }, icon('back'), 'Lists'),
+      h('span', { class: 'spacer' }),
+      h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'More: add item, rename, delete', onClick: more }, icon('more'))),
+    h('div', { class: 'list-head' },
+      h('div', {},
+        h('h1', { class: 'page-title' }, list.name),
+        h('p', { class: 'page-sub' },
+          `${items.length} item${items.length === 1 ? '' : 's'} · ${items.length - open.length} bought`,
+          boughtByOther.length ? ` (${boughtByOther.length} by ${boughtByOther[0].boughtBy.name || 'someone else'})` : '',
+          researched ? ` · researched ${formatDate(researched)}` : '')),
+      items.length ? h('div', { class: 'filters', role: 'group', 'aria-label': 'Filter items' },
+        Object.entries(filters).map(([key, f]) => h('button', {
+          type: 'button', 'aria-pressed': String(state.filter === key),
+          onClick: () => { state.filter = key; render(); },
+        }, f.label))) : null),
+    shown.length ? h('ul', { class: 'items' }, rows)
+      : h('div', { class: 'card empty' }, h('p', {}, items.length
+        ? 'Nothing here for this filter.'
+        : 'No items yet. Add research from Claude, or tap the ⋯ menu to add an item yourself.')),
+    h('button', { class: 'btn ghost small', type: 'button', style: 'align-self: center', onClick: () => addItemDialog(listId) }, icon('plus'), 'Add an item yourself'),
+    h('div', { class: 'totalbar' },
+      h('div', { class: 'totalbar-inner' },
+        h('div', {}, h('span', { class: 'label' }, 'Still to buy'), h('span', { class: 'value' }, formatRM(todo.total))),
+        h('div', {}, h('span', { class: 'label', style: 'text-align: right' }, 'Must-haves'), h('span', { class: 'value must' }, formatRM(mustTotal.total))))),
   );
 }
 
-function stat(label, value) {
-  return h('div', { class: 'stat' }, h('span', { class: 'muted tiny' }, label), h('strong', {}, value));
+function itemRow(listId, p) {
+  const listing = pickListing(p);
+  const est = productEstimate(p);
+  const { short, model } = splitName(p.name);
+  const verdict = p.research && p.research.verdict;
+  const pri = priorityOf(p);
+  const why = firstSentence(p.research && p.research.summary) || firstSentence(p.notes);
+  const meta = [model, sellerLine(listing)].filter(Boolean).join(' · ') || ((p.listings || []).length ? '' : 'No listings yet');
+  const next = nextSale();
+
+  const chips = [];
+  if (!p.bought) chips.push(h('span', { class: `chip${pri === 'must' ? ' must' : ''}` }, PRIORITIES[pri]));
+  if (verdict) chips.push(h('span', { class: `chip ${verdict}` }, VERDICTS[verdict]));
+  if (p.saleDay && !p.bought) chips.push(h('span', { class: 'chip sale' }, next.label));
+  if (p.bought) chips.push(h('span', { class: 'chip' }, `Bought${p.boughtBy && p.boughtBy.name ? ` by ${p.boughtBy.name.split(' ')[0]}` : ''}`));
+
+  return h('li', { class: `card item${p.bought ? ' bought' : ''}` },
+    h('a', { class: 'item-link', href: productHref(listId, p.id) },
+      photo(productImage(p), '', ''),
+      h('span', { class: 'item-text' },
+        h('span', { class: 'item-top' },
+          h('span', { class: 'item-name' }, short, p.qty > 1 ? ` ×${p.qty}` : ''),
+          est !== null ? h('span', { class: 'item-price' }, formatRM(est)) : null),
+        meta ? h('span', { class: 'item-meta' }, meta) : null,
+        why ? h('span', { class: 'item-why' }, why) : null,
+        h('span', { class: 'chips' }, chips))),
+    h('button', {
+      class: 'tick', type: 'button', 'aria-pressed': String(!!p.bought),
+      'aria-label': `${p.bought ? 'Mark not bought' : 'Mark bought'}: ${p.name}`,
+      onClick: () => save(store.updateProduct(p.id, boughtPatch(!p.bought)), p.bought ? null : `Bought: ${short}`),
+    }, h('span', {}, icon('check'))),
+  );
 }
 
 function notFound(message) {
   return h('div', { class: 'stack' },
-    h('a', { class: 'back', href: '#/' }, '‹ All lists'),
+    h('div', { class: 'nav-row' }, h('a', { class: 'back', href: '#/' }, icon('back'), 'Lists')),
     h('div', { class: 'card empty' }, h('p', {}, message)),
   );
 }
 
-// ----- one product: compare listings -----
+function recheckRequest(listName, products) {
+  const lines = products
+    .map((p) => {
+      const l = pickListing(p);
+      return l && l.url ? `- ${p.name}: ${l.url}` : null;
+    })
+    .filter(Boolean);
+  return [
+    `Re-check these Shopee prices for my Shopee List (list "${listName}").`,
+    'Open each link in my Chrome, read the current price, rating and sold count, and give me a Shopee List import block for the same list with the same item names, so the app records the new prices.',
+    ...lines,
+  ].join('\n');
+}
+
+// ----- one product -----
 
 function productView(listId, productId) {
   const list = state.lists.find((l) => l.id === listId);
@@ -394,7 +543,15 @@ function productView(listId, productId) {
   if (!list || !product) return notFound('This item no longer exists.');
 
   const qty = product.qty || 1;
+  const { short, model } = splitName(product.name);
+  const r = product.research;
+  const pri = priorityOf(product);
+  const next = nextSale();
+  const pick = pickListing(product);
+
   const listings = [...(product.listings || [])].sort((a, b) => {
+    if (a.id === product.chosenListingId) return -1;
+    if (b.id === product.chosenListingId) return 1;
     const ta = listingTotal(a, qty);
     const tb = listingTotal(b, qty);
     if (ta === null && tb === null) return 0;
@@ -403,188 +560,388 @@ function productView(listId, productId) {
     return ta - tb;
   });
 
-  const header = h('div', { class: 'stack tight' },
-    h('a', { class: 'back', href: listHref(listId) }, `‹ ${list.name}`),
-    h('div', { class: 'title-row' },
-      h('h1', { class: 'page-title' }, product.name),
-      h('div', { class: 'actions' },
-        h('button', { class: 'btn ghost small', type: 'button', onClick: () => editProductDialog(product) }, 'Edit'),
-        h('button', {
-          class: 'btn ghost small danger', type: 'button',
-          onClick: () => {
-            if (!confirm(`Delete "${product.name}" and its listings?`)) return;
-            location.hash = listHref(listId);
-            save(store.deleteProduct(product.id), 'Item deleted');
-          },
-        }, 'Delete'),
-      ),
-    ),
-    h('div', { class: 'meta-row' },
-      h('span', { class: 'pill' }, `Qty ${qty}`),
-      h('label', { class: 'pill toggle' },
-        h('input', {
-          type: 'checkbox', checked: !!product.bought,
-          onChange: (e) => save(store.updateProduct(product.id, { bought: e.target.checked })),
-        }),
-        ' Bought'),
-      productEstimate(product) !== null
-        ? h('span', { class: 'pill strong' }, `Est. ${formatRM(productEstimate(product))}`) : null,
-    ),
-    product.notes ? h('p', { class: 'notes' }, product.notes) : null,
-  );
+  const more = () => menuDialog(short, [
+    menuButton('Edit name, quantity, notes', () => editProductDialog(product)),
+    menuButton('Add a listing', () => listingDialog(product)),
+    menuButton('Delete item', () => {
+      if (!confirm(`Delete "${product.name}" and its listings?`)) return;
+      location.hash = listHref(listId);
+      save(store.deleteProduct(product.id), 'Item deleted');
+    }, 'danger'),
+  ]);
 
-  const addBtn = h('button', { class: 'btn primary', type: 'button', onClick: () => listingDialog(product) }, '+ Add listing');
+  const chips = [];
+  if (r && r.verdict) chips.push(h('span', { class: `chip big ${r.verdict}` }, VERDICTS[r.verdict]));
+  chips.push(h('span', { class: `chip big${pri === 'must' ? ' must' : ''}` }, PRIORITIES[pri]));
+  if (product.saleDay) chips.push(h('span', { class: 'chip big sale' }, next.label));
+  if (qty > 1) chips.push(h('span', { class: 'chip big' }, `Qty ${qty}`));
 
-  const body = listings.length
-    ? compareTable(product, listings)
-    : h('div', { class: 'card empty' },
-      h('p', {}, 'No listings yet. Find this item on Shopee, copy the link, and add each seller you are considering.'));
-
-  return h('div', { class: 'stack' },
-    header,
-    product.research ? researchCard(product.research) : null,
-    h('div', { class: 'title-row' }, h('h2', { class: 'section-title' }, `Compare listings (${listings.length})`), addBtn),
-    body,
-    listings.length > 1 ? h('p', { class: 'muted tiny' }, 'Sorted by total. Total = price × quantity + shipping. Scroll sideways to see more.') : null,
-  );
-}
-
-function researchCard(r) {
   const bullets = (items, cls) => (items && items.length
     ? h('ul', { class: `bullets ${cls}` }, items.map((s) => h('li', {}, s))) : null);
-  return h('section', { class: 'card research', 'aria-label': 'Research' },
-    h('div', { class: 'research-head' },
-      r.verdict ? h('span', { class: `verdict ${r.verdict}` }, VERDICTS[r.verdict]) : null,
-      h('span', { class: 'muted tiny' }, r.researchedAt ? `Researched ${formatDate(r.researchedAt)}` : 'Research')),
-    r.summary ? h('p', { class: 'research-summary' }, r.summary) : null,
-    (r.pros && r.pros.length) || (r.cons && r.cons.length)
-      ? h('div', { class: 'pros-cons' },
-        r.pros && r.pros.length ? h('div', {}, h('h3', {}, 'Good'), bullets(r.pros, 'pros')) : null,
-        r.cons && r.cons.length ? h('div', {}, h('h3', {}, 'Watch out'), bullets(r.cons, 'cons')) : null)
-      : null,
-    r.sources && r.sources.length
-      ? h('details', { class: 'sources' },
-        h('summary', {}, `Sources (${r.sources.length})`),
-        h('ul', {}, r.sources.map((s) => h('li', {},
-          h('a', { href: s.url, target: '_blank', rel: 'noopener noreferrer' }, s.title || new URL(s.url).hostname)))))
-      : null,
+
+  const why = (r && (r.summary || (r.pros && r.pros.length) || (r.cons && r.cons.length))) || product.notes
+    ? h('section', { class: 'card pad why' },
+      h('h2', { class: 'section-label', style: 'padding: 0 0 8px' }, r && r.summary ? "Why it's the pick" : 'Notes'),
+      r && r.summary ? h('p', { class: 'summary-text' }, r.summary) : null,
+      product.notes ? h('p', { class: 'muted small' }, r && r.summary ? `Note: ${product.notes}` : product.notes) : null,
+      (r && ((r.pros && r.pros.length) || (r.cons && r.cons.length)))
+        ? h('div', { class: 'pros-cons' },
+          r.pros && r.pros.length ? h('div', {}, h('h3', {}, 'Good'), bullets(r.pros, 'pros')) : null,
+          r.cons && r.cons.length ? h('div', {}, h('h3', {}, 'Watch out'), bullets(r.cons, 'cons')) : null)
+        : null,
+      r && r.sources && r.sources.length
+        ? h('details', { class: 'sources' },
+          h('summary', {}, `Sources (${r.sources.length})${r.researchedAt ? ` · researched ${formatDate(r.researchedAt)}` : ''}`),
+          h('ul', {}, r.sources.map((s) => h('li', {},
+            h('a', { href: s.url, target: '_blank', rel: 'noopener noreferrer' }, s.title || new URL(s.url).hostname)))))
+        : (r && r.researchedAt ? h('p', { class: 'muted tiny', style: 'margin-top: 8px' }, `Researched ${formatDate(r.researchedAt)}`) : null))
+    : null;
+
+  return h('div', { class: 'stack' },
+    h('div', { class: 'nav-row' },
+      h('a', { class: 'back', href: listHref(listId) }, icon('back'), list.name),
+      h('span', { class: 'spacer' }),
+      h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'More: edit, add listing, delete', onClick: more }, icon('more'))),
+    photo(productImage(product), 'hero', product.name),
+    h('div', { class: 'stack tight' },
+      h('h1', { class: 'item-title' }, short),
+      model ? h('p', { class: 'subtitle' }, model) : null,
+      h('div', { class: 'chips' }, chips)),
+    why,
+    pick ? priceCard(product, pick, list.name) : null,
+    h('section', { class: 'stack tight' },
+      h('h2', { class: 'section-label' }, 'Priority'),
+      h('div', { class: 'segmented', role: 'radiogroup', 'aria-label': 'Priority' },
+        Object.entries(PRIORITIES).map(([key, label]) => h('button', {
+          type: 'button', role: 'radio', 'aria-checked': String(pri === key),
+          onClick: () => { if (product.priority !== key) save(store.updateProduct(product.id, { priority: key })); },
+        }, label))),
+      h('button', {
+        class: 'switch-row', type: 'button', role: 'switch', 'aria-checked': String(!!product.saleDay),
+        onClick: () => save(store.updateProduct(product.id, { saleDay: !product.saleDay })),
+      },
+      h('span', {}, h('strong', {}, `Buy on ${next.label} sale`), h('span', { class: 'muted' }, next.days === 0 ? 'The sale is today' : `In ${next.days} day${next.days === 1 ? '' : 's'}. Shows in the sale list.`)),
+      h('span', { class: 'switch', 'aria-hidden': 'true' }))),
+    h('section', { class: 'stack tight' },
+      h('div', { class: 'row-between' },
+        h('h2', { class: 'section-label' }, listings.length ? `${listings.length} listing${listings.length === 1 ? '' : 's'} compared` : 'Listings'),
+        h('button', { class: 'btn ghost small', type: 'button', onClick: () => listingDialog(product) }, icon('plus'), 'Add')),
+      listings.length
+        ? listings.map((l) => listingCard(product, l, listings))
+        : h('div', { class: 'card empty' }, h('p', {}, 'No listings yet. Find this item on Shopee, copy the link, and add each seller you are considering.'))),
+    h('div', { class: 'bottom-actions' },
+      h('div', { class: 'inner' },
+        h('button', {
+          class: `btn big ${product.bought ? '' : 'dark'}`, type: 'button', 'aria-pressed': String(!!product.bought),
+          onClick: () => save(store.updateProduct(product.id, boughtPatch(!product.bought)), product.bought ? 'Marked not bought' : 'Marked as bought'),
+        }, product.bought
+          ? `Bought${product.boughtBy && product.boughtBy.name ? ` by ${product.boughtBy.name.split(' ')[0]}` : ''} · tap to undo`
+          : 'Mark as bought'))),
   );
 }
 
-function formatDate(iso) {
-  const d = new Date(`${iso}T00:00:00`);
-  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' });
+function priceCard(product, pick, listName) {
+  const qty = product.qty || 1;
+  const hist = historyOf(pick);
+  const first = hist[0];
+  const last = hist[hist.length - 1];
+  const lowest = hist.reduce((m, p) => (m === null || p.price < m ? p.price : m), null);
+  const change = first && last ? Math.round((last.price - first.price) * 100) / 100 : 0;
+  const lastDate = pick.checked && pick.checked !== 'card' ? pick.checked : (last && last.date) || '';
+  const age = ageText(lastDate);
+
+  let changeChip;
+  if (hist.length < 2) changeChip = h('span', { class: 'chip big' }, 'No change yet');
+  else if (change === 0) changeChip = h('span', { class: 'chip big' }, 'Same as research day');
+  else changeChip = h('span', { class: `chip big ${change > 0 ? 'up' : 'down'}` }, `${change > 0 ? 'Up' : 'Down'} ${formatRM(Math.abs(change))}`);
+
+  return h('section', { class: 'card pad price-card' },
+    h('div', { class: 'row-between', style: 'align-items: flex-end' },
+      h('div', {},
+        h('span', { class: 'muted tiny', style: 'display: block' }, qty > 1 ? `Pick price ×${qty}` : 'Pick price'),
+        h('span', { class: 'price-now' }, formatRM(listingTotal(pick, qty)))),
+      changeChip),
+    h('div', { class: 'price-grid' },
+      h('div', {}, h('span', { class: 'muted' }, 'Research day'), h('strong', {}, first ? formatRM(first.price) : '–')),
+      h('div', {}, h('span', { class: 'muted' }, 'Lowest seen'), h('strong', {}, lowest !== null ? formatRM(lowest) : '–')),
+      h('div', {}, h('span', { class: 'muted' }, 'Checked'), h('strong', {}, lastDate ? `${formatDate(lastDate, true)}${age ? ` (${age})` : ''}` : '–'))),
+    pick.checked === 'card'
+      ? h('p', { class: 'muted tiny' }, 'Read from Shopee search results, not the product page. Re-check for the exact price.')
+      : null,
+    h('div', { class: 'stack tight' },
+      h('button', { class: 'btn outline', type: 'button', onClick: () => recheckDialog(product, pick) }, icon('refresh'), 'Re-check price'),
+      h('button', {
+        class: 'btn ghost small', type: 'button',
+        onClick: () => copyText(recheckRequest(listName, [product]), 'Copied. Paste it to Claude to re-check.'),
+      }, icon('copy'), 'Copy re-check request for Claude')),
+  );
 }
 
-function compareTable(product, listings) {
+function listingCard(product, l, all) {
   const qty = product.qty || 1;
-  const totals = listings.map((l) => listingTotal(l, qty));
-  const best = {
-    total: minOf(totals),
-    rating: maxOf(listings.map((l) => l.rating)),
-    sold: maxOf(listings.map((l) => l.sold)),
-  };
-  const multiple = listings.length > 1;
+  const isChosen = l.id === product.chosenListingId;
+  const totals = all.map((x) => listingTotal(x, qty)).filter(Number.isFinite);
+  const total = listingTotal(l, qty);
+  const cheapest = all.length > 1 && total !== null && total === Math.min(...totals);
+  const ship = Number.isFinite(l.shipping) ? (l.shipping === 0 ? 'Free shipping' : `Shipping ${formatRM(l.shipping)}`) : '';
+  const tags = [];
+  tags.push(h('span', { class: `chip ${isChosen ? 'solid' : ''}` }, isChosen ? 'Pick' : (TAGS[l.tag] && l.tag !== 'PICK' ? TAGS[l.tag] : 'Alternative')));
+  if (cheapest) tags.push(h('span', { class: 'chip buy' }, 'Cheapest'));
+  if (l.badge === 'mall') tags.push(h('span', { class: 'chip mall' }, 'Mall'));
+  if (l.overseas) tags.push(h('span', { class: 'chip warn' }, 'Overseas'));
 
-  const cols = listings.map((l, i) => {
-    const tags = [];
-    if (l.id === product.chosenListingId) tags.push(h('span', { class: 'tag chosen' }, 'Chosen'));
-    if (TAGS[l.tag] && !(l.tag === 'PICK' && l.id === product.chosenListingId)) {
-      tags.push(h('span', { class: `tag research-tag ${l.tag.toLowerCase()}` }, TAGS[l.tag]));
-    }
-    if (multiple && totals[i] !== null && totals[i] === best.total) tags.push(h('span', { class: 'tag good' }, 'Cheapest'));
-    if (multiple && Number.isFinite(l.rating) && l.rating === best.rating) tags.push(h('span', { class: 'tag' }, 'Top rated'));
-    if (multiple && Number.isFinite(l.sold) && l.sold === best.sold && best.sold > 0) tags.push(h('span', { class: 'tag' }, 'Most sold'));
-    return { l, total: totals[i], tags };
-  });
+  return h('div', { class: `card listing${isChosen ? ' is-pick' : ''}` },
+    h('div', { class: 'head' }, h('span', { class: 'chips' }, tags), h('span', { class: 'price' }, formatRM(total))),
+    h('span', { class: 'shop' }, l.shop || BADGES[l.badge] || BADGES.none),
+    h('span', { class: 'line' }, [
+      l.shop && l.badge && l.badge !== 'none' && l.badge !== 'mall' ? BADGES[l.badge] : '',
+      l.shipsFrom ? `ships from ${l.shipsFrom}` : '',
+      ship,
+    ].filter(Boolean).join(' · ') || ' '),
+    h('span', { class: 'line' }, [
+      Number.isFinite(l.rating) ? `★ ${l.rating.toFixed(1)}${Number.isFinite(l.ratingCount) ? ` (${formatCount(l.ratingCount)})` : ''}` : '',
+      Number.isFinite(l.sold) ? `${formatCount(l.sold)} sold` : '',
+      qty > 1 && Number.isFinite(l.price) ? `${formatRM(l.price)} each` : '',
+    ].filter(Boolean).join(' · ') || 'No rating recorded'),
+    l.voucher ? h('span', { class: 'line' }, `Voucher: ${l.voucher}`) : null,
+    l.notes ? h('span', { class: 'line' }, l.notes) : null,
+    h('div', { class: 'acts' },
+      l.url ? h('a', { class: `btn ${isChosen ? 'primary' : ''}`, href: l.url, target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee') : null,
+      isChosen ? null : h('button', {
+        class: 'btn', type: 'button',
+        onClick: () => save(store.updateProduct(product.id, { chosenListingId: l.id }), 'Pick changed'),
+      }, 'Make pick'),
+      h('button', { class: 'btn ghost', type: 'button', onClick: () => listingDialog(product, l) }, 'Edit'),
+      h('button', {
+        class: 'btn ghost danger', type: 'button',
+        onClick: () => {
+          if (!confirm(`Delete listing from ${l.shop || 'this seller'}?`)) return;
+          save(store.updateProduct(product.id, {
+            listings: (product.listings || []).filter((x) => x.id !== l.id),
+            chosenListingId: product.chosenListingId === l.id ? null : product.chosenListingId,
+          }), 'Listing deleted');
+        },
+      }, 'Delete')),
+  );
+}
 
-  const isBest = (on, value, target) => multiple && on && value !== null && Number.isFinite(value) && value === target;
+function formatDate(iso, short = false) {
+  const d = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-MY', short ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' });
+}
 
-  const rows = [
-    ['Price', (c) => (Number.isFinite(c.l.price) ? formatRM(c.l.price) : '–')],
-    ['Shipping', (c) => (Number.isFinite(c.l.shipping) ? (c.l.shipping === 0 ? 'Free' : formatRM(c.l.shipping)) : '–')],
-    [qty > 1 ? `Total (×${qty})` : 'Total', (c) => h('strong', {}, formatRM(c.total)), (c) => isBest(true, c.total, best.total)],
-    ['Rating', (c) => (Number.isFinite(c.l.rating)
-      ? `★ ${c.l.rating.toFixed(1)}${Number.isFinite(c.l.ratingCount) ? ` (${formatCount(c.l.ratingCount)})` : ''}` : '–'),
-    (c) => isBest(true, c.l.rating, best.rating)],
-    ['Sold', (c) => formatCount(c.l.sold), (c) => isBest(best.sold > 0, c.l.sold, best.sold)],
-    ['Seller', (c) => h('span', { class: `seller ${c.l.badge || 'none'}` }, BADGES[c.l.badge] || BADGES.none)],
-    ['Ships from', (c) => [c.l.shipsFrom || (c.l.overseas ? '' : '–'), c.l.overseas ? h('span', { class: 'tag warn' }, 'Overseas') : null]],
-    ['Vouchers', (c) => c.l.voucher || '–'],
-    ['Notes', (c) => c.l.notes || '–'],
-  ];
-  if (listings.some((l) => l.checked)) {
-    rows.push(['Price checked', (c) => (c.l.checked === 'card'
-      ? h('span', { class: 'muted' }, 'Search page only, not verified')
-      : c.l.checked ? formatDate(c.l.checked) : '–')]);
+// ----- buy next -----
+
+function planView(mode) {
+  const next = nextSale();
+  const picked = state.products.filter(mode === 'sale' ? isSale : isMust);
+  const lists = [...state.lists].sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+  const groups = lists
+    .map((list) => ({ list, items: picked.filter((p) => p.listId === list.id) }))
+    .filter((g) => g.items.length);
+  const total = sumEstimates(picked).total;
+
+  const tabs = h('div', { class: 'segmented', role: 'tablist', 'aria-label': 'View' },
+    h('a', { href: '#/next', role: 'tab', 'aria-selected': String(mode !== 'sale'), class: 'seg-link' }, 'Must-haves'),
+    h('a', { href: '#/next/sale', role: 'tab', 'aria-selected': String(mode === 'sale'), class: 'seg-link' }, `${next.label} sale`));
+
+  const banner = h('div', { class: `banner${mode === 'sale' ? ' sale' : ''}` },
+    h('span', { class: 'kicker' }, mode === 'sale' ? `${next.label} sale · ${next.days === 0 ? 'today' : `in ${next.days} day${next.days === 1 ? '' : 's'}`}` : 'Must-haves to buy'),
+    h('span', { class: 'big-num' }, formatRM(total)),
+    h('span', { class: 'sub' }, mode === 'sale'
+      ? `${picked.length} item${picked.length === 1 ? '' : 's'} tagged for the sale`
+      : `${picked.length} item${picked.length === 1 ? '' : 's'} in ${groups.length} list${groups.length === 1 ? '' : 's'}`));
+
+  const empty = h('div', { class: 'card empty' }, h('p', {}, mode === 'sale'
+    ? `Nothing tagged yet. Open an item and switch on "Buy on ${next.label} sale".`
+    : 'No must-haves yet. Open an item and set its priority to Must-have.'));
+
+  return h('div', { class: 'stack' },
+    h('div', {},
+      h('h1', { class: 'page-title' }, 'Buy next'),
+      h('p', { class: 'page-sub' }, 'Must-haves first, across all lists. No budget limit.')),
+    tabs,
+    banner,
+    groups.length ? groups.map((g) => h('section', { class: 'stack tight' },
+      h('div', { class: 'row-between', style: 'padding: 0 4px' },
+        h('h2', { style: 'font-size: 16px' }, g.list.name),
+        h('span', { class: 'amount', style: 'color: var(--neutral-ink)' }, formatRM(sumEstimates(g.items).total))),
+      h('div', { class: 'card group-card' }, g.items.map((p) => {
+        const { short } = splitName(p.name);
+        const l = pickListing(p);
+        const est = productEstimate(p);
+        return h('a', { class: 'plan-row', href: productHref(p.listId, p.id) },
+          photo(productImage(p), 'sm'),
+          h('span', { class: 'main' },
+            h('span', { class: 'name' }, short, p.qty > 1 ? ` ×${p.qty}` : ''),
+            h('span', { class: 'meta' }, sellerLine(l) || splitName(p.name).model || '')),
+          est !== null ? h('span', { class: 'amount' }, formatRM(est)) : null);
+      })))) : empty,
+    mode === 'sale' && picked.length ? h('div', { class: 'stack tight' },
+      h('button', {
+        class: 'btn outline', type: 'button',
+        onClick: () => copyText(recheckRequest(`${next.label} sale items`, picked), 'Copied. Paste it to Claude the day before the sale.'),
+      }, icon('copy'), `Copy re-check request for these ${picked.length}`),
+      h('p', { class: 'muted tiny', style: 'text-align: center' }, 'Do it the day before the sale. Shopee vouchers are not tracked.')) : null,
+  );
+}
+
+// ----- add from Claude -----
+
+async function loadLibrary() {
+  if (state.library || state.libraryLoading) return;
+  state.libraryLoading = true;
+  try {
+    const res = await fetch('research/index.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`The research library did not load (${res.status}).`);
+    state.library = await res.json();
+    state.libraryError = null;
+  } catch (err) {
+    state.libraryError = err;
+  } finally {
+    state.libraryLoading = false;
+    render();
+  }
+}
+
+function addView() {
+  const head = h('div', { class: 'stack tight' },
+    h('div', { class: 'nav-row' }, h('a', { class: 'back', href: '#/' }, icon('back'), 'Lists')),
+    h('h1', { class: 'page-title' }, 'Add from Claude'),
+    h('p', { class: 'page-sub' }, 'Pick researched lists. Photos, prices and reasons come with them.'),
+    h('button', { class: 'btn ghost small', type: 'button', style: 'align-self: flex-start', onClick: () => importDialog(null) }, 'Or paste research from a chat'));
+
+  if (!state.library) {
+    if (!state.libraryError) loadLibrary();
+    return h('div', { class: 'stack' }, head, state.libraryError
+      ? h('div', { class: 'card notice' }, h('p', {}, state.libraryError.message),
+        h('button', { class: 'btn', type: 'button', onClick: () => { state.libraryError = null; render(); } }, 'Try again'))
+      : loadingView('Loading the research library…'));
   }
 
-  const table = h('table', { class: 'compare' },
-    h('thead', {},
-      h('tr', {},
-        h('th', { scope: 'col', class: 'label' }, h('span', { class: 'sr-only' }, 'Field')),
-        cols.map((c, i) => h('th', { scope: 'col', class: c.l.id === product.chosenListingId ? 'is-chosen' : '' },
-          h('div', { class: 'shop' }, c.l.shop || `Listing ${i + 1}`),
-          c.tags.length ? h('div', { class: 'tags' }, c.tags) : null,
-        )),
-      ),
-    ),
-    h('tbody', {},
-      rows.map(([label, cell, best]) => h('tr', {},
-        h('th', { scope: 'row', class: 'label' }, label),
-        cols.map((c) => h('td', {
-          class: [c.l.id === product.chosenListingId ? 'is-chosen' : '', best && best(c) ? 'best' : ''].join(' ').trim() || null,
-        }, cell(c))),
-      )),
-      h('tr', { class: 'actions-row' },
-        h('th', { scope: 'row', class: 'label' }, h('span', { class: 'sr-only' }, 'Actions')),
-        cols.map((c) => h('td', { class: c.l.id === product.chosenListingId ? 'is-chosen' : null },
-          h('div', { class: 'cell-actions' },
-            c.l.url ? h('a', { class: 'btn small primary', href: c.l.url, target: '_blank', rel: 'noopener noreferrer' }, 'Open ↗') : null,
-            h('button', {
-              class: 'btn small', type: 'button',
-              onClick: () => save(store.updateProduct(product.id, {
-                chosenListingId: product.chosenListingId === c.l.id ? null : c.l.id,
-              })),
-            }, product.chosenListingId === c.l.id ? 'Unchoose' : 'Choose'),
-            h('button', { class: 'btn small ghost', type: 'button', onClick: () => listingDialog(product, c.l) }, 'Edit'),
-            h('button', {
-              class: 'btn small ghost danger', type: 'button',
-              onClick: () => {
-                if (!confirm(`Delete listing from ${c.l.shop || 'this seller'}?`)) return;
-                save(store.updateProduct(product.id, {
-                  listings: (product.listings || []).filter((x) => x.id !== c.l.id),
-                  chosenListingId: product.chosenListingId === c.l.id ? null : product.chosenListingId,
-                }), 'Listing deleted');
-              },
-            }, 'Delete'),
-          ),
-        )),
-      ),
-    ),
+  const lib = state.library;
+  const have = new Set(state.lists.map((l) => l.name.trim().toLowerCase()));
+  const groups = lib.groups || [...new Set(lib.lists.map((l) => l.group || 'Lists'))];
+  let count = 0;
+  let items = 0;
+  for (const l of lib.lists) {
+    if (state.picked.has(l.file)) { count += 1; items += l.items; }
+  }
+
+  const sections = groups.map((g) => {
+    const ls = lib.lists.filter((l) => (l.group || 'Lists') === g);
+    if (!ls.length) return null;
+    return h('section', { class: 'stack tight' },
+      h('h2', { class: 'section-label' }, g),
+      h('div', { class: 'card', style: 'overflow: hidden' }, ls.map((l) => {
+        const on = state.picked.has(l.file);
+        const added = have.has(l.name.trim().toLowerCase());
+        return h('button', {
+          type: 'button', role: 'checkbox', class: 'check-row', 'aria-checked': String(on),
+          onClick: () => { if (on) state.picked.delete(l.file); else state.picked.add(l.file); render(); },
+        },
+        h('span', { class: 'box', 'aria-hidden': 'true' }, icon('check')),
+        h('span', { class: 'main' },
+          h('span', { class: 'name' }, l.name),
+          h('span', { class: 'meta' }, `${l.items} items · ${added ? 'updates your list' : 'new list'}`)),
+        added ? h('span', { class: 'chip buy' }, 'Added') : null);
+      })));
+  });
+
+  const cta = h('button', {
+    class: 'btn primary big block', type: 'button', disabled: !count,
+    onClick: () => addPicked(cta),
+  }, count ? `Add ${count} list${count === 1 ? '' : 's'} · ${items} items` : 'Pick a list to add');
+
+  return h('div', { class: 'stack' },
+    head,
+    h('p', { class: 'muted tiny' }, `Library updated ${formatDate(lib.updated)}.`),
+    sections.filter(Boolean),
+    h('div', { class: 'sticky-cta' }, h('div', { class: 'inner' }, cta, h('p', {}, 'Lists you already have are updated, not duplicated.'))),
   );
-  return h('div', { class: 'table-wrap card' }, table);
 }
 
-function minOf(values) {
-  const nums = values.filter(Number.isFinite);
-  return nums.length ? Math.min(...nums) : null;
-}
-
-function maxOf(values) {
-  const nums = values.filter(Number.isFinite);
-  return nums.length ? Math.max(...nums) : null;
+async function addPicked(button) {
+  const lib = state.library;
+  const chosen = lib.lists.filter((l) => state.picked.has(l.file));
+  if (!chosen.length) return;
+  button.disabled = true;
+  button.textContent = 'Adding…';
+  let added = 0;
+  let updated = 0;
+  try {
+    for (const entry of chosen) {
+      const res = await fetch(`research/${entry.file}`, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`Could not load ${entry.name} (${res.status}).`);
+      const parsed = parseImport(await res.text());
+      const existing = state.lists.find((l) => l.name.trim().toLowerCase() === parsed.listName.toLowerCase());
+      const plan = planImport(parsed, existing ? productsOf(existing.id) : []);
+      if (!plan.creates.length && !plan.updates.length) continue;
+      const { done } = store.importItems(existing ? existing.id : null, parsed.listName, plan);
+      save(done);
+      added += plan.creates.length;
+      updated += plan.updates.length;
+    }
+    state.picked.clear();
+    toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}`);
+    location.hash = '#/';
+  } catch (err) {
+    toast(describeError(err), 'error');
+    button.disabled = false;
+    render();
+  }
 }
 
 // ---------- dialogs ----------
 
-// fields: [{ name, label, type, value, options, placeholder, hint, required, inputmode, maxlength, full }]
+function sheet(title, body, foot) {
+  const dialog = h('dialog', { class: 'sheet', 'aria-label': title });
+  const close = () => dialog.close();
+  dialog.append(h('form', { method: 'dialog', novalidate: true, onSubmit: (e) => e.preventDefault() },
+    h('div', { class: 'sheet-head' },
+      h('h2', {}, title),
+      h('button', { class: 'icon-btn', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
+    body,
+    foot || null));
+  dialog.addEventListener('close', () => {
+    dialog.remove();
+    if (renderQueued) render();
+  });
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
+  document.body.append(dialog);
+  dialog.showModal();
+  return { dialog, close };
+}
+
+let closeMenu = null;
+function menuButton(label, action, cls = '') {
+  return h('button', {
+    class: `btn ghost block ${cls}`.trim(), type: 'button',
+    onClick: () => { if (closeMenu) closeMenu(); action(); },
+  }, label);
+}
+
+function menuDialog(title, children) {
+  const { close } = sheet(title, h('div', { class: 'menu-list' }, children));
+  closeMenu = close;
+}
+
+function textDialog(title, text) {
+  const area = h('textarea', { class: 'mono', rows: 8, readonly: true, 'aria-label': title });
+  area.value = text;
+  sheet(title, h('div', { class: 'fields single' }, h('p', { class: 'muted small' }, 'Select all and copy.'), area));
+  area.select();
+}
+
+// fields: [{ name, label, type, value, options, placeholder, hint, required, inputmode, maxlength, full, node }]
 // onSubmit(values) returns an error message to keep the dialog open, or nothing to close it.
 function formDialog({ title, fields, submitLabel = 'Save', onSubmit }) {
   const errorEl = h('p', { class: 'error-text small', role: 'alert' });
   const inputs = {};
 
   const fieldEls = fields.map((f) => {
+    if (f.type === 'node') return h('div', { class: 'field full' }, f.node);
     const id = `f-${f.name}`;
     let input;
     if (f.type === 'select') {
@@ -631,7 +988,7 @@ function formDialog({ title, fields, submitLabel = 'Save', onSubmit }) {
   },
   h('div', { class: 'sheet-head' },
     h('h2', {}, title),
-    h('button', { class: 'btn ghost small', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
+    h('button', { class: 'icon-btn', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
   h('div', { class: 'fields' }, fieldEls),
   errorEl,
   h('div', { class: 'sheet-foot' },
@@ -650,6 +1007,25 @@ function formDialog({ title, fields, submitLabel = 'Save', onSubmit }) {
   const first = form.querySelector('input:not([type=checkbox]), select, textarea');
   if (first) first.focus();
   return dialog;
+}
+
+function addItemDialog(listId) {
+  formDialog({
+    title: 'Add an item',
+    submitLabel: 'Add',
+    fields: [
+      { name: 'name', label: 'Item name', placeholder: 'e.g. Air fryer', required: true, maxlength: 120, full: true },
+      { name: 'qty', label: 'Quantity', type: 'number', value: 1, min: 1, max: 999, step: 1, inputmode: 'numeric' },
+    ],
+    onSubmit: ({ name, qty }) => {
+      const clean = name.trim();
+      const n = Math.round(Number(qty) || 1);
+      if (!clean) return 'Enter a name.';
+      if (n < 1 || n > 999) return 'Quantity must be between 1 and 999.';
+      save(store.addProduct(listId, { name: clean, qty: n }), `Added "${clean}"`);
+      return null;
+    },
+  });
 }
 
 function renameListDialog(list) {
@@ -679,6 +1055,39 @@ function editProductDialog(product) {
       if (!clean) return 'Enter a name.';
       if (!Number.isFinite(n) || n < 1 || n > 999) return 'Quantity must be between 1 and 999.';
       save(store.updateProduct(product.id, { name: clean, qty: n, notes: notes.trim() }));
+      return null;
+    },
+  });
+}
+
+// A listing with a new price: record it in the history and mark it checked today.
+function withNewPrice(listing, price) {
+  const today = todayISO();
+  const hist = historyOf(listing);
+  const last = hist[hist.length - 1];
+  if (!last || last.price !== price || last.date !== today) hist.push({ date: today, price });
+  return { ...listing, price, checked: today, history: hist.slice(-30) };
+}
+
+function recheckDialog(product, listing) {
+  const link = listing.url
+    ? h('a', { class: 'btn outline block', href: listing.url, target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee')
+    : h('p', { class: 'muted small' }, 'This listing has no link saved.');
+  formDialog({
+    title: 'Re-check price',
+    submitLabel: 'Save price',
+    fields: [
+      { type: 'node', node: h('div', { class: 'stack tight' }, h('p', { class: 'muted small' }, `1. Open the listing and read the price for your variant. 2. Type it below. Last price: ${formatRM(listing.price)}.`), link) },
+      { name: 'price', label: 'Price now (RM)', value: listing.price, inputmode: 'decimal', required: true, full: true },
+    ],
+    onSubmit: ({ price }) => {
+      const p = parseMoney(price);
+      if (p === null || Number.isNaN(p)) return 'Enter the price, e.g. 294.00.';
+      const latest = state.products.find((x) => x.id === product.id) || product;
+      const listings = (latest.listings || []).map((x) => (x.id === listing.id ? withNewPrice(x, p) : x));
+      const diff = Math.round((p - listing.price) * 100) / 100;
+      save(store.updateProduct(product.id, { listings }),
+        diff === 0 ? 'Same price. Checked today.' : `Price ${diff > 0 ? 'up' : 'down'} ${formatRM(Math.abs(diff))}`);
       return null;
     },
   });
@@ -721,12 +1130,12 @@ function listingDialog(product, existing) {
       const sold = parseCount(v.sold);
       if (Number.isNaN(sold)) return 'Sold should look like 856 or 10k.';
 
-      const listing = {
-        ...l, // keep research fields such as tag and checked
+      let listing = {
+        ...l, // keep research fields such as tag, checked, image and history
         id: l.id || newId(),
         url,
         shop: v.shop.trim(),
-        price,
+        price: existing ? l.price : price,
         shipping,
         rating,
         ratingCount,
@@ -737,13 +1146,15 @@ function listingDialog(product, existing) {
         voucher: v.voucher.trim(),
         notes: v.notes.trim(),
       };
-      // A price typed in by hand counts as checked today.
-      if (l.checked && price !== l.price) listing.checked = todayISO();
+      // A price typed in by hand counts as checked today and goes into the history.
+      if (!existing || price !== l.price) listing = withNewPrice(listing, price);
       // Use the latest copy in case another device changed this item while the form was open.
       const latest = state.products.find((p) => p.id === product.id) || product;
       const current = latest.listings || [];
       const listings = existing ? current.map((x) => (x.id === listing.id ? listing : x)) : [...current, listing];
-      save(store.updateProduct(product.id, { listings }), existing ? 'Listing saved' : 'Listing added');
+      const patch = { listings };
+      if (!existing && !latest.chosenListingId && !current.length) patch.chosenListingId = listing.id;
+      save(store.updateProduct(product.id, patch), existing ? 'Listing saved' : 'Listing added');
       if (url && !isShopeeMY(url)) toast('Saved. Note: that link is not a shopee.com.my link.');
       return null;
     },
@@ -770,7 +1181,7 @@ function importDialog(fromListId, initialText = '') {
 
   const plan = () => {
     const listId = target.value === '__new' ? null : target.value;
-    const existing = listId ? state.products.filter((p) => p.listId === listId) : [];
+    const existing = listId ? productsOf(listId) : [];
     return { listId, ...planImport(parsed, existing) };
   };
 
@@ -778,23 +1189,25 @@ function importDialog(fromListId, initialText = '') {
     if (!parsed) return;
     const { creates, updates } = plan();
     const listingCount = [...creates.map((i) => i.listings.length), ...updates.map((u) => u.added)].reduce((a, b) => a + b, 0);
+    const repriced = updates.reduce((a, u) => a + (u.repriced || 0), 0);
     const verdicts = parsed.items.reduce((acc, i) => {
       const v = i.research && i.research.verdict;
       if (v) acc[v] = (acc[v] || 0) + 1;
       return acc;
     }, {});
-    // replaceChildren() would print null as text, so drop empty parts first.
     preview.replaceChildren(...[
       h('p', {},
         h('strong', {}, `${creates.length} new item${creates.length === 1 ? '' : 's'}`),
         updates.length ? `, ${updates.length} existing item${updates.length === 1 ? '' : 's'} updated` : '',
-        `, ${listingCount} listing${listingCount === 1 ? '' : 's'}.`),
+        `, ${listingCount} new listing${listingCount === 1 ? '' : 's'}`,
+        repriced ? `, ${repriced} price change${repriced === 1 ? '' : 's'}` : '',
+        '.'),
       Object.keys(verdicts).length
         ? h('p', { class: 'muted small' }, Object.entries(verdicts).map(([v, n]) => `${n} ${VERDICTS[v].toLowerCase()}`).join(' · '))
         : null,
       h('ul', { class: 'import-items' }, parsed.items.slice(0, 12).map((i) => h('li', {},
         i.name,
-        i.research && i.research.verdict ? h('span', { class: `verdict-badge ${i.research.verdict}` }, VERDICTS[i.research.verdict]) : null))),
+        i.research && i.research.verdict ? h('span', { class: `chip ${i.research.verdict}`, style: 'margin-left: 6px' }, VERDICTS[i.research.verdict]) : null))),
       parsed.items.length > 12 ? h('p', { class: 'muted tiny' }, `and ${parsed.items.length - 12} more`) : null,
     ].filter(Boolean));
   };
@@ -828,7 +1241,7 @@ function importDialog(fromListId, initialText = '') {
   textarea.addEventListener('input', check);
   target.addEventListener('change', refreshPreview);
 
-  const dialog = h('dialog', { class: 'sheet', 'aria-label': 'Import from Claude' });
+  const dialog = h('dialog', { class: 'sheet', 'aria-label': 'Paste from chat' });
   const close = () => dialog.close();
   const form = h('form', {
     novalidate: true,
@@ -836,7 +1249,7 @@ function importDialog(fromListId, initialText = '') {
       e.preventDefault();
       if (!parsed) return;
       const p = plan();
-      if (!p.creates.length && !p.updates.some((u) => u.added || u.patch.research)) {
+      if (!p.creates.length && !p.updates.some((u) => u.added || u.repriced || u.patch.research)) {
         errorEl.textContent = 'Nothing new to import: these items and links are already in that list.';
         return;
       }
@@ -847,10 +1260,10 @@ function importDialog(fromListId, initialText = '') {
     },
   },
   h('div', { class: 'sheet-head' },
-    h('h2', {}, 'Import from Claude'),
-    h('button', { class: 'btn ghost small', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
+    h('h2', {}, 'Paste from chat'),
+    h('button', { class: 'icon-btn', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
   h('div', { class: 'fields single' },
-    h('p', { class: 'muted small' }, 'Ask Claude to research items for your Shopee List, then paste what it gives you. Every item is added with its listings and research.'),
+    h('p', { class: 'muted small' }, 'Paste the import block or link Claude gave you. Every item is added with its photo, listings and research.'),
     textarea,
     targetField,
     preview),

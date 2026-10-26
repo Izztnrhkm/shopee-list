@@ -6,6 +6,8 @@ import { parseMoney, parseCount, parseRating, cleanUrl, newId, todayISO } from '
 
 export const VERDICTS = { buy: 'Worth it', consider: 'Consider', skip: 'Skip' };
 export const TAGS = { PICK: 'Pick', ALT: 'Alternative', CHEAPER_BUT: 'Cheaper, but', RELAXED: 'Relaxed' };
+export const PRIORITIES = { must: 'Must-have', should: 'Should have', nice: 'Nice to have' };
+const MAX_HISTORY = 30;
 const BADGE_KEYS = ['none', 'preferred', 'preferredPlus', 'mall'];
 
 const MAX_ITEMS = 50;
@@ -40,7 +42,13 @@ function cleanDate(v) {
   return /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : '';
 }
 
-function cleanListing(raw) {
+// Only https images are shown, so a page can never load a plain-http or script URL.
+export function cleanImage(v) {
+  const url = cleanUrl(v);
+  return url && url.startsWith('https://') ? url.slice(0, 1000) : '';
+}
+
+function cleanListing(raw, researchedAt) {
   if (!raw || typeof raw !== 'object') return null;
   const price = num(parseMoney, raw.price);
   if (price === null) return null; // a listing without a price cannot be compared
@@ -63,6 +71,8 @@ function cleanListing(raw) {
     notes: str(raw.notes, 500),
     tag: TAGS[tag] ? tag : '',
     checked,
+    image: cleanImage(raw.image),
+    history: [{ date: checked && checked !== 'card' ? checked : researchedAt, price }],
   };
 }
 
@@ -75,7 +85,8 @@ function cleanItem(raw, researchedAt) {
   const name = str(raw.name, 120);
   if (!name) return null;
   const qty = Math.min(999, Math.max(1, Math.round(Number(raw.qty) || 1)));
-  const listings = (Array.isArray(raw.listings) ? raw.listings : []).map(cleanListing).filter(Boolean).slice(0, MAX_LISTINGS);
+  const listings = (Array.isArray(raw.listings) ? raw.listings : [])
+    .map((l) => cleanListing(l, researchedAt)).filter(Boolean).slice(0, MAX_LISTINGS);
   const verdict = VERDICTS[raw.verdict] ? raw.verdict : '';
   const sources = (Array.isArray(raw.sources) ? raw.sources : [])
     .map((s) => ({ title: str(s && s.title, 120), url: cleanUrl(s && s.url) }))
@@ -92,7 +103,17 @@ function cleanItem(raw, researchedAt) {
     }
     : null;
   const pick = listings.find((l) => l.tag === 'PICK');
-  return { name, qty, notes: str(raw.notes, 500), listings, research, chosenListingId: pick ? pick.id : null };
+  const image = cleanImage(raw.image) || (pick && pick.image) || (listings.find((l) => l.image) || {}).image || '';
+  return {
+    name,
+    qty,
+    notes: str(raw.notes, 500),
+    image,
+    priority: PRIORITIES[raw.priority] ? raw.priority : null,
+    listings,
+    research,
+    chosenListingId: pick ? pick.id : null,
+  };
 }
 
 // Returns { listName, researchedAt, items } or throws an Error with a readable message.
@@ -113,7 +134,8 @@ export function parseImport(text) {
 }
 
 // Merge imported items into a list. Items with the same name (ignoring case) are updated:
-// new listings are added (skipping links already saved) and the research replaces the old one.
+// listings with a new link are added; a link already saved gets the new price, rating and
+// sold count, and a price change is added to its price history. The research is replaced.
 export function planImport(parsed, existingProducts) {
   const byName = new Map(existingProducts.map((p) => [p.name.trim().toLowerCase(), p]));
   const creates = [];
@@ -124,14 +146,58 @@ export function planImport(parsed, existingProducts) {
       creates.push(item);
       continue;
     }
-    const known = new Set((match.listings || []).map((l) => l.url).filter(Boolean));
-    const fresh = item.listings.filter((l) => !l.url || !known.has(l.url));
-    const patch = { listings: [...(match.listings || []), ...fresh] };
+    const incoming = new Map(item.listings.filter((l) => l.url).map((l) => [l.url, l]));
+    let repriced = 0;
+    const kept = (match.listings || []).map((old) => {
+      const fresh = old.url && incoming.get(old.url);
+      if (!fresh) return old;
+      const merged = refreshListing(old, fresh);
+      if (merged.price !== old.price) repriced += 1;
+      return merged;
+    });
+    const known = new Set(kept.map((l) => l.url).filter(Boolean));
+    const added = item.listings.filter((l) => !l.url || !known.has(l.url));
+    const patch = { listings: [...kept, ...added] };
     if (item.research) patch.research = item.research;
-    if (!match.chosenListingId && item.chosenListingId && fresh.some((l) => l.id === item.chosenListingId)) {
+    if (item.image && !match.image) patch.image = item.image;
+    if (!match.chosenListingId && item.chosenListingId && added.some((l) => l.id === item.chosenListingId)) {
       patch.chosenListingId = item.chosenListingId;
     }
-    updates.push({ id: match.id, name: match.name, added: fresh.length, patch });
+    updates.push({ id: match.id, name: match.name, added: added.length, repriced, patch });
   }
   return { creates, updates };
+}
+
+// A saved listing seen again in new research: keep its id and the user's own notes,
+// take the new facts, and record the price in its history.
+function refreshListing(old, fresh) {
+  const history = historyOf(old);
+  const point = fresh.history[0];
+  const last = history[history.length - 1];
+  if (!last || last.price !== point.price || last.date !== point.date) history.push(point);
+  const keep = (v, fallback) => (v === null || v === undefined || v === '' ? fallback : v);
+  return {
+    ...old,
+    price: fresh.price,
+    shipping: keep(fresh.shipping, old.shipping),
+    rating: keep(fresh.rating, old.rating),
+    ratingCount: keep(fresh.ratingCount, old.ratingCount),
+    sold: keep(fresh.sold, old.sold),
+    shop: fresh.shop || old.shop,
+    badge: fresh.badge !== 'none' ? fresh.badge : old.badge,
+    shipsFrom: fresh.shipsFrom || old.shipsFrom,
+    voucher: fresh.voucher || old.voucher,
+    tag: fresh.tag || old.tag,
+    checked: fresh.checked || old.checked,
+    image: fresh.image || old.image || '',
+    history: history.slice(-MAX_HISTORY),
+  };
+}
+
+// Price history of a listing, oldest first. Listings saved before history existed
+// count their current price as the only point.
+export function historyOf(listing) {
+  if (Array.isArray(listing.history) && listing.history.length) return listing.history.map((p) => ({ ...p }));
+  if (!Number.isFinite(listing.price)) return [];
+  return [{ date: listing.checked && listing.checked !== 'card' ? listing.checked : '', price: listing.price }];
 }
