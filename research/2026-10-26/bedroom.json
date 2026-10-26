@@ -1,0 +1,144 @@
+{
+ "shopeeList": 1,
+ "list": "Bedroom",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "King fitted sheet set (AKEMI Cotton Twill Adore)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "100% cotton; pick King.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/95725650/40077334594",
+     "shop": "AKEMI official",
+     "price": 111.43,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "Card price may be the smallest size",
+     "rating": 4.9,
+     "ratingCount": 385,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Waterproof mattress protector King (AKEMI)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/95725650/1631643079",
+     "shop": "AKEMI official",
+     "price": 118.21,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "sold": "6k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Hygrometer (Xiaomi LYWSD03MMC)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Shows whether the room is too humid (Dry mode) or too hot.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/340857652/5067255464",
+     "shop": "",
+     "price": 18.9,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "6k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Bedside lamp (Xiaomi Bedside Lamp 2)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Warm, dimmable evening light.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.allithypermarket.com.my/products/xiaomi-mi-bedside-lamp-2-mue4093gl",
+     "shop": "ALL IT",
+     "price": 149.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/1201573855/25769262964",
+     "shop": "Xiaomi official",
+     "price": 229.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Sleep earplugs (Loop Quiet 2)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Only if noise is a problem.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.loopearplugs.com/products/quiet",
+     "shop": "Loop official",
+     "price": 74.46,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/1661261970/56107375241",
+     "shop": "",
+     "price": 9.5,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Almost certainly fake at this price",
+     "rating": 4.9,
+     "sold": "10k+",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  }
+ ]
+}

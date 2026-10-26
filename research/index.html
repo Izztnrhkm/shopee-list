@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Research library · Shopee List</title>
+  <meta name="theme-color" content="#e8572a">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .research-card { display: flex; flex-direction: column; gap: 8px; }
+    .research-card .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .research-card details { font-size: 0.9rem; }
+    .research-card ul { margin: 6px 0 0; padding-left: 18px; }
+    .research-card li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../#/"><img class="brand-logo" src="../img/icon-64.png" alt="" width="32" height="32">Shopee List</a>
+  </header>
+  <main class="container stack">
+    <div class="title-row"><h1 class="page-title">Research library</h1></div>
+    <p class="muted small" id="intro">Lists researched by Claude. Tap <b>Add to Shopee List</b> to import one: the app opens its import screen (sign in first if asked). Items already in that list are updated, not duplicated.</p>
+    <div id="lists" class="stack"><p class="muted">Loading…</p></div>
+  </main>
+  <script type="module">
+    const VERDICT = { buy: 'Worth it', consider: 'Consider', skip: 'Skip' };
+    const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const rm = (n) => 'RM' + Number(n).toFixed(2);
+    function toImportLink(text) {
+      const bytes = new TextEncoder().encode(text);
+      let bin = '';
+      for (const b of bytes) bin += String.fromCharCode(b);
+      const b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      return '../#import=' + b64;
+    }
+    async function main() {
+      const box = document.getElementById('lists');
+      try {
+        const index = await (await fetch('index.json', { cache: 'no-cache' })).json();
+        document.getElementById('intro').insertAdjacentHTML('beforeend', ` Last updated ${esc(index.updated)}.`);
+        const cards = await Promise.all(index.lists.map(async (l) => {
+          const text = await (await fetch(l.file, { cache: 'no-cache' })).text();
+          const data = JSON.parse(text);
+          const picks = data.items.map((it) => {
+            const pick = it.listings.find((x) => x.tag === 'PICK') || it.listings[0];
+            return `<li><b>${esc(it.name)}</b>${it.qty > 1 ? ` ×${it.qty}` : ''} · ${esc(VERDICT[it.verdict] || '')}${pick ? ` · ${rm(pick.price)}` : ''}</li>`;
+          }).join('');
+          return `<section class="card research-card">
+            <h2>${esc(l.name)}</h2>
+            <p class="muted small">${esc(l.about)} ${l.items} items, ${l.listings} listings, researched ${esc(data.researchedAt)}.</p>
+            <div class="row">
+              <a class="btn primary small" href="${toImportLink(text)}">Add to Shopee List</a>
+              <a class="btn ghost small" href="${esc(l.file)}" download>Download JSON</a>
+            </div>
+            <details><summary>What's inside</summary><ul>${picks}</ul></details>
+          </section>`;
+        }));
+        box.innerHTML = cards.join('');
+      } catch (err) {
+        box.innerHTML = `<div class="card"><p>Could not load the research files: ${esc(err.message)}</p></div>`;
+      }
+    }
+    main();
+  </script>
+</body>
+</html>

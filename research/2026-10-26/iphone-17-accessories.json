@@ -1,0 +1,258 @@
+{
+ "shopeeList": 1,
+ "list": "iPhone 17 Accessories",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Case (MagSafe)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Needed for magnetic accessories to hold firmly and for drop protection.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/910952224/42118041757",
+     "shop": "ESR Official Store",
+     "price": 53,
+     "badge": "mall",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Official shop, MagSafe magnets, Camera Control cut-out. iPhone 17 variant shows RM59 (list RM139).",
+     "rating": 5.0,
+     "ratingCount": "495",
+     "sold": "1k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/1127938701/29306111620",
+     "shop": "TORRAS",
+     "price": 48,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-21",
+     "notes": "Most reviews among branded cases. RM48 to RM68 by variant.",
+     "rating": 4.9,
+     "ratingCount": "1.3k",
+     "sold": "4k+",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/832540531/28491316676",
+     "shop": "Spigen Malaysia Official Store",
+     "price": 125.91,
+     "badge": "mall",
+     "shipsFrom": "",
+     "checked": "2026-10-21",
+     "notes": "Official, mil-grade drop claim. Pricier; fewer reviews. 86% response.",
+     "rating": 5.0,
+     "ratingCount": "55",
+     "sold": "162",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Screen protector",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Optional with Ceramic Shield 2, but cheap insurance. Choose HD clear.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1234422565/28173838011",
+     "shop": "Furycube",
+     "price": 13.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Two pieces. Listing also has privacy/matte variants: choose HD. Price from search card.",
+     "rating": 4.9,
+     "ratingCount": "7.2k",
+     "sold": "30k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/1699786913/53762722098",
+     "shop": "king-mall",
+     "price": 3.99,
+     "badge": "mall",
+     "shipsFrom": "",
+     "checked": "2026-10-21",
+     "notes": "Cheapest, very popular. RM3.99 to RM5.69 by variant. Shop 10 months old.",
+     "rating": 5.0,
+     "ratingCount": "7.9k",
+     "sold": "70k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Charger (no adapter in the box)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "40W+ for fastest wired; 30W+ to run MagSafe at 25W.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/82080415/25642892593",
+     "shop": "Ugreen Flagship Store",
+     "price": 53.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Hits the 40W+ fast-charge tier and powers MagSafe at 25W. Select the 45W variant.",
+     "rating": 5.0,
+     "ratingCount": "18.7k",
+     "sold": "60k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/82080415/25642892593",
+     "shop": "Ugreen Flagship Store",
+     "price": 32.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Enough for MagSafe 25W; wired charging slower than max.",
+     "rating": 5.0,
+     "ratingCount": "18.7k",
+     "sold": "60k+",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/64923440/24445816117",
+     "shop": "UGREEN",
+     "price": 60.72,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Alternative listing. Card only.",
+     "rating": 5.0,
+     "sold": "8k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Magnetic power bank (optional)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Qi2.2 25W is the fastest wireless standard the iPhone 17 supports.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/331309804/43117633141",
+     "shop": "UGREEN OFFICIAL MALAYSIA",
+     "price": 206.55,
+     "badge": "mall",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Qi2.2 25W, built-in stand, airline-safe size. Snaps onto a MagSafe case.",
+     "rating": 4.9,
+     "ratingCount": "1.1k",
+     "sold": "3k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/82080415/42261995778",
+     "shop": "Ugreen Flagship Store",
+     "price": 198.99,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Older Qi2 version. Card only.",
+     "rating": 5.0,
+     "sold": "173",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/1067124434/43534312207",
+     "shop": "",
+     "price": 449,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Premium option. Card only.",
+     "rating": 4.8,
+     "sold": "93",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Car mount (optional)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Works with a MagSafe case.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1123507148/41856968172",
+     "shop": "Baseus Flagship Store",
+     "price": 32.13,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Magnetic mount for a MagSafe case. Check variant if you want charging.",
+     "rating": 5.0,
+     "ratingCount": "2k",
+     "sold": "10k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Camera lens protector (optional)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Protects the raised lenses; can cause flare. The metal-ring listing now shows 4.8 from only 196 reviews, below the quality floor.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1860668532/51765454771",
+     "shop": "",
+     "price": 2.78,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Very cheap; check for night-shot flare.",
+     "rating": 4.8,
+     "ratingCount": "196",
+     "sold": "922",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/239538362/20894048169",
+     "shop": "KYMAX",
+     "price": 39,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-21",
+     "notes": "Better build, local shop 7 yrs. Confirm iPhone 17 variant.",
+     "rating": 4.9,
+     "ratingCount": "406",
+     "sold": "1k+",
+     "tag": "ALT"
+    }
+   ]
+  }
+ ]
+}

@@ -204,7 +204,8 @@ function signInView() {
   }, 'Sign in with Google');
 
   return h('section', { class: 'card signin' },
-    h('h1', {}, 'Shopee List'),
+    h('img', { class: 'signin-logo', src: 'img/logo.png', alt: 'Shopee List', width: 180, height: 180 }),
+    h('h1', { class: 'sr-only' }, 'Shopee List'),
     h('p', {}, 'Keep shopping lists for Shopee Malaysia and compare listings side by side. Your lists sync between your phone and computer.'),
     button,
     status,
@@ -254,7 +255,9 @@ function listsView() {
   return h('div', { class: 'stack' },
     h('div', { class: 'title-row' },
       h('h1', { class: 'page-title' }, 'Your lists'),
-      h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude')),
+      h('div', { class: 'row-actions' },
+        h('a', { class: 'btn small ghost', href: 'research/' }, 'Research library'),
+        h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude'))),
     form,
     cards.length ? h('div', { class: 'stack' }, cards)
       : h('div', { class: 'card empty' }, h('p', {}, 'No lists yet. Create one above to start adding Shopee items.')),

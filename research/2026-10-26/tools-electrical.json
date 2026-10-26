@@ -1,0 +1,389 @@
+{
+ "shopeeList": 1,
+ "list": "Tools & Electrical",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Multimeter (Fluke 101)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Genuine Fluke, CAT III 600 V; enough for home appliance work. The Fluke 117 (RM1,901) is overkill.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/103983895/3434384218",
+     "shop": "",
+     "price": 218.0,
+     "badge": "none",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "380",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/233594553/4634515169",
+     "shop": "",
+     "price": 310.0,
+     "badge": "none",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "682",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://techno.my/products/fluke-101-basic-digital-multimeter-pocket",
+     "shop": "techno.my",
+     "price": 240.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Non-contact voltage tester (Fluke 1AC II)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Prove a wire is dead before touching it.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/233594553/4279600657",
+     "shop": "",
+     "price": 290.0,
+     "badge": "none",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "84",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/4834854/13635109455",
+     "shop": "",
+     "price": 116.43,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "1AC-C2 is the China-market version; no Malaysian warranty",
+     "rating": 4.9,
+     "sold": "164",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Soldering iron (Pinecil V2)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Hakko FX-888D is not sold genuinely in Malaysia; Pinecil V2 is the practical pick.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada (Penang)",
+     "price": 169.99,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "ratingCount": 13,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Cordless drill (Bosch GSB 18V-50 kit)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Covers most jobs except concrete. Confirm the 2-battery kit is in stock.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://cthardware.com/products/bosch-gsb-18v-50-brushless-cordless-impact-drill-18v-2-0ah-420-1600rpm-30-17nm-come-with-2x-battery-1x-charger-set-06019h51l0-gsb18v50",
+     "shop": "CT Hardware",
+     "price": 455.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Rotary hammer (Bosch GBH 2-26 DRE)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Only needed for drilling concrete.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://cthardware.com/products/bosch-pro-gbh-2-26-dre-rotary-hammer-800w-sds-plus-061125376c",
+     "shop": "CT Hardware",
+     "price": 747.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Bosch HEX-9 multi-construction bits (5 pcs)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Drills tile, brick, wood and metal.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/34647548/1662987442",
+     "shop": "",
+     "price": 46.41,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "633",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Screwdriver set (Stanley cushion grip)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Bahco set not found locally.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/29050559/5010227335",
+     "shop": "",
+     "price": 22.13,
+     "badge": "none",
+     "shipsFrom": "Johor",
+     "checked": "card",
+     "notes": "Card price is the smallest set; pick the 6 to 8 piece variant",
+     "rating": 5.0,
+     "sold": "10k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Earmuffs (3M Peltor Optime III H540A)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "For drilling.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/118222750/23565655105",
+     "shop": "",
+     "price": 89.75,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "sold": "388",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "N95 masks (3M 8210, box of 20)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "For drilling dust. Avoid loose singles.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/267565849/6139668843",
+     "shop": "",
+     "price": 66.8,
+     "badge": "none",
+     "shipsFrom": "Pahang",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "9k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "",
+     "shop": "Lazada (Sarawak)",
+     "price": 58.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Cheaper but only 28 sold",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Tyre inflator (Xiaomi Air Compressor 2)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "For the Saga and the NX150S.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/17492625/2524388628",
+     "shop": "",
+     "price": 159.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "2k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Scooter oil (Mobil Super Moto Scooter 10W-40, 1 L)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Check the grade in your NX150S manual first.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1378688601/44212399262",
+     "shop": "",
+     "price": 37.0,
+     "badge": "none",
+     "shipsFrom": "Johor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "54",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/418272681/48956866011",
+     "shop": "",
+     "price": 12.59,
+     "badge": "none",
+     "shipsFrom": "Johor",
+     "checked": "card",
+     "notes": "Far below real price; avoid",
+     "rating": 4.9,
+     "sold": "211",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Tape measure (Stanley PowerLock 5 m)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 23.5,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "ratingCount": 11,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Claw hammer (Stanley 16 oz steel handle)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 44.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "ratingCount": 4,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Step ladder (EVERLAS 4-step aluminium)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 120.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}
