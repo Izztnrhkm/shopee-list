@@ -254,7 +254,9 @@ function listsView() {
   return h('div', { class: 'stack' },
     h('div', { class: 'title-row' },
       h('h1', { class: 'page-title' }, 'Your lists'),
-      h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude')),
+      h('div', { class: 'row-actions' },
+        h('a', { class: 'btn small ghost', href: 'research/' }, 'Research library'),
+        h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude'))),
     form,
     cards.length ? h('div', { class: 'stack' }, cards)
       : h('div', { class: 'card empty' }, h('p', {}, 'No lists yet. Create one above to start adding Shopee items.')),

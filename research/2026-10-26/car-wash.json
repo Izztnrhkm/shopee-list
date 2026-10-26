@@ -1,0 +1,250 @@
+{
+ "shopeeList": 1,
+ "list": "Car Wash",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Pressure washer (Kärcher K2 Power VPS)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "100 bar, 360 L/h. For the car; rinse the matte NX150S with low pressure only.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://cthardware.com/products/karcher-k-2-power-vps-high-pressure-washer-1100w-100-bar-6lpm-k2powervps-11180010",
+     "shop": "CT Hardware",
+     "price": 797.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/131254764/23775706498",
+     "shop": "SYK",
+     "price": 839.9,
+     "badge": "none",
+     "shipsFrom": "Negeri Sembilan",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "81",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Kärcher FJ 6 foam jet",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Snow-foam nozzle for the K2. RM47 cheaper on Shopee than Lazada.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/20592129/11255089628",
+     "shop": "",
+     "price": 57.59,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "149",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/25685981/10271125494",
+     "shop": "",
+     "price": 19.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "\"Clearance\" with 6 sales; too cheap to trust",
+     "rating": 5.0,
+     "sold": "6",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Meguiar's Hybrid Ceramic Wax 768 ml",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Spray sealant for the Saga (gloss paint only, never on the matte bike).",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/36592523/10528423725",
+     "shop": "YS Automart",
+     "price": 102.06,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "sold": "9k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Meguiar's Endurance Tire Gel",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Long-lasting tyre shine.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/36592523/2061310907",
+     "shop": "YS Automart",
+     "price": 80.64,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "sold": "1k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Soft99 Iron Terminator 500 ml",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Iron fallout remover for wheels and paint.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/36592523/1580030725",
+     "shop": "YS Automart",
+     "price": 35.25,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "10k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/36055865/17941945265",
+     "shop": "",
+     "price": 13.68,
+     "badge": "none",
+     "shipsFrom": "Pulau Pinang",
+     "checked": "card",
+     "notes": "Far below normal price; may be smaller or repacked",
+     "rating": 4.9,
+     "sold": "10k+",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Cordless car vacuum (Baseus)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Quick interior clean. A2 Pro not in Baseus official store; AT is the same class.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/120593423/28215985868",
+     "shop": "Baseus Official",
+     "price": 98.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "sold": "8k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/120593423/24530486130",
+     "shop": "Baseus Official",
+     "price": 209.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "A5 Air, 12000 Pa: stronger",
+     "rating": 5.0,
+     "sold": "5k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Clay bar",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Decontamination before waxing, once or twice a year.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada: Soft99 Surface Smoother",
+     "price": 48.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/77712325/22273421540",
+     "shop": "Motormad",
+     "price": 196.13,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Meguiar's kit, overpriced for one bar",
+     "rating": 5.0,
+     "sold": "84",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Interior cleaner (Meguiar's D101 APC)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "All-purpose interior cleaner, 500 ml premix. Avoid repacks.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 24.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "108 reviews, 441 sold",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

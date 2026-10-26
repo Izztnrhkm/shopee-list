@@ -1,0 +1,286 @@
+{
+ "shopeeList": 1,
+ "list": "Top 10 Wishlist",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Blackout curtains (IKEA MAJGULL 145x250)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Measure the window first.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/p/majgull-block-out-curtains-1-pair-grey-with-heading-tape-10417814/",
+     "shop": "IKEA",
+     "price": 135.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "+RM19.50 delivery",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Mesh chair (SIHOO M57)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://aitsulabmy.com/products/sihoo-m57",
+     "shop": "Aitsu Lab",
+     "price": 889.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://sihoo.my/products/sihoo-m57-ergonomic-chair",
+     "shop": "SIHOO MY",
+     "price": 949.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Standing desk (TTRacing Titus X, S 120x75)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://ttracing.my/products/ttracing-titus-x-smart-standing-desk-onyx",
+     "shop": "TTRacing MY",
+     "price": 1099.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Laptop stand (j5create JTS127)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.allithypermarket.com.my/products/j5create-jts127-ergonomic-aluminum-alloy-laptop-stand-designed-to-fit-laptop-device-up-to-16-inch-tablet-stand-pc-stand",
+     "shop": "ALL IT",
+     "price": 179.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Keyboard (Logitech Pebble Keys 2 K380s)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/58359596/19094362677",
+     "shop": "ALL IT Hypermarket",
+     "price": 143.1,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 5.0,
+     "ratingCount": 454,
+     "sold": "3k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Monitor (MSI MAG 275QF E20 27\" 1440p 200Hz)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://brightstarcomp.com/products/msi-mag-275qf-e20-27-qhd-200hz-ips-gaming-monitor",
+     "shop": "Brightstar",
+     "price": 649.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Mattress topper King (Sonno)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Only if sleep is still bad after curtains and pillow. Now RM999 (was RM799).",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.sleepsonno.com/products/sonno-mattress-topper",
+     "shop": "Sonno MY",
+     "price": 999.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Vertical mouse (Logitech Lift)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.harveynorman.com.my/computing/computer-accessories-and-peripherals/keyboards-mouse-and-mats-en/logitech-lift-vertical-ergonomic-wireless-mouse-off-white-910-006480.html",
+     "shop": "Harvey Norman",
+     "price": 229.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/58359596/20904917244",
+     "shop": "ALL IT Hypermarket",
+     "price": 242.1,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 5.0,
+     "ratingCount": 687,
+     "sold": "4k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Pillow (Sonno The Pillow)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "30-night trial.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.sleepsonno.com/products/sonno-the-pillow",
+     "shop": "Sonno MY",
+     "price": 199.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Dashcam front + rear (70mai A500S)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Select the Front + Rear set.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.dasher.com.my/products/70mai-a500s-dashcam",
+     "shop": "Dasher",
+     "price": 429.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://70mai.my/products/70mai-a500s-dashcam",
+     "shop": "70mai MY",
+     "price": 499.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "ALT",
+     "voucher": "RM70 off auto at checkout"
+    }
+   ]
+  },
+  {
+   "name": "Desktop PC (IdealTech Radiance Turbo, R5 7500F + RTX 5060, 32 GB)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "RM4,199 base + RM859 TEAMGROUP 2x16 GB upgrade. Move your 2 TB 990 PRO into it.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://idealtech.com.my/product/amd-rtx5060-gamingpc/",
+     "shop": "IdealTech",
+     "price": 5058.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,282 @@
+{
+ "shopeeList": 1,
+ "list": "Toothbrush & Toothpaste",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Electric toothbrush",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Electric brushes cut plaque about 21% and gum inflammation about 11% more than manual ones after 3+ months (Cochrane). A pressure sensor is the must-have. One handle each; do not share.",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Cochrane review: powered vs manual",
+     "url": "https://read.qxmd.com/read/24934383/powered-versus-manual-toothbrushing-for-oral-health"
+    },
+    {
+     "title": "ADA: toothbrushes",
+     "url": "https://www.ada.org/resources/ada-library/oral-health-topics/toothbrushes"
+    },
+    {
+     "title": "Haleon MY: Sensodyne ingredients",
+     "url": "https://www.haleonhealthpartner.com/en-my/oral-health/brands/sensodyne/overview/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/869677905/55360889652",
+     "shop": "Philips Official Store (Mall)",
+     "price": 161.1,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RELAXED: low review count but official store. Pressure sensor confirmed on listing. Ships from Selangor. 26 reviews is low but it is the brand's own store.",
+     "rating": 5.0,
+     "ratingCount": "26",
+     "sold": "187",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/869677905/28544869632",
+     "shop": "Philips Official Store (Mall)",
+     "price": 241.4,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RELAXED: low review count but official store. Newer model, pressure sensor confirmed. Same listing at Shopee Supermarket is RM262.00.",
+     "rating": 5.0,
+     "ratingCount": "106",
+     "sold": "476",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/869677905/21552543052",
+     "shop": "Philips Official Store (Mall)",
+     "price": 136,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "No pressure sensor (Electric Teeth). Card price, page not opened.",
+     "rating": 4.9,
+     "sold": "1k+",
+     "tag": "CHEAPER_BUT"
+    },
+    {
+     "url": "https://shopee.com.my/product/44437739/51756433827",
+     "shop": "P&G Official Store (Mall)",
+     "price": 149.25,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "No pressure sensor found on the listing. Ships from Pulau Pinang.",
+     "rating": 5.0,
+     "ratingCount": "45",
+     "tag": "CHEAPER_BUT"
+    },
+    {
+     "url": "https://shopee.com.my/product/44437739/57517591447",
+     "shop": "P&G Official Store (Mall)",
+     "price": 217.1,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "Pre-order, ships in 14 days (get by 11 Nov). Good brush, recheck later.",
+     "rating": 5.0,
+     "ratingCount": "2",
+     "tag": "CHEAPER_BUT"
+    },
+    {
+     "url": "https://shopee.com.my/product/4402428/4195538407",
+     "shop": "Mall shop, 77% response",
+     "price": 599,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "Variants listed as EU plug; low reviews and response rate.",
+     "rating": 4.9,
+     "ratingCount": "59",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Sonicare replacement heads (4-pack)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Each handle includes one head; buy a 4-pack when the first heads are 3 months old.",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Cochrane review: powered vs manual",
+     "url": "https://read.qxmd.com/read/24934383/powered-versus-manual-toothbrushing-for-oral-health"
+    },
+    {
+     "title": "ADA: toothbrushes",
+     "url": "https://www.ada.org/resources/ada-library/oral-health-topics/toothbrushes"
+    },
+    {
+     "title": "Haleon MY: Sensodyne ingredients",
+     "url": "https://www.haleonhealthpartner.com/en-my/oral-health/brands/sensodyne/overview/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/869677905/49957620249",
+     "shop": "Philips Official Store (Mall)",
+     "price": 128.7,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RM32.18 a head. Variant C2 White x4 clicked.",
+     "rating": 5.0,
+     "ratingCount": "412",
+     "sold": "2k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/869677905/49957620249",
+     "shop": "Philips Official Store (Mall)",
+     "price": 107.1,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RM53.55 a head. Only if gums keep bleeding after a month on C2 heads.",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/414683250/6284160450",
+     "shop": "Mainland China seller",
+     "price": 18.48,
+     "badge": "none",
+     "shipsFrom": "Mainland China",
+     "checked": "card",
+     "notes": "Not genuine Philips; ships from China.",
+     "rating": 4.7,
+     "sold": "563",
+     "tag": "CHEAPER_BUT",
+     "overseas": true
+    }
+   ]
+  },
+  {
+   "name": "Manual toothbrush (if not going electric)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "The budget route: soft bristles, replace every 3 to 4 months (ADA).",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Cochrane review: powered vs manual",
+     "url": "https://read.qxmd.com/read/24934383/powered-versus-manual-toothbrushing-for-oral-health"
+    },
+    {
+     "title": "ADA: toothbrushes",
+     "url": "https://www.ada.org/resources/ada-library/oral-health-topics/toothbrushes"
+    },
+    {
+     "title": "Haleon MY: Sensodyne ingredients",
+     "url": "https://www.haleonhealthpartner.com/en-my/oral-health/brands/sensodyne/overview/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/21516516/297513043",
+     "shop": "Watsons Malaysia (Mall)",
+     "price": 20.99,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RM7.00 a brush. 0.01 mm tapered ultra-soft bristles.",
+     "rating": 5.0,
+     "ratingCount": "1.8k",
+     "sold": "9k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/809623489/14389665140",
+     "shop": "CURAPROX Malaysia (Mall)",
+     "price": 34,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "5,460 very fine filaments, the gentlest common option. Shop response 77%, but it is the brand's own store. Random colour.",
+     "rating": 5.0,
+     "ratingCount": "1k",
+     "sold": "6k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Toothpaste: Sensodyne Sensitivity & Gum Whitening",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Stannous fluoride 0.454% (1450 ppm) covers cavities, gums, sensitivity and surface stains in one tube.",
+   "pros": [],
+   "cons": [],
+   "sources": [
+    {
+     "title": "Cochrane review: powered vs manual",
+     "url": "https://read.qxmd.com/read/24934383/powered-versus-manual-toothbrushing-for-oral-health"
+    },
+    {
+     "title": "ADA: toothbrushes",
+     "url": "https://www.ada.org/resources/ada-library/oral-health-topics/toothbrushes"
+    },
+    {
+     "title": "Haleon MY: Sensodyne ingredients",
+     "url": "https://www.haleonhealthpartner.com/en-my/oral-health/brands/sensodyne/overview/"
+    }
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/21516516/7884581940",
+     "shop": "Watsons Malaysia (Mall)",
+     "price": 14.49,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "Ingredient list on listing: stannous fluoride 0.454% + sodium fluoride. Covers all four needs in one tube.",
+     "rating": 5.0,
+     "ratingCount": "2.2k",
+     "sold": "8k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/76616283/3105418177",
+     "shop": "Haleon Official Store (Mall)",
+     "price": 17.23,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "Brand's own store if you prefer buying direct. Caring Mint variant (non-whitening) RM16.37.",
+     "rating": 4.9,
+     "ratingCount": "3.3k",
+     "sold": "10k+",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/122330422/7855868654",
+     "shop": "Carmen_Lisa (CL) Official Store (Mall)",
+     "price": 19.99,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-26",
+     "notes": "RM6.66 per 100 g, less than half the price per gram, but active ingredients are not shown on the listing, so gum and sensitivity benefits could not be checked.",
+     "rating": 5.0,
+     "ratingCount": "2.5k",
+     "sold": "7k+",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  }
+ ]
+}

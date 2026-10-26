@@ -7,6 +7,10 @@ Shopee List can add researched items in one go. Ask Claude to research what you 
 - Items with verdict `skip` are kept for reference but left out of the totals.
 - An import link (`https://izztnrhkm.github.io/shopee-list/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
 
+## Research library
+
+Researched lists can also be saved in this repo under `research/<date>/<list>.json` and added to `research/index.json`. They appear on the [Research library](https://izztnrhkm.github.io/shopee-list/research/) page with an **Add to Shopee List** button, which builds the import link in the browser.
+
 ## Where the research happens
 
 Shopee blocks automated access, so Claude needs to read Shopee through **your own Chrome browser** (Claude in Chrome) to see real prices, ratings and sold counts. Use a Claude chat that has Chrome access, such as the Claude desktop app with the Chrome extension connected. A cloud session without a browser can only use web search, so its prices are not checked against Shopee.

@@ -8,6 +8,7 @@ A personal shopping list for Shopee Malaysia (shopee.com.my) that syncs between 
 - The cheapest total, top rating and most sold are highlighted. Mark one listing as **Chosen** and the list totals use it; otherwise they use the cheapest.
 
 - **Import from Claude:** ask Claude to research what you want to buy and paste its import block. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
+- **Research library:** ready-made researched lists at [/research/](https://izztnrhkm.github.io/shopee-list/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
 
 The app itself does not read Shopee: Shopee blocks automated access, so research happens in a Claude chat that can use your Chrome browser, or you type details in yourself.
 
@@ -63,3 +64,6 @@ Open http://localhost:8000. `localhost` is an authorized domain in Firebase by d
 | `docs/IMPORT.md` | Import format and the prompt to use with Claude |
 | `js/firebase-config.js` | Firebase project config |
 | `firestore.rules` | Database security rules |
+| `research/index.html` | Research library page (import links built in the browser) |
+| `research/index.json` | List of research files shown in the library |
+| `research/<date>/*.json` | Researched lists in the import format |

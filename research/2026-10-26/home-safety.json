@@ -1,0 +1,159 @@
+{
+ "shopeeList": 1,
+ "list": "Home Safety",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Smoke alarm (photoelectric, 10-year battery)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Fit one outside the bedroom and one in the hallway. Shopee hides smoke-detector results, so these are Lazada prices.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada: Daytech",
+     "price": 49.9,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Check the box for EN 14604",
+     "ratingCount": 428,
+     "tag": "PICK"
+    },
+    {
+     "url": "",
+     "shop": "Lazada: Kidde Worry-Free",
+     "price": 119.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Long-established fire-safety brand",
+     "ratingCount": 22,
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Fire blanket 1.2 x 1.2 m (EVERSAFE)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Mount near, not above, the stove.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/270390384/27327257028",
+     "shop": "EVERSAFE",
+     "price": 62.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.5,
+     "sold": "97",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/1207749167/27373770463",
+     "shop": "",
+     "price": 8.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "Generic insulation cloth, not a certified fire blanket",
+     "rating": 5.0,
+     "sold": "10k+",
+     "tag": "CHEAPER_BUT"
+    }
+   ]
+  },
+  {
+   "name": "Fire extinguisher 1 kg ABC",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Check the SIRIM label and Bomba approval in the photos; gauge in the green.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/71340317/20269237779",
+     "shop": "",
+     "price": 54.88,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "9k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/489273495/8384146849",
+     "shop": "Fire Fighter (FF) official",
+     "price": 90.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "3 kg size",
+     "sold": "5k+",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Home camera (TP-Link Tapo C210)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/29415875/2885355709",
+     "shop": "",
+     "price": 88.5,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "Listing marked SIRIM",
+     "rating": 5.0,
+     "sold": "50k+",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Rechargeable lamp (Xiaomi Flexible)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "For power cuts.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/1201573855/28823708594",
+     "shop": "Xiaomi official",
+     "price": 139.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "card",
+     "notes": "",
+     "sold": "48",
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}

@@ -326,3 +326,5 @@ textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mono
 .import-items { margin: 4px 0 0; padding-left: 18px; font-size: 0.92rem; }
 .import-items li { margin: 2px 0; overflow-wrap: anywhere; }
 [hidden] { display: none !important; }
+
+.row-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }

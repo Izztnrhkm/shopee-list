@@ -1,0 +1,323 @@
+{
+ "shopeeList": 1,
+ "list": "Kitchen",
+ "researchedAt": "2026-10-26",
+ "items": [
+  {
+   "name": "Rice cooker 1.8 L (Panasonic SR-DA182)",
+   "qty": 1,
+   "notes": "Shared family kitchen: check what the family already has first.",
+   "verdict": "buy",
+   "summary": "Current Panasonic 1.8 L microcomputer model with 6 auto menus. SR-DF181 (old pick) is archived; SR-DM184 not sold locally.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/184938635/27313545212",
+     "shop": "",
+     "price": 294.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "81",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/62541355/24825979250",
+     "shop": "",
+     "price": 304.9,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "More sales",
+     "rating": 4.9,
+     "sold": "313",
+     "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/62541355/42057695307",
+     "shop": "",
+     "price": 299.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "SR-DC186 alternative",
+     "rating": 4.9,
+     "sold": "19",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Philips HD9396 kettle (7000 series)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Double-walled, temperature control.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/175347531/25913544631",
+     "shop": "",
+     "price": 252.0,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "865",
+     "tag": "PICK"
+    },
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 286.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Lazada price for comparison",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Philips HR2223 blender",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Blender with grinder mill for rempah and smoothies.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/175347531/4697106593",
+     "shop": "",
+     "price": 322.18,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "1k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "https://shopee.com.my/product/154039251/20738559613",
+     "shop": "",
+     "price": 323.38,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "947",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Philips 2000 Series air fryer 6.2 L (NA231/09)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "consider",
+   "summary": "Low-oil cooking; genuine Philips.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://mall.lapasar.com/products/189197",
+     "shop": "Lapasar Mall",
+     "price": 509.99,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Victorinox Fibrox 20 cm chef knife",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Standard pro-kitchen chef knife.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/66733821/2146921262",
+     "shop": "SLS",
+     "price": 267.0,
+     "badge": "none",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "card",
+     "notes": "",
+     "rating": 5.0,
+     "sold": "60",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Tefal Natura 32 cm wok with lid",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Non-stick wok for stir-fry.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/23746946/6844939445",
+     "shop": "Tefal Official Store",
+     "price": 130.0,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "checked": "card",
+     "notes": "",
+     "rating": 4.9,
+     "sold": "4k+",
+     "tag": "PICK"
+    },
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 123.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "RM7 cheaper on Lazada",
+     "tag": "ALT"
+    }
+   ]
+  },
+  {
+   "name": "Tefal Daisy 28 cm frypan",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Everyday non-stick pan.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "",
+     "shop": "Lazada",
+     "price": 125.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "Shopee price not checked",
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Chopping boards (IKEA LEGITIM)",
+   "qty": 2,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Cheaper swap for the RM268 Joseph Joseph set: 4.7 from 146 reviews at RM12 each.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/search/?q=legitim",
+     "shop": "IKEA",
+     "price": 12.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 146,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Kitchen utensil set (IKEA GRUNKA)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Swap for Joseph Joseph Elevate (RM274 to 440, ships from Korea).",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/search/?q=grunka",
+     "shop": "IKEA",
+     "price": 35.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.9,
+     "ratingCount": 55,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Stock pot 5 L (IKEA 365+)",
+   "qty": 1,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Stainless, with lid.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/search/?q=365%2B%20pot",
+     "shop": "IKEA",
+     "price": 79.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 121,
+     "tag": "PICK"
+    }
+   ]
+  },
+  {
+   "name": "Glass food containers 1.0 L (IKEA 365+)",
+   "qty": 4,
+   "notes": "",
+   "verdict": "buy",
+   "summary": "Glass with plastic lid, 4.7 from 110 reviews; the all-glass lid version is RM69.",
+   "pros": [],
+   "cons": [],
+   "sources": [],
+   "listings": [
+    {
+     "url": "https://www.ikea.com/my/en/search/?q=365%2B%20food%20container",
+     "shop": "IKEA",
+     "price": 19.0,
+     "badge": "none",
+     "shipsFrom": "",
+     "checked": "2026-10-26",
+     "notes": "",
+     "rating": 4.7,
+     "ratingCount": 110,
+     "tag": "PICK"
+    }
+   ]
+  }
+ ]
+}
