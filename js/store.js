@@ -143,3 +143,40 @@ export function updateProduct(id, patch) {
 export function deleteProduct(id) {
   return deleteDoc(userDoc('products', id));
 }
+
+// Apply an import plan in batches. Creates the list when listId is null.
+// Returns { listId, done } right away so the screen can move on while it syncs.
+export function importItems(listId, listName, { creates, updates }) {
+  const now = Date.now();
+  const ops = [];
+  let target = listId;
+  if (!target) {
+    const ref = doc(userCol('lists'));
+    target = ref.id;
+    ops.push((b) => b.set(ref, { name: listName, createdAt: now, updatedAt: now }));
+  }
+  creates.forEach((item, i) => {
+    const ref = doc(userCol('products'));
+    ops.push((b) => b.set(ref, {
+      listId: target,
+      name: item.name,
+      qty: item.qty,
+      bought: false,
+      notes: item.notes,
+      chosenListingId: item.chosenListingId,
+      listings: item.listings,
+      research: item.research,
+      createdAt: now + i,
+      updatedAt: now,
+    }));
+  });
+  for (const u of updates) ops.push((b) => b.update(userDoc('products', u.id), { ...u.patch, updatedAt: now }));
+
+  const commits = [];
+  for (let i = 0; i < ops.length; i += 450) {
+    const batch = writeBatch(db);
+    ops.slice(i, i + 450).forEach((op) => op(batch));
+    commits.push(batch.commit());
+  }
+  return { listId: target, done: Promise.all(commits) };
+}

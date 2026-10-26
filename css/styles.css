@@ -289,3 +289,40 @@ dialog .error-text { margin: 4px 16px 0; }
   .spinner { animation-duration: 2s; }
   .toast { transition: none; }
 }
+
+/* ---------- research & import ---------- */
+
+.verdict, .verdict-badge {
+  display: inline-block; border-radius: 999px; font-weight: 700; white-space: nowrap;
+}
+.verdict { padding: 3px 12px; font-size: 0.9rem; }
+.verdict-badge { padding: 0 8px; font-size: 0.72rem; margin-left: 8px; vertical-align: 2px; text-decoration: none; }
+.verdict.buy, .verdict-badge.buy { background: var(--good-soft); color: var(--good); }
+.verdict.consider, .verdict-badge.consider { background: var(--warn-soft); color: var(--warn); }
+.verdict.skip, .verdict-badge.skip { background: color-mix(in srgb, var(--danger) 15%, transparent); color: var(--danger); }
+.item.bought .verdict-badge { opacity: 0.6; }
+
+.research { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.research-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.research-summary { margin: 0; overflow-wrap: anywhere; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pros-cons h3 { margin: 0 0 4px; font-size: 0.85rem; color: var(--muted); }
+.bullets { margin: 0; padding-left: 18px; font-size: 0.92rem; }
+.bullets li { margin: 2px 0; overflow-wrap: anywhere; }
+.bullets.pros li::marker { color: var(--good); }
+.bullets.cons li::marker { color: var(--warn); }
+.sources summary { cursor: pointer; color: var(--muted); font-size: 0.88rem; }
+.sources ul { margin: 6px 0 0; padding-left: 18px; font-size: 0.88rem; }
+.sources a { overflow-wrap: anywhere; }
+@media (max-width: 520px) { .pros-cons { grid-template-columns: 1fr; } }
+
+.tag.research-tag.pick { background: var(--good-soft); border-color: transparent; color: var(--good); }
+.tag.research-tag.cheaper_but { background: var(--warn-soft); border-color: transparent; color: var(--warn); }
+
+.fields.single { grid-template-columns: 1fr; }
+.fields.single p { margin: 0; }
+textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; min-height: 120px; }
+.import-preview p { margin: 0 0 4px; }
+.import-items { margin: 4px 0 0; padding-left: 18px; font-size: 0.92rem; }
+.import-items li { margin: 2px 0; overflow-wrap: anywhere; }
+[hidden] { display: none !important; }

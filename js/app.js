@@ -12,7 +12,9 @@ import {
   pickListing,
   productEstimate,
   newId,
+  todayISO,
 } from './util.js';
+import { parseImport, planImport, VERDICTS, TAGS } from './importer.js';
 
 const BADGES = {
   none: 'Regular seller',
@@ -83,7 +85,15 @@ function parseRoute() {
 const listHref = (listId) => `#/l/${encodeURIComponent(listId)}`;
 const productHref = (listId, pid) => `#/l/${encodeURIComponent(listId)}/p/${encodeURIComponent(pid)}`;
 
+// An import link (…#import=…) is held until the user is signed in and data has loaded.
+function takeImportLink() {
+  if (!location.hash.startsWith('#import=')) return;
+  state.pendingImport = location.hash;
+  history.replaceState(null, '', `${location.pathname}${location.search}#/`);
+}
+
 window.addEventListener('hashchange', () => {
+  takeImportLink();
   render();
   window.scrollTo(0, 0);
 });
@@ -126,6 +136,12 @@ function render() {
   if (focused) {
     const el = main.querySelector(`[data-keep="${focused}"]`);
     if (el) el.focus();
+  }
+
+  if (state.pendingImport && state.user && state.loaded) {
+    const text = state.pendingImport;
+    state.pendingImport = null;
+    importDialog(null, text);
   }
 }
 
@@ -236,7 +252,9 @@ function listsView() {
   });
 
   return h('div', { class: 'stack' },
-    h('h1', { class: 'page-title' }, 'Your lists'),
+    h('div', { class: 'title-row' },
+      h('h1', { class: 'page-title' }, 'Your lists'),
+      h('button', { class: 'btn small', type: 'button', onClick: () => importDialog(null) }, 'Import from Claude')),
     form,
     cards.length ? h('div', { class: 'stack' }, cards)
       : h('div', { class: 'card empty' }, h('p', {}, 'No lists yet. Create one above to start adding Shopee items.')),
@@ -247,6 +265,7 @@ function sumEstimates(products) {
   let total = 0;
   let missing = 0;
   for (const p of products) {
+    if (p.research && p.research.verdict === 'skip') continue; // researched as not worth buying
     const est = productEstimate(p);
     if (est === null) missing += 1;
     else total += est;
@@ -307,7 +326,10 @@ function listView(listId) {
     return h('li', { class: `item${p.bought ? ' bought' : ''}` },
       h('label', { class: 'check' }, check),
       h('a', { class: 'item-main', href: productHref(listId, p.id) },
-        h('span', { class: 'item-name' }, p.name),
+        h('span', { class: 'item-name' },
+          p.name,
+          p.research && p.research.verdict
+            ? h('span', { class: `verdict-badge ${p.research.verdict}` }, VERDICTS[p.research.verdict]) : null),
         h('span', { class: 'muted small' },
           p.qty > 1 ? `Qty ${p.qty} · ` : '',
           count ? `${count} listing${count === 1 ? '' : 's'}` : 'No listings yet',
@@ -323,6 +345,7 @@ function listView(listId) {
     h('div', { class: 'title-row' },
       h('h1', { class: 'page-title' }, list.name),
       h('div', { class: 'actions' },
+        h('button', { class: 'btn ghost small', type: 'button', onClick: () => importDialog(list.id) }, 'Import'),
         h('button', { class: 'btn ghost small', type: 'button', onClick: () => renameListDialog(list) }, 'Rename'),
         h('button', {
           class: 'btn ghost small danger', type: 'button',
@@ -416,10 +439,38 @@ function productView(listId, productId) {
 
   return h('div', { class: 'stack' },
     header,
+    product.research ? researchCard(product.research) : null,
     h('div', { class: 'title-row' }, h('h2', { class: 'section-title' }, `Compare listings (${listings.length})`), addBtn),
     body,
     listings.length > 1 ? h('p', { class: 'muted tiny' }, 'Sorted by total. Total = price × quantity + shipping. Scroll sideways to see more.') : null,
   );
+}
+
+function researchCard(r) {
+  const bullets = (items, cls) => (items && items.length
+    ? h('ul', { class: `bullets ${cls}` }, items.map((s) => h('li', {}, s))) : null);
+  return h('section', { class: 'card research', 'aria-label': 'Research' },
+    h('div', { class: 'research-head' },
+      r.verdict ? h('span', { class: `verdict ${r.verdict}` }, VERDICTS[r.verdict]) : null,
+      h('span', { class: 'muted tiny' }, r.researchedAt ? `Researched ${formatDate(r.researchedAt)}` : 'Research')),
+    r.summary ? h('p', { class: 'research-summary' }, r.summary) : null,
+    (r.pros && r.pros.length) || (r.cons && r.cons.length)
+      ? h('div', { class: 'pros-cons' },
+        r.pros && r.pros.length ? h('div', {}, h('h3', {}, 'Good'), bullets(r.pros, 'pros')) : null,
+        r.cons && r.cons.length ? h('div', {}, h('h3', {}, 'Watch out'), bullets(r.cons, 'cons')) : null)
+      : null,
+    r.sources && r.sources.length
+      ? h('details', { class: 'sources' },
+        h('summary', {}, `Sources (${r.sources.length})`),
+        h('ul', {}, r.sources.map((s) => h('li', {},
+          h('a', { href: s.url, target: '_blank', rel: 'noopener noreferrer' }, s.title || new URL(s.url).hostname)))))
+      : null,
+  );
+}
+
+function formatDate(iso) {
+  const d = new Date(`${iso}T00:00:00`);
+  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
 function compareTable(product, listings) {
@@ -435,6 +486,9 @@ function compareTable(product, listings) {
   const cols = listings.map((l, i) => {
     const tags = [];
     if (l.id === product.chosenListingId) tags.push(h('span', { class: 'tag chosen' }, 'Chosen'));
+    if (TAGS[l.tag] && !(l.tag === 'PICK' && l.id === product.chosenListingId)) {
+      tags.push(h('span', { class: `tag research-tag ${l.tag.toLowerCase()}` }, TAGS[l.tag]));
+    }
     if (multiple && totals[i] !== null && totals[i] === best.total) tags.push(h('span', { class: 'tag good' }, 'Cheapest'));
     if (multiple && Number.isFinite(l.rating) && l.rating === best.rating) tags.push(h('span', { class: 'tag' }, 'Top rated'));
     if (multiple && Number.isFinite(l.sold) && l.sold === best.sold && best.sold > 0) tags.push(h('span', { class: 'tag' }, 'Most sold'));
@@ -456,6 +510,11 @@ function compareTable(product, listings) {
     ['Vouchers', (c) => c.l.voucher || '–'],
     ['Notes', (c) => c.l.notes || '–'],
   ];
+  if (listings.some((l) => l.checked)) {
+    rows.push(['Price checked', (c) => (c.l.checked === 'card'
+      ? h('span', { class: 'muted' }, 'Search page only, not verified')
+      : c.l.checked ? formatDate(c.l.checked) : '–')]);
+  }
 
   const table = h('table', { class: 'compare' },
     h('thead', {},
@@ -660,6 +719,7 @@ function listingDialog(product, existing) {
       if (Number.isNaN(sold)) return 'Sold should look like 856 or 10k.';
 
       const listing = {
+        ...l, // keep research fields such as tag and checked
         id: l.id || newId(),
         url,
         shop: v.shop.trim(),
@@ -674,6 +734,8 @@ function listingDialog(product, existing) {
         voucher: v.voucher.trim(),
         notes: v.notes.trim(),
       };
+      // A price typed in by hand counts as checked today.
+      if (l.checked && price !== l.price) listing.checked = todayISO();
       // Use the latest copy in case another device changed this item while the form was open.
       const latest = state.products.find((p) => p.id === product.id) || product;
       const current = latest.listings || [];
@@ -689,7 +751,127 @@ function countText(n) {
   return Number.isFinite(n) ? String(n) : '';
 }
 
+// Paste research from Claude (or open an import link) and add every item in one go.
+function importDialog(fromListId, initialText = '') {
+  const textarea = h('textarea', {
+    rows: 6, class: 'mono', spellcheck: 'false', 'aria-label': 'Import data',
+    placeholder: 'Paste the import block or link from Claude here',
+  });
+  textarea.value = initialText;
+  const preview = h('div', { class: 'import-preview', 'aria-live': 'polite' });
+  const errorEl = h('p', { class: 'error-text small', role: 'alert' });
+  const target = h('select', { 'aria-label': 'Add to list' });
+  const targetField = h('div', { class: 'field', hidden: true }, h('label', {}, 'Add to list'), target);
+  const submit = h('button', { class: 'btn primary', type: 'submit', disabled: true }, 'Import');
+  let parsed = null;
+
+  const plan = () => {
+    const listId = target.value === '__new' ? null : target.value;
+    const existing = listId ? state.products.filter((p) => p.listId === listId) : [];
+    return { listId, ...planImport(parsed, existing) };
+  };
+
+  const refreshPreview = () => {
+    if (!parsed) return;
+    const { creates, updates } = plan();
+    const listingCount = [...creates.map((i) => i.listings.length), ...updates.map((u) => u.added)].reduce((a, b) => a + b, 0);
+    const verdicts = parsed.items.reduce((acc, i) => {
+      const v = i.research && i.research.verdict;
+      if (v) acc[v] = (acc[v] || 0) + 1;
+      return acc;
+    }, {});
+    // replaceChildren() would print null as text, so drop empty parts first.
+    preview.replaceChildren(...[
+      h('p', {},
+        h('strong', {}, `${creates.length} new item${creates.length === 1 ? '' : 's'}`),
+        updates.length ? `, ${updates.length} existing item${updates.length === 1 ? '' : 's'} updated` : '',
+        `, ${listingCount} listing${listingCount === 1 ? '' : 's'}.`),
+      Object.keys(verdicts).length
+        ? h('p', { class: 'muted small' }, Object.entries(verdicts).map(([v, n]) => `${n} ${VERDICTS[v].toLowerCase()}`).join(' · '))
+        : null,
+      h('ul', { class: 'import-items' }, parsed.items.slice(0, 12).map((i) => h('li', {},
+        i.name,
+        i.research && i.research.verdict ? h('span', { class: `verdict-badge ${i.research.verdict}` }, VERDICTS[i.research.verdict]) : null))),
+      parsed.items.length > 12 ? h('p', { class: 'muted tiny' }, `and ${parsed.items.length - 12} more`) : null,
+    ].filter(Boolean));
+  };
+
+  const check = () => {
+    errorEl.textContent = '';
+    preview.replaceChildren();
+    parsed = null;
+    submit.disabled = true;
+    targetField.hidden = true;
+    if (!textarea.value.trim()) return;
+    try {
+      parsed = parseImport(textarea.value);
+    } catch (err) {
+      errorEl.textContent = err.message;
+      return;
+    }
+    const lists = [...state.lists].sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+    const sameName = lists.find((l) => l.name.trim().toLowerCase() === parsed.listName.toLowerCase());
+    const preferred = fromListId || (sameName && sameName.id) || '__new';
+    target.replaceChildren(
+      h('option', { value: '__new' }, `New list: ${parsed.listName}`),
+      ...lists.map((l) => h('option', { value: l.id }, l.name)),
+    );
+    target.value = preferred;
+    targetField.hidden = false;
+    submit.disabled = false;
+    refreshPreview();
+  };
+
+  textarea.addEventListener('input', check);
+  target.addEventListener('change', refreshPreview);
+
+  const dialog = h('dialog', { class: 'sheet', 'aria-label': 'Import from Claude' });
+  const close = () => dialog.close();
+  const form = h('form', {
+    novalidate: true,
+    onSubmit: (e) => {
+      e.preventDefault();
+      if (!parsed) return;
+      const p = plan();
+      if (!p.creates.length && !p.updates.some((u) => u.added || u.patch.research)) {
+        errorEl.textContent = 'Nothing new to import: these items and links are already in that list.';
+        return;
+      }
+      const { listId, done } = store.importItems(p.listId, parsed.listName, p);
+      save(done, `Imported ${parsed.items.length} item${parsed.items.length === 1 ? '' : 's'}`);
+      close();
+      location.hash = listHref(listId);
+    },
+  },
+  h('div', { class: 'sheet-head' },
+    h('h2', {}, 'Import from Claude'),
+    h('button', { class: 'btn ghost small', type: 'button', onClick: close, 'aria-label': 'Close' }, '✕')),
+  h('div', { class: 'fields single' },
+    h('p', { class: 'muted small' }, 'Ask Claude to research items for your Shopee List, then paste what it gives you. Every item is added with its listings and research.'),
+    textarea,
+    targetField,
+    preview),
+  errorEl,
+  h('div', { class: 'sheet-foot' },
+    h('button', { class: 'btn ghost', type: 'button', onClick: close }, 'Cancel'),
+    submit),
+  );
+
+  dialog.append(form);
+  dialog.addEventListener('close', () => {
+    dialog.remove();
+    if (renderQueued) render();
+  });
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
+  document.body.append(dialog);
+  dialog.showModal();
+  if (initialText) check();
+  else textarea.focus();
+}
+
 // ---------- start ----------
+
+takeImportLink();
 
 store.onUser((user) => {
   if (state.stopWatching) {

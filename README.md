@@ -7,7 +7,9 @@ A personal shopping list for Shopee Malaysia (shopee.com.my) that syncs between 
 - For each item, save the Shopee listings you are considering and compare them side by side: price, shipping, total, rating, sold count, seller type, where it ships from, vouchers and notes.
 - The cheapest total, top rating and most sold are highlighted. Mark one listing as **Chosen** and the list totals use it; otherwise they use the cheapest.
 
-You type in the details yourself. Shopee blocks automated reading of its pages, so the app does not fetch them.
+- **Import from Claude:** ask Claude to research what you want to buy and paste its import block. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
+
+The app itself does not read Shopee: Shopee blocks automated access, so research happens in a Claude chat that can use your Chrome browser, or you type details in yourself.
 
 ## How it works
 
@@ -57,5 +59,7 @@ Open http://localhost:8000. `localhost` is an authorized domain in Firebase by d
 | `js/app.js` | Screens, routing, forms |
 | `js/store.js` | Firebase sign-in and database access |
 | `js/util.js` | Parsing and formatting helpers |
+| `js/importer.js` | Reads and checks import data from Claude |
+| `docs/IMPORT.md` | Import format and the prompt to use with Claude |
 | `js/firebase-config.js` | Firebase project config |
 | `firestore.rules` | Database security rules |
