@@ -1,0 +1,4 @@
+node_modules/
+*-debug.log
+e2e-*.png
+firestore.rules

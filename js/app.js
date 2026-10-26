@@ -35,6 +35,9 @@ const state = {
   filter: 'buy',
   stopWatching: null,
   dataError: null,
+  household: null,
+  members: [],
+  needsHousehold: false, // signed in with no household yet, holding an invite link
   library: null, // research library index, loaded on the Add page
   libraryError: null,
   picked: new Set(),
@@ -57,6 +60,8 @@ const ICONS = {
   open: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>',
   copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3"/></svg>',
   lists: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
+  people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.5c2.4.2 4 1.8 4.5 4.5"/></svg>',
+  share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg>',
   cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>',
 };
 
@@ -86,8 +91,9 @@ function describeError(err) {
   }
   if (code === 'auth/network-request-failed') return 'No connection. Check your internet and try again.';
   if (code === 'permission-denied') {
-    return 'The database refused access. Publish the rules from firestore.rules in Firebase console > Firestore > Rules.';
+    return 'The database refused access. If the app was just updated, publish the new rules from firestore.rules in Firebase console > Firestore > Rules. If you joined with a link, it may have been used already or expired.';
   }
+  if (code === 'unavailable') return 'You are offline. Connect to the internet once so the app can set up your household.';
   return (err && err.message) || 'Something went wrong.';
 }
 
@@ -119,16 +125,20 @@ function parseRoute() {
   if (parts[0] === 'l' && parts[1]) return { view: 'list', listId: parts[1] };
   if (parts[0] === 'next') return { view: 'next', mode: parts[1] === 'sale' ? 'sale' : 'must' };
   if (parts[0] === 'add') return { view: 'add' };
+  if (parts[0] === 'household') return { view: 'household' };
   return { view: 'lists' };
 }
 
 const listHref = (listId) => `#/l/${encodeURIComponent(listId)}`;
 const productHref = (listId, pid) => `#/l/${encodeURIComponent(listId)}/p/${encodeURIComponent(pid)}`;
 
-// An import link (…#import=…) is held until the user is signed in and data has loaded.
+// An import link (…#import=…) or invite link (…#join=…) is held until the user is signed in.
 function takeImportLink() {
-  if (!location.hash.startsWith('#import=')) return;
-  state.pendingImport = location.hash;
+  if (location.hash.startsWith('#import=')) state.pendingImport = location.hash;
+  else if (location.hash.startsWith('#join=')) {
+    const m = location.hash.slice(6).match(/^([A-Za-z0-9]{10,40})\.([a-z0-9]{20,40})$/);
+    state.pendingJoin = m ? { hid: m[1], code: m[2] } : { bad: true };
+  } else return;
   history.replaceState(null, '', `${location.pathname}${location.search}#/`);
 }
 
@@ -227,6 +237,7 @@ function render() {
   if (state.user === undefined) view = loadingView('Checking sign-in…');
   else if (state.user === null) view = signInView();
   else if (state.dataError) view = errorView(state.dataError);
+  else if (state.needsHousehold) view = loadingView('Opening your invite…');
   else if (!state.loaded) view = loadingView('Loading your lists…');
   else {
     route = parseRoute();
@@ -234,6 +245,7 @@ function render() {
     else if (route.view === 'list') view = listView(route.listId);
     else if (route.view === 'next') view = planView(route.mode);
     else if (route.view === 'add') view = addView();
+    else if (route.view === 'household') view = householdView();
     else view = listsView();
   }
   lastView = `${route.view}:${route.listId || ''}:${route.productId || ''}`;
@@ -255,6 +267,12 @@ function render() {
     if (el) el.focus();
   }
 
+  if (state.pendingJoin && state.user && (state.loaded || state.needsHousehold)) {
+    const join = state.pendingJoin;
+    state.pendingJoin = null;
+    joinDialog(join);
+    return;
+  }
   if (state.pendingImport && state.user && state.loaded) {
     const text = state.pendingImport;
     state.pendingImport = null;
@@ -264,22 +282,24 @@ function render() {
 
 function renderHeader() {
   const user = state.user;
-  if (!user) {
+  if (!user || !state.loaded) {
     headerUser.replaceChildren();
     return;
   }
-  const avatar = user.photoURL
-    ? h('img', { class: 'avatar', src: user.photoURL, alt: '', referrerpolicy: 'no-referrer' })
-    : h('span', { class: 'avatar', 'aria-hidden': 'true' }, initialOf(user));
+  const people = memberList().slice(0, 3);
   headerUser.replaceChildren(
-    h('button', {
-      class: 'icon-btn', type: 'button', 'aria-label': `Account: ${user.email || user.displayName || ''}`,
-      onClick: () => menuDialog('Account', [
-        h('p', { class: 'muted small', style: 'padding: 0 8px 8px' }, user.email || ''),
-        menuButton('Sign out', () => store.signOut().catch((err) => toast(describeError(err), 'error'))),
-      ]),
-    }, avatar),
+    h('a', { class: 'avatars', href: '#/household', 'aria-label': `Household: ${people.map((m) => m.name).join(', ')}` },
+      people.map((m, i) => (m.uid === user.uid && user.photoURL
+        ? h('img', { class: 'avatar', src: user.photoURL, alt: '', referrerpolicy: 'no-referrer' })
+        : h('span', { class: `avatar${i ? ' alt' : ''}`, 'aria-hidden': 'true' }, initialOf({ displayName: m.name }))))),
   );
+}
+
+// Members with you first; falls back to just you while the household loads.
+function memberList() {
+  const me = state.user;
+  const list = state.members.length ? [...state.members] : [{ uid: me.uid, name: me.displayName || me.email || 'Me', role: 'owner' }];
+  return list.sort((a, b) => (a.uid === me.uid ? -1 : b.uid === me.uid ? 1 : (a.joinedAt || 0) - (b.joinedAt || 0)));
 }
 
 function renderTabbar(view) {
@@ -292,6 +312,7 @@ function renderTabbar(view) {
   tabbar.replaceChildren(
     tab('#/', 'Lists', 'lists', view === 'lists' || view === 'list' || view === 'product' || view === 'add'),
     tab('#/next', 'Buy next', 'cart', view === 'next'),
+    tab('#/household', 'Household', 'people', view === 'household'),
   );
 }
 
@@ -336,7 +357,7 @@ function signInView() {
     h('p', {}, 'Shopping lists for Shopee Malaysia, with photos, the reason behind each pick, and what to buy next.'),
     button,
     status,
-    h('p', { class: 'muted small' }, 'Only your Google account can see your lists.'),
+    h('p', { class: 'muted small' }, state.pendingJoin ? 'Sign in to join the household you were invited to.' : 'Only you and the people you invite can see your lists.'),
   );
 }
 
@@ -893,6 +914,149 @@ async function addPicked(button) {
   }
 }
 
+// ----- household -----
+
+function householdView() {
+  const me = state.user;
+  const hh = state.household || {};
+  const isOwner = hh.ownerUid === me.uid;
+  const people = memberList();
+  const nameOf = (uidv) => {
+    const m = state.members.find((x) => x.uid === uidv);
+    return m ? m.name.split(' ')[0] : '';
+  };
+  const recent = state.products
+    .filter((p) => p.bought && p.boughtAt)
+    .sort((a, b) => b.boughtAt - a.boughtAt)
+    .slice(0, 8);
+  const listName = (id) => (state.lists.find((l) => l.id === id) || {}).name || '';
+
+  const inviteBtn = h('button', {
+    class: 'btn primary big block', type: 'button',
+    onClick: async () => {
+      inviteBtn.disabled = true;
+      try {
+        const link = await store.createInvite(me);
+        const text = `Join our Shopee List so we share the same shopping lists: ${link}`;
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: 'Shopee List invite', text });
+            toast('Invite sent');
+          } catch (err) {
+            if (err && err.name !== 'AbortError') await copyText(link, 'Invite link copied. Paste it in WhatsApp.');
+          }
+        } else {
+          await copyText(link, 'Invite link copied. Paste it in WhatsApp.');
+        }
+      } catch (err) {
+        toast(describeError(err), 'error');
+      } finally {
+        inviteBtn.disabled = false;
+      }
+    },
+  }, icon('share'), 'Share invite link');
+
+  return h('div', { class: 'stack' },
+    h('div', {},
+      h('h1', { class: 'page-title' }, 'Household'),
+      h('p', { class: 'page-sub' }, `${hh.name || 'Your household'} · everyone here sees and edits the same lists.`)),
+    h('section', { class: 'stack tight' },
+      h('h2', { class: 'section-label' }, `${people.length} member${people.length === 1 ? '' : 's'}`),
+      h('div', { class: 'card', style: 'overflow: hidden' }, people.map((m, i) => h('div', { class: 'plan-row' },
+        h('span', { class: `avatar big${i ? ' alt' : ''}`, 'aria-hidden': 'true' }, initialOf({ displayName: m.name })),
+        h('span', { class: 'main' },
+          h('span', { class: 'name' }, m.name, m.uid === me.uid ? ' (you)' : ''),
+          h('span', { class: 'meta' }, m.role === 'owner' ? 'Owner' : 'Can edit')),
+        isOwner && m.uid !== me.uid ? h('button', {
+          class: 'btn ghost small danger', type: 'button',
+          onClick: () => {
+            if (!confirm(`Remove ${m.name} from the household? They will no longer see these lists.`)) return;
+            save(store.removeMember(m.uid), `${m.name} removed`);
+          },
+        }, 'Remove') : null)))),
+    h('section', { class: 'card pad stack tight' },
+      h('h2', { style: 'font-size: 16px' }, 'Invite someone'),
+      h('p', { class: 'small', style: 'color: var(--text-2)' }, 'Send the link on WhatsApp. They sign in with their own Google account and join this household. The link works once and expires in 7 days.'),
+      inviteBtn),
+    recent.length ? h('section', { class: 'stack tight' },
+      h('h2', { class: 'section-label' }, 'Recently bought'),
+      h('div', { class: 'card', style: 'overflow: hidden' }, recent.map((p) => h('a', { class: 'plan-row', href: productHref(p.listId, p.id) },
+        photo(productImage(p), 'sm'),
+        h('span', { class: 'main' },
+          h('span', { class: 'name' }, splitName(p.name).short),
+          h('span', { class: 'meta' }, [
+            p.boughtBy && (nameOf(p.boughtBy.uid) || (p.boughtBy.name || '').split(' ')[0]) ? `by ${nameOf(p.boughtBy.uid) || p.boughtBy.name.split(' ')[0]}` : '',
+            listName(p.listId),
+            new Date(p.boughtAt).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' }),
+          ].filter(Boolean).join(' · '))))))) : null,
+    h('div', { class: 'card pad stack tight' },
+      h('p', { class: 'muted small' }, `Signed in as ${me.email || me.displayName || ''}`),
+      h('button', { class: 'btn', type: 'button', onClick: () => store.signOut().catch((err) => toast(describeError(err), 'error')) }, 'Sign out')),
+  );
+}
+
+async function joinDialog(join) {
+  const finish = () => {
+    if (state.needsHousehold) {
+      state.needsHousehold = false;
+      startHousehold(state.user, false);
+    } else render();
+  };
+  if (join.bad) {
+    toast('That invite link is damaged. Ask for a new one.', 'error');
+    finish();
+    return;
+  }
+  if (join.hid === store.householdId()) {
+    toast('You are already in this household.');
+    finish();
+    return;
+  }
+  let info;
+  try {
+    info = await store.lookupInvite(join.hid, join.code);
+  } catch (err) {
+    toast(describeError(err), 'error');
+    finish();
+    return;
+  }
+  if (!info || info.expired || (info.used && !info.usedByMe)) {
+    toast(!info ? 'That invite link does not exist. Ask for a new one.'
+      : info.expired ? 'That invite link has expired. Ask for a new one.'
+        : 'That invite link was already used. Ask for a new one.', 'error');
+    finish();
+    return;
+  }
+  const mine = state.lists.length;
+  const joinBtn = h('button', { class: 'btn primary', type: 'button' }, 'Join');
+  const { dialog, close } = sheet(`Join ${info.from}'s household?`,
+    h('div', { class: 'fields single' },
+      h('p', {}, `You will see and edit the same lists as ${info.from}.`),
+      mine ? h('p', { class: 'muted small' }, `Your ${mine} list${mine === 1 ? '' : 's'} will be copied into the shared household.`) : null),
+    h('div', { class: 'sheet-foot' },
+      h('button', { class: 'btn ghost', type: 'button', onClick: () => close() }, 'Not now'),
+      joinBtn));
+  let joined = false;
+  joinBtn.addEventListener('click', async () => {
+    joinBtn.disabled = true;
+    joinBtn.textContent = 'Joining…';
+    try {
+      await store.joinHousehold(state.user, join.hid, join.code);
+      joined = true;
+      close();
+      state.needsHousehold = false;
+      startHousehold(state.user, true);
+      toast(`You joined ${info.from}'s household`);
+      location.hash = '#/';
+    } catch (err) {
+      joinBtn.disabled = false;
+      joinBtn.textContent = 'Join';
+      toast(describeError(err), 'error');
+    }
+  });
+  dialog.addEventListener('close', () => { if (!joined) finish(); });
+}
+
 // ---------- dialogs ----------
 
 function sheet(title, body, foot) {
@@ -1289,31 +1453,74 @@ function importDialog(fromListId, initialText = '') {
 
 takeImportLink();
 
-store.onUser((user) => {
-  if (state.stopWatching) {
-    state.stopWatching();
-    state.stopWatching = null;
+function stopAll() {
+  if (state.stopWatching) state.stopWatching();
+  state.stopWatching = null;
+}
+
+// Open (or create) the household, then listen to its lists and members.
+async function startHousehold(user, alreadyOpen) {
+  stopAll();
+  state.loaded = false;
+  state.dataError = null;
+  render();
+  try {
+    if (!alreadyOpen) {
+      const hid = await store.openHousehold(user, { deferCreate: !!state.pendingJoin });
+      if (!hid) {
+        state.needsHousehold = true;
+        render();
+        return;
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    state.dataError = err;
+    render();
+    return;
   }
+  if (state.user !== user) return; // signed out meanwhile
+  let handled = false;
+  const onError = (err) => {
+    if (handled) return;
+    handled = true;
+    // Removed from the household while the app was open: find out where this person
+    // belongs now (their own household, created fresh if needed) instead of showing an error.
+    if (err && err.code === 'permission-denied' && !state.recovering) {
+      state.recovering = true;
+      toast('You are no longer in that household.', 'error');
+      startHousehold(user, false).finally(() => { state.recovering = false; });
+      return;
+    }
+    console.error(err);
+    state.dataError = err;
+    render();
+  };
+  const stopData = store.watchAll(({ lists, products }) => {
+    state.lists = lists;
+    state.products = products;
+    state.loaded = true;
+    render();
+  }, onError);
+  const stopHousehold = store.watchHousehold(({ household, members }) => {
+    state.household = household;
+    state.members = members;
+    render();
+  }, onError);
+  state.stopWatching = () => { stopData(); stopHousehold(); };
+}
+
+store.onUser((user) => {
+  stopAll();
   state.user = user;
   state.lists = [];
   state.products = [];
+  state.members = [];
+  state.household = null;
   state.loaded = false;
+  state.needsHousehold = false;
   state.dataError = null;
-  if (user) {
-    state.stopWatching = store.watchAll(
-      ({ lists, products }) => {
-        state.lists = lists;
-        state.products = products;
-        state.loaded = true;
-        render();
-      },
-      (err) => {
-        console.error(err);
-        state.dataError = err;
-        render();
-      },
-    );
-  }
+  if (user) startHousehold(user, false);
   render();
 });
 
