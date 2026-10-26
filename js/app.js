@@ -288,7 +288,8 @@ function renderHeader() {
   }
   const people = memberList().slice(0, 3);
   headerUser.replaceChildren(
-    h('a', { class: 'avatars', href: '#/household', 'aria-label': `Household: ${people.map((m) => m.name).join(', ')}` },
+    h('a', { class: 'avatars', href: '#/household', title: people.map((m) => m.name).join(', ') },
+      h('span', { class: 'sr-only' }, `Household: ${people.map((m) => m.name).join(', ')}`),
       people.map((m, i) => (m.uid === user.uid && user.photoURL
         ? h('img', { class: 'avatar', src: user.photoURL, alt: '', referrerpolicy: 'no-referrer' })
         : h('span', { class: `avatar${i ? ' alt' : ''}`, 'aria-hidden': 'true' }, initialOf({ displayName: m.name }))))),
@@ -352,7 +353,7 @@ function signInView() {
   }, 'Sign in with Google');
 
   return h('section', { class: 'card signin' },
-    h('img', { class: 'signin-logo', src: 'img/logo.png', alt: 'Shopee List', width: 180, height: 180 }),
+    h('img', { class: 'signin-logo', src: 'img/logo-360.png', alt: 'Shopee List', width: 180, height: 180, fetchpriority: 'high' }),
     h('h1', { class: 'sr-only' }, 'Shopee List'),
     h('p', {}, 'Shopping lists for Shopee Malaysia, with photos, the reason behind each pick, and what to buy next.'),
     button,

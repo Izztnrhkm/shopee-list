@@ -16,11 +16,15 @@
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
 import {
-  getAuth,
+  initializeAuth,
+  indexedDBLocalPersistence,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
   signInWithRedirect,
+  getRedirectResult,
   signOut as fbSignOut,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 import {
@@ -42,7 +46,18 @@ import {
 import { firebaseConfig } from './firebase-config.js';
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// The Google sign-in helper (an iframe plus about 130 KB) is only needed when someone signs in,
+// so it is passed to the sign-in calls instead of loading on every visit.
+const auth = initializeAuth(app, { persistence: [indexedDBLocalPersistence, browserLocalPersistence] });
+const REDIRECT_FLAG = 'shopee-list-redirect';
+try {
+  if (sessionStorage.getItem(REDIRECT_FLAG)) {
+    sessionStorage.removeItem(REDIRECT_FLAG);
+    getRedirectResult(auth, browserPopupRedirectResolver).catch((err) => console.warn('Redirect sign-in failed', err));
+  }
+} catch {
+  // sessionStorage can be blocked; the redirect result is then picked up by onAuthStateChanged anyway.
+}
 
 // Local cache keeps the list readable and editable offline; changes sync when back online.
 let db;
@@ -69,10 +84,11 @@ export async function signIn() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   try {
-    await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, provider, browserPopupRedirectResolver);
   } catch (err) {
     if (err && err.code === 'auth/popup-blocked') {
-      await signInWithRedirect(auth, provider);
+      try { sessionStorage.setItem(REDIRECT_FLAG, '1'); } catch { /* ignore */ }
+      await signInWithRedirect(auth, provider, browserPopupRedirectResolver);
       return;
     }
     throw err;
