@@ -204,7 +204,8 @@ function signInView() {
   }, 'Sign in with Google');
 
   return h('section', { class: 'card signin' },
-    h('h1', {}, 'Shopee List'),
+    h('img', { class: 'signin-logo', src: 'img/logo.png', alt: 'Shopee List', width: 180, height: 180 }),
+    h('h1', { class: 'sr-only' }, 'Shopee List'),
     h('p', {}, 'Keep shopping lists for Shopee Malaysia and compare listings side by side. Your lists sync between your phone and computer.'),
     button,
     status,
