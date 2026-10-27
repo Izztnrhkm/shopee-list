@@ -1,6 +1,7 @@
 import * as store from './store.js';
 import * as fx from './fx.js';
 import { THEMES, themeChoice, currentTheme, setTheme, initTheme } from './theme.js';
+import { reloadApp, installPullToRefresh, watchForUpdates } from './refresh.js';
 import {
   h,
   formatRM,
@@ -63,6 +64,17 @@ syncThemeButton();
 themeBtn.addEventListener('click', () => {
   setTheme(currentTheme() === 'dark' ? 'light' : 'dark', themeBtn, () => { syncThemeButton(); render(); });
 });
+
+// Refresh: header button, pull down from the top, or the pill that appears after a new deploy.
+document.getElementById('refresh-btn').addEventListener('click', () => reloadApp());
+installPullToRefresh({
+  indicator: document.getElementById('ptr'),
+  onReady: () => fx.play('toggle'),
+  onRefresh: () => { fx.play('success'); reloadApp(); },
+});
+const updatePill = document.getElementById('update-pill');
+updatePill.querySelector('button').addEventListener('click', () => reloadApp());
+watchForUpdates(() => { updatePill.hidden = false; });
 const tabbar = document.getElementById('tabbar');
 const toastEl = document.getElementById('toast');
 

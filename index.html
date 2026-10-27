@@ -33,6 +33,7 @@
   <link rel="modulepreload" href="js/util.js">
   <link rel="modulepreload" href="js/importer.js">
   <link rel="modulepreload" href="js/theme.js">
+  <link rel="modulepreload" href="js/refresh.js">
   <link rel="modulepreload" href="js/fx.js">
   <link rel="modulepreload" href="js/firebase-config.js">
   <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js">
@@ -43,6 +44,9 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#/"><img class="brand-logo" src="img/icon-64.png" alt="" width="32" height="32">Shopee List</a>
+    <button id="refresh-btn" class="icon-btn refresh-btn" type="button" aria-label="Refresh the app" title="Refresh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
+    </button>
     <button id="theme-btn" class="icon-btn theme-btn" type="button" data-sound="toggle" aria-label="Switch to dark mode" title="Light or dark">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <g class="sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g>
@@ -51,6 +55,13 @@
     </button>
     <div id="header-user" class="header-user"></div>
   </header>
+  <div id="ptr" class="ptr" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
+  </div>
+  <div id="update-pill" class="update-pill" role="status" hidden>
+    <span>New version ready</span>
+    <button type="button" data-sound="toggle">Refresh</button>
+  </div>
   <main id="main" class="container" aria-live="polite">
     <!-- Shown until the app starts, so the first paint is the logo, not a blank page. -->
     <div class="center splash"><img class="signin-logo" src="img/logo-360.png" alt="Shopee List" width="180" height="180" fetchpriority="high"><div class="spinner" aria-hidden="true"></div></div>

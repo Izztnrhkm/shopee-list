@@ -20,6 +20,8 @@ Every push to `main` deploys automatically:
 
 To redeploy without a code change: GitHub › Actions › Deploy to Firebase Hosting › Run workflow.
 
+Each deploy writes `version.json` (the short commit id). An open app checks it when it comes back to the front and every 5 minutes, and shows a **New version ready · Refresh** pill when it changed. People can also refresh any time with the circular-arrow button in the header or by pulling the page down from the top. `version.json` is not in the repo (`.gitignore`), so a local copy simply never shows the pill.
+
 ### One-time setup: the deploy key
 
 The workflow needs the repository secret `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`.
