@@ -1,5 +1,6 @@
 import * as store from './store.js';
 import * as fx from './fx.js';
+import { THEMES, themeChoice, currentTheme, setTheme, initTheme } from './theme.js';
 import {
   h,
   formatRM,
@@ -50,6 +51,18 @@ const state = {
 
 const main = document.getElementById('main');
 const headerUser = document.getElementById('header-user');
+const themeBtn = document.getElementById('theme-btn');
+
+// Header sun/moon: flips between light and dark (a fixed choice, not Auto).
+function syncThemeButton() {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  themeBtn.setAttribute('aria-label', `Switch to ${next} mode`);
+}
+initTheme();
+syncThemeButton();
+themeBtn.addEventListener('click', () => {
+  setTheme(currentTheme() === 'dark' ? 'light' : 'dark', themeBtn, () => { syncThemeButton(); render(); });
+});
 const tabbar = document.getElementById('tabbar');
 const toastEl = document.getElementById('toast');
 
@@ -1135,6 +1148,14 @@ function householdView() {
             listName(p.listId),
             new Date(p.boughtAt).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' }),
           ].filter(Boolean).join(' · '))))))) : null,
+    h('section', { class: 'stack tight' },
+      h('h2', { class: 'section-label' }, 'Appearance'),
+      h('div', { class: 'segmented', role: 'radiogroup', 'aria-label': 'Appearance' },
+        Object.entries(THEMES).map(([key, label]) => h('button', {
+          type: 'button', role: 'radio', 'aria-checked': String(themeChoice() === key), 'data-sound': 'toggle',
+          onClick: (e) => { if (themeChoice() !== key) setTheme(key, e.currentTarget, () => { syncThemeButton(); render(); }); },
+        }, label))),
+      h('p', { class: 'muted tiny' }, 'On this phone only. Auto follows your phone\'s setting.')),
     h('button', {
       class: 'switch-row', type: 'button', role: 'switch', 'aria-checked': String(fx.soundOn()), 'data-sound': 'none',
       onClick: () => { fx.setSound(!fx.soundOn()); render(); },
