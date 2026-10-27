@@ -2,6 +2,8 @@
 
 A phone-first shopping list for Shopee Malaysia (shopee.com.my) that syncs between your devices.
 
+**Open it at https://shopee-list-dea0e.firebaseapp.com/** (add that address to your home screen). Deploys and setup: [docs/OPERATIONS.md](docs/OPERATIONS.md).
+
 - Keep several lists, e.g. "Raya" or "Kitchen". Each item shows its photo, price, verdict and the reason it is the pick.
 - Set a priority (Must-have, Should have, Nice to have) and tag items for the next Shopee double-day sale (11.11, 12.12…).
 - **Buy next** gathers every must-have across your lists with a total, and a second view lists everything waiting for the sale.
@@ -21,7 +23,7 @@ The app itself does not read Shopee: Shopee blocks automated access, so research
 
 ## How it works
 
-- A static site (HTML, CSS, plain JavaScript modules, no build step), hosted on GitHub Pages.
+- A static site (HTML, CSS, plain JavaScript modules, no build step), hosted on Firebase Hosting (main address) and GitHub Pages; both deploy on every push to main.
 - Google sign-in through Firebase Authentication.
 - Data in Cloud Firestore, in a **household** (`households/{id}/...`) that you share with the people you invite. `firestore.rules` lets only members read or write a household's lists; a person joins only with an unused invite link, within 7 days. Lists made before households (`users/{uid}/...`) are copied into your household the first time you open the app, and the originals are kept as a backup.
 - Firestore's offline cache keeps the app usable without a connection. Changes sync when you are back online.

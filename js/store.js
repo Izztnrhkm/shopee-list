@@ -80,15 +80,37 @@ export function onUser(callback) {
   });
 }
 
+// Installed to the iPhone home screen, the app runs in its own window where iOS blocks the
+// sign-in popup, so it signs in by redirect. Redirect sign-in needs the app and its sign-in
+// helper on the same address, which is why the app is served from the Firebase Hosting domain.
+function isStandalone() {
+  return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+}
+
+function redirectWorksHere() {
+  return location.hostname === firebaseConfig.authDomain;
+}
+
+export function signInNeedsBrowser() {
+  return isStandalone() && !redirectWorksHere();
+}
+
 export async function signIn() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
+  const redirect = async () => {
+    try { sessionStorage.setItem(REDIRECT_FLAG, '1'); } catch { /* ignore */ }
+    await signInWithRedirect(auth, provider, browserPopupRedirectResolver);
+  };
+  if (isStandalone() && redirectWorksHere()) {
+    await redirect();
+    return;
+  }
   try {
     await signInWithPopup(auth, provider, browserPopupRedirectResolver);
   } catch (err) {
-    if (err && err.code === 'auth/popup-blocked') {
-      try { sessionStorage.setItem(REDIRECT_FLAG, '1'); } catch { /* ignore */ }
-      await signInWithRedirect(auth, provider, browserPopupRedirectResolver);
+    if (err && err.code === 'auth/popup-blocked' && redirectWorksHere()) {
+      await redirect();
       return;
     }
     throw err;
