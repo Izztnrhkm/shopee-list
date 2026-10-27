@@ -262,13 +262,18 @@ export function watchHousehold(onData, onError) {
   if (!hid) throw new Error('No household');
   let household = null;
   let members = null;
-  const emit = () => { if (household && members) onData({ household, members }); };
+  let invites = [];
+  const emit = () => { if (household && members) onData({ household, members, invites }); };
   const stopH = onSnapshot(doc(db, 'households', hid), (s) => { household = { id: s.id, ...s.data() }; emit(); }, onError);
   const stopM = onSnapshot(collection(db, 'households', hid, 'members'), (s) => {
     members = s.docs.map((d) => ({ uid: d.id, ...d.data() }));
     emit();
   }, onError);
-  return () => { stopH(); stopM(); };
+  const stopI = onSnapshot(collection(db, 'households', hid, 'invites'), (s) => {
+    invites = s.docs.map((d) => ({ code: d.id, ...d.data() }));
+    emit();
+  }, () => { invites = []; emit(); });
+  return () => { stopH(); stopM(); stopI(); };
 }
 
 function randomCode(length = 24) {
@@ -288,8 +293,15 @@ export async function createInvite(user) {
     expiresAt: Timestamp.fromMillis(now + 7 * DAY - 60000),
     usedBy: null,
   });
-  const base = `${location.origin}${location.pathname}`;
-  return `${base}#join=${hid}.${code}`;
+  return inviteLink(code);
+}
+
+export function inviteLink(code) {
+  return `${location.origin}${location.pathname}#join=${hid}.${code}`;
+}
+
+export function cancelInvite(code) {
+  return deleteDoc(doc(db, 'households', hid, 'invites', code));
 }
 
 // { from, expired, used } or null when the code does not exist.
