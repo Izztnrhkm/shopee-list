@@ -52,7 +52,7 @@
    "listings": [
     {
      "url": "https://shopee.com.my/product/20592129/11255089628",
-     "shop": "",
+     "shop": "GST Hardware Online",
      "price": 57.59,
      "badge": "none",
      "shipsFrom": "Selangor",
@@ -66,7 +66,7 @@
     },
     {
      "url": "https://shopee.com.my/product/25685981/10271125494",
-     "shop": "",
+     "shop": "Sui U Machinery & Tools (M) Sdn Bhd",
      "price": 19.9,
      "badge": "none",
      "shipsFrom": "",
@@ -161,7 +161,7 @@
     },
     {
      "url": "https://shopee.com.my/product/36055865/17941945265",
-     "shop": "",
+     "shop": "Broz Car Store",
      "price": 13.68,
      "badge": "none",
      "shipsFrom": "Pulau Pinang",
@@ -276,7 +276,7 @@
     },
     {
      "url": "https://shopee.com.my/product/47438187/3290766336",
-     "shop": "Shopee seller (name not read)",
+     "shop": "Comp and Misc Store",
      "badge": "none",
      "shipsFrom": "",
      "overseas": false,
