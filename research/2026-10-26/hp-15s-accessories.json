@@ -19,25 +19,27 @@
      "price": 24.4,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Local, joined 6 yrs, 100% response. Fixed price (RM24.40 to 24.90).",
      "rating": 5.0,
-     "ratingCount": "701",
+     "ratingCount": 701,
      "sold": "1k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-m1l1cgb29f622d"
     },
     {
      "url": "https://shopee.com.my/product/1117360958/53610719225",
      "shop": "GOOJODOQ official Mall",
-     "price": 18,
+     "price": 18.0,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Mall shop. Price range RM18 to RM50 by variant; height-adjustable version is the upper end.",
      "rating": 4.9,
-     "ratingCount": "107",
-     "sold": "353",
-     "tag": "ALT"
+     "ratingCount": 115,
+     "sold": "365",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-modvy0of3s3z3a"
     },
     {
      "url": "https://shopee.com.my/product/1117360958/24801693708",
@@ -45,14 +47,16 @@
      "price": 9.9,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Cheapest; RM9.90 to RM19.80. Listing mentions plastic parts on some variants.",
      "rating": 4.9,
-     "ratingCount": "785",
+     "ratingCount": 788,
      "sold": "2k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-7r98o-lrayryscx7zh4a"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-m1l1cgb29f622d"
   },
   {
    "name": "Mouse",
@@ -70,12 +74,13 @@
      "price": 56.7,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Bluetooth, no dongle, so no USB port used. Large authorised retailer.",
      "rating": 5.0,
-     "ratingCount": "2.3k",
+     "ratingCount": 2300,
      "sold": "10k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mpud0va7wnwg99"
     },
     {
      "url": "https://shopee.com.my/product/58359596/1019539111",
@@ -83,40 +88,44 @@
      "price": 63.54,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Uses a USB-A receiver; slightly larger, comfier for bigger hands.",
      "rating": 4.9,
-     "ratingCount": "4.6k",
+     "ratingCount": 4600,
      "sold": "10k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820le-mp1uf8tf2hhqcc"
     },
     {
      "url": "https://shopee.com.my/product/55732479/15935389561",
      "shop": "Logitech Official Shop",
-     "price": 136.8,
+     "price": 121.0,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Bluetooth + Bolt receiver, quiet clicks, smart wheel. Official shop.",
      "rating": 5.0,
-     "ratingCount": "2k",
+     "ratingCount": 2000,
      "sold": "7k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820li-mi9mw0sadq8642"
     },
     {
      "url": "https://shopee.com.my/product/85756200/14921742167",
      "shop": "POWERHAUS DEPARTMENT",
-     "price": 288.9,
+     "price": 190.94,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Premium compact mouse. 3S variant price; 2S is RM190.94.",
      "rating": 5.0,
-     "ratingCount": "488",
+     "ratingCount": 490,
      "sold": "3k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98w-ln72ymaig0ji79"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mpud0va7wnwg99"
   },
   {
    "name": "External keyboard",
@@ -134,24 +143,27 @@
      "price": 88.2,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Keyboard and mouse together; cheapest way to get both. Shop 10 yrs, 100% response.",
      "rating": 5.0,
-     "ratingCount": "161",
-     "sold": "591",
-     "tag": "PICK"
+     "ratingCount": 163,
+     "sold": "611",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasd-mb83tyruojqu2c"
     },
     {
      "url": "https://shopee.com.my/product/55732479/29938558069",
      "shop": "Logitech Official Shop",
-     "price": 70.2,
+     "price": 58.5,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "If you need a numpad on the external keyboard. Card only.",
      "rating": 5.0,
-     "sold": "101",
-     "tag": "ALT"
+     "sold": "1k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasl-md4gc8bk9o331c",
+     "ratingCount": 317
     },
     {
      "url": "https://shopee.com.my/product/58359596/19094362677",
@@ -186,12 +198,13 @@
      "price": 44.9,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Adds wired Ethernet (your laptop has none) plus USB-A ports from one port. Confirm the 1000Mbps (Gigabit) variant on the page.",
      "rating": 4.9,
-     "ratingCount": "952",
+     "ratingCount": 954,
      "sold": "3k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-22110-7s5s0o1urwjvda"
     },
     {
      "url": "https://shopee.com.my/product/331309804/22186890660",
@@ -199,12 +212,13 @@
      "price": 28.41,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Just more USB ports. RM28.41 to RM57.25 by variant (cable length / USB-C plug). A USB-C plug version works on your data-only USB-C port.",
      "rating": 5.0,
-     "ratingCount": "10k",
+     "ratingCount": 10000,
      "sold": "30k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-8258s-mq5wnwg2vy1833"
     },
     {
      "url": "https://shopee.com.my/product/21097082/50405607754",
@@ -212,12 +226,14 @@
      "price": 78,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Uses your USB-C port (data works), keeps both USB-A free. Very few sales from this seller. Card only.",
      "sold": "4",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-825b4-mrh63yjxbk7g1a"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-22110-7s5s0o1urwjvda"
   },
   {
    "name": "Sleeve / bag",
@@ -232,50 +248,61 @@
     {
      "url": "https://shopee.com.my/product/1403440621/54655219056",
      "shop": "",
-     "price": 16.09,
+     "price": 16.15,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
-     "notes": "Choose the 15.6\" size. Card only.",
+     "checked": "2026-10-27",
+     "notes": "Choose the 15.6\" size. Card only. Pre-order on 2026-10-27.",
      "rating": 4.9,
-     "sold": "4k+",
-     "tag": "PICK"
+     "sold": "5k+",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-8260j-mjtuyyjti96p4d",
+     "ratingCount": 531
     },
     {
      "url": "https://shopee.com.my/product/58359596/44964476716",
      "shop": "ALL IT Hypermarket",
-     "price": 69,
+     "price": 62.1,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Branded; headline may be the 13-14\" variant. Card only.",
-     "sold": "54",
-     "tag": "ALT"
+     "sold": "57",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820le-mqx3chkpzojp81",
+     "rating": 4.9,
+     "ratingCount": 18
     },
     {
      "url": "https://shopee.com.my/product/371725529/8824549379",
      "shop": "",
-     "price": 97.05,
+     "price": 106.05,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Very popular local brand. Card only.",
      "rating": 5.0,
      "sold": "10k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/b683f3b5fc59d5ec290ec52d78835867",
+     "ratingCount": 1000
     },
     {
      "url": "https://shopee.com.my/product/58359596/3558623518",
      "shop": "ALL IT Hypermarket",
-     "price": 79,
+     "price": 71.1,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Lightweight, branded. Card only.",
-     "sold": "445",
-     "tag": "ALT"
+     "sold": "451",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mohn3ww6gtmo68",
+     "rating": 5.0,
+     "ratingCount": 172
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-8260j-mjtuyyjti96p4d"
   },
   {
    "name": "Cooling pad (optional)",
@@ -293,24 +320,27 @@
      "price": 42.9,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Most reviews. Shop only 14 months old, 80% response. RM42.90 to RM69.90 by variant.",
      "rating": 4.9,
-     "ratingCount": "1.4k",
+     "ratingCount": 1400,
      "sold": "10k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mpnchtsi57nz1f"
     },
     {
      "url": "https://shopee.com.my/product/764456949/52808869531",
      "shop": "GOOJODOQ",
-     "price": 68,
+     "price": 61.27,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Stand + fan in one. Card only.",
      "rating": 4.9,
-     "sold": "169",
-     "tag": "ALT"
+     "sold": "652",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820le-mn2piz8o75kw97",
+     "ratingCount": 201
     },
     {
      "url": "https://shopee.com.my/product/158549656/42451786249",
@@ -318,14 +348,16 @@
      "price": 88.97,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Brand shop but ships from Mainland China; 17 one-star reviews.",
      "rating": 4.7,
-     "ratingCount": "560",
+     "ratingCount": 573,
      "sold": "2k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-ma26quakq8xe70"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mpnchtsi57nz1f"
   },
   {
    "name": "Screen and keyboard care (optional)",
@@ -343,9 +375,12 @@
      "price": 7.26,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Check it lists HP 15s numpad layout. Card only.",
-     "sold": "4k+"
+     "sold": "4k+",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rcf5-lquarobno89o01",
+     "rating": 4.9,
+     "ratingCount": 80
     },
     {
      "url": "https://shopee.com.my/product/219514031/56203419844",
@@ -353,12 +388,15 @@
      "price": 32,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Pick 15.6\" 16:9. Only if you work in public. Card only.",
      "rating": 4.9,
-     "sold": "5k+"
+     "sold": "5k+",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lh-msnwdizgtp1i3e",
+     "ratingCount": 524
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rcf5-lquarobno89o01"
   }
  ]
 }
