@@ -13,7 +13,7 @@
    "file": "2026-10-26/top-10-wishlist.json",
    "name": "Top 10 Wishlist",
    "items": 11,
-   "listings": 14,
+   "listings": 22,
    "about": "Desk setup, sleep, dashcam and PC, with prices re-checked on the shops' own sites.",
    "group": "Personal & tech"
   },
@@ -37,7 +37,7 @@
    "file": "2026-10-26/workstation-home-lab.json",
    "name": "Workstation & Home Lab",
    "items": 11,
-   "listings": 11,
+   "listings": 17,
    "about": "Cable tray, monitor arm, surge strip, webcam, headset, UPS, backup SSD.",
    "group": "Personal & tech"
   },
@@ -45,7 +45,7 @@
    "file": "2026-10-26/nx150s.json",
    "name": "NX150S",
    "items": 38,
-   "listings": 38,
+   "listings": 39,
    "about": "Matte-safe bike care, top box, locks, rider and pillion gear, styling.",
    "group": "Vehicles"
   },
@@ -53,7 +53,7 @@
    "file": "2026-10-26/car-wash.json",
    "name": "Car Wash",
    "items": 8,
-   "listings": 13,
+   "listings": 14,
    "about": "Kärcher K2 and foam jet, Meguiar's wax and tyre gel, iron remover, vacuum.",
    "group": "Vehicles"
   },
@@ -61,7 +61,7 @@
    "file": "2026-10-26/kitchen.json",
    "name": "Kitchen",
    "items": 11,
-   "listings": 16,
+   "listings": 21,
    "about": "Rice cooker, kettle, blender, knife, pans, plus cheap IKEA swaps for boards, utensils and containers.",
    "group": "Home"
   },
@@ -77,7 +77,7 @@
    "file": "2026-10-26/house-cleaning.json",
    "name": "House Cleaning",
    "items": 3,
-   "listings": 4,
+   "listings": 6,
    "about": "Vacuum-mop options, Magiclean, and a dehumidifier on hold.",
    "group": "Home"
   },
@@ -93,7 +93,7 @@
    "file": "2026-10-26/tools-electrical.json",
    "name": "Tools & Electrical",
    "items": 14,
-   "listings": 19,
+   "listings": 22,
    "about": "Fluke 101, voltage tester, Pinecil, Bosch drills and bits, safety gear, tyre inflator.",
    "group": "Home"
   },
@@ -101,7 +101,7 @@
    "file": "2026-10-26/hiking.json",
    "name": "Hiking",
    "items": 16,
-   "listings": 21,
+   "listings": 29,
    "about": "Shoes, socks, leech socks, rain gear, headlamp, poles and first aid, mostly Decathlon.",
    "group": "Outdoors, fitness & travel"
   },
