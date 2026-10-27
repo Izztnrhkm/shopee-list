@@ -180,7 +180,10 @@ function sumEstimates(products) {
 // "Rice cooker 1.8 L (Panasonic SR-DA182)" → short name + model.
 function splitName(name) {
   const m = String(name).match(/^(.{3,}?)\s*\(([^()]{2,})\)\s*$/);
-  return m ? { short: m[1], model: m[2] } : { short: name, model: '' };
+  const r = m ? { short: m[1], model: m[2] } : { short: name, model: '' };
+  // Keep a number and its unit on one line: "1.8 L", "32 cm", "20 kg".
+  r.short = r.short.replace(/(\d) (L|ml|cm|mm|m|kg|g|W|lm|mAh|GB|TB|inch|in)\b/g, '$1\u00a0$2');
+  return r;
 }
 
 function productImage(p) {
