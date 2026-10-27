@@ -292,7 +292,7 @@ input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); m
 .item-link { flex: 1; min-width: 0; display: flex; gap: 10px; text-decoration: none; color: var(--text); }
 .item-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .item-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; column-gap: 8px; row-gap: 2px; }
-.item-name { flex: 1 1 130px; min-width: 0; font-size: 15px; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
+.item-name { flex: 1 1 108px; min-width: 0; font-size: 15px; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
 .item-price { font-size: 15px; font-weight: 800; white-space: nowrap; }
 .item-meta { font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .item-why { font-size: 13px; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -473,8 +473,10 @@ textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mono
   .card.list-card:hover, .card.summary-card:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); }
 }
 
-.enter { animation: rise-in 0.22s ease-out both; }
-@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.enter { animation: fade-in-view 0.2s ease-out backwards; }
+/* Opacity only: a transform here, even a finished one, would make the screen the containing
+   block for its pinned bars (totals, Mark as bought) and unpin them. */
+@keyframes fade-in-view { from { opacity: 0; } to { opacity: 1; } }
 
 .tick.pop span { animation: tick-pop 0.32s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes tick-pop { 0% { transform: scale(0.7); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
@@ -510,3 +512,8 @@ dialog.sheet[open]::backdrop { animation: fade-in 0.2s ease; }
   .switch-row:active, .check-row:active, .tabbar a:active, .card.list-card:active, .card.summary-card:active,
   .plan-row:active, .item-link:active { transform: none; }
 }
+
+.invite-row { display: flex; align-items: center; gap: 4px; padding: 8px 10px; border: 1px dashed var(--border); border-radius: 12px; }
+.invite-row .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.invite-row .name { font-size: 14px; font-weight: 700; }
+.invite-row .meta { font-size: 12.5px; color: var(--warn); }

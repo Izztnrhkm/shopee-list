@@ -100,6 +100,8 @@ async function context(b, who) {
   await A.click('text=Share invite link'); await A.waitForTimeout(1500);
   const link = (await A.evaluate(() => window.__copied))[0] || '';
   check(/#join=[A-Za-z0-9]+\.[a-z0-9]{24}$/.test(link), 'invite link created');
+  await A.waitForTimeout(800);
+  check(await A.locator('text=Waiting to be used (1)').count() === 1, 'unused invite shows as waiting');
   log('link', link.replace(/\.[a-z0-9]{24}$/, '.<code>'));
   await A.screenshot({ path: __dirname + '/e2e-household-izzat.png' });
 
@@ -119,6 +121,34 @@ async function context(b, who) {
 
   // 4. Wife ticks the rice cooker; Izzat sees it, with her name.
   await W.goto(`http://localhost:8765/#/l/oldKitchen`); await W.waitForSelector('li.item');
+  // Pinned bars stay in view after the screen's entry animation (regression: 27 Oct).
+  await W.waitForTimeout(400);
+  // Pinned = its bottom edge sits exactly on the tab bar's top edge, and it stays there when the page scrolls.
+  const pinned = async (P, sel) => P.evaluate(async (sel) => {
+    const e = document.querySelector(sel); const tab = document.querySelector('#tabbar');
+    if (!e || !tab) return false;
+    const onTab = () => Math.abs(e.getBoundingClientRect().bottom - tab.getBoundingClientRect().top) <= 2;
+    const before = onTab();
+    document.body.style.minHeight = '3000px'; window.scrollTo(0, 400); await new Promise((r) => setTimeout(r, 50));
+    const after = onTab();
+    window.scrollTo(0, 0); document.body.style.minHeight = '';
+    return before && after;
+  }, sel);
+  check(await pinned(W, '.totalbar'), 'list totals bar stays pinned above the tabs');
+  // Also mid-animation: switch screens by link and measure 60 ms later. A transform on the
+  // entering screen (the 27 Oct bug) unpins the bar while it runs, and in some browsers after.
+  const midEntry = await W.evaluate(async () => {
+    location.hash = '#/next'; await new Promise((r) => setTimeout(r, 300));
+    location.hash = '#/l/oldKitchen'; await new Promise((r) => setTimeout(r, 60));
+    const e = document.querySelector('.totalbar'); const tab = document.querySelector('#tabbar');
+    let a = e && e.parentElement; let transformed = false;
+    while (a && a !== document.body) { const cs = getComputedStyle(a); if (cs.transform !== 'none' || cs.filter !== 'none' || cs.perspective !== 'none') transformed = true; a = a.parentElement; }
+    return !!e && !transformed && Math.abs(e.getBoundingClientRect().bottom - tab.getBoundingClientRect().top) <= 2;
+  });
+  check(midEntry, 'totals bar stays pinned while the screen animates in');
+  await W.goto(`http://localhost:8765/#/l/oldKitchen/p/oldRice`); await W.waitForTimeout(700);
+  check(await pinned(W, '.bottom-actions'), 'Mark as bought bar stays pinned on the item page');
+  await W.goto(`http://localhost:8765/#/l/oldKitchen`); await W.waitForSelector('li.item');
   await W.click('button[aria-label^="Mark bought: Rice cooker"]');
   await A.goto(`http://localhost:8765/#/l/oldKitchen`);
   await A.waitForSelector('text=Bought by Aisyah', { timeout: 10000 }).catch(() => {});
@@ -127,6 +157,7 @@ async function context(b, who) {
   check(await A.locator('text=Bought by Aisyah').count() >= 1, 'Izzat sees "Bought by Aisyah"');
   await A.goto('http://localhost:8765/#/household'); await A.waitForTimeout(1200);
   check((await A.locator('.plan-row .name').allTextContents()).some((t) => t.startsWith('Aisyah')), 'household lists Aisyah as a member');
+  check(await A.locator('text=Waiting to be used').count() === 0, 'used invite no longer shows as waiting');
   check(await A.locator('text=by Aisyah').count() >= 1, 'recently bought shows Aisyah');
   await A.screenshot({ path: __dirname + '/e2e-household-after.png' });
 

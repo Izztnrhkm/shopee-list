@@ -41,6 +41,7 @@ const state = {
   dataError: null,
   household: null,
   members: [],
+  invites: [],
   needsHousehold: false, // signed in with no household yet, holding an invite link
   library: null, // research library index, loaded on the Add page
   libraryError: null,
@@ -266,7 +267,10 @@ function render() {
 
   const entering = lastView !== prevView;
   main.className = `container${route.view === 'list' || route.view === 'product' || route.view === 'add' ? ' has-totalbar' : ''}`;
-  if (entering) view.classList.add('enter');
+  if (entering) {
+    view.classList.add('enter');
+    view.addEventListener('animationend', () => view.classList.remove('enter'), { once: true });
+  }
   main.replaceChildren(view);
   if (entering) {
     main.querySelectorAll('[data-count]').forEach((el) => fx.countUp(el, Number(el.dataset.count), formatRM));
@@ -1115,7 +1119,8 @@ function householdView() {
     h('section', { class: 'card pad stack tight' },
       h('h2', { style: 'font-size: 16px' }, 'Invite someone'),
       h('p', { class: 'small', style: 'color: var(--text-2)' }, 'Send the link on WhatsApp. They sign in with their own Google account and join this household. The link works once and expires in 7 days.'),
-      inviteBtn),
+      inviteBtn,
+      pendingInvites()),
     recent.length ? h('section', { class: 'stack tight' },
       h('h2', { class: 'section-label' }, 'Recently bought'),
       h('div', { class: 'card', style: 'overflow: hidden' }, recent.map((p) => h('a', { class: 'plan-row', href: productHref(p.listId, p.id) },
@@ -1164,6 +1169,30 @@ function downloadBackup() {
   setTimeout(() => URL.revokeObjectURL(url), 10000);
   toast(`Backup saved: ${state.lists.length} lists, ${state.products.length} items`);
   fx.play('success');
+}
+
+// Links sent but not used yet, so it is clear when someone has not joined.
+function pendingInvites() {
+  const now = Date.now();
+  const open = state.invites
+    .filter((i) => !i.usedBy && i.expiresAt && i.expiresAt.toMillis() > now)
+    .sort((a, b) => b.createdAt - a.createdAt);
+  if (!open.length) return null;
+  const day = (ms) => new Date(ms).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' });
+  return h('div', { class: 'stack tight', style: 'margin-top: 6px' },
+    h('h3', { class: 'section-label', style: 'padding: 0' }, `Waiting to be used (${open.length})`),
+    open.map((i) => h('div', { class: 'invite-row' },
+      h('span', { class: 'main' },
+        h('span', { class: 'name' }, `Link from ${day(i.createdAt)}`),
+        h('span', { class: 'meta' }, `Not used yet · expires ${day(i.expiresAt.toMillis())}`)),
+      h('button', {
+        class: 'btn ghost small', type: 'button',
+        onClick: () => copyText(store.inviteLink(i.code), 'Link copied. Paste it in WhatsApp.'),
+      }, 'Copy'),
+      h('button', {
+        class: 'btn ghost small danger', type: 'button',
+        onClick: () => { if (confirm('Cancel this invite link? It will stop working.')) save(store.cancelInvite(i.code), 'Invite cancelled'); },
+      }, 'Cancel'))));
 }
 
 async function joinDialog(join) {
@@ -1676,9 +1705,10 @@ async function startHousehold(user, alreadyOpen) {
     state.loaded = true;
     render();
   }, onError);
-  const stopHousehold = store.watchHousehold(({ household, members }) => {
+  const stopHousehold = store.watchHousehold(({ household, members, invites }) => {
     state.household = household;
     state.members = members;
+    state.invites = invites || [];
     render();
   }, onError);
   state.stopWatching = () => { stopData(); stopHousehold(); };
@@ -1690,6 +1720,7 @@ store.onUser((user) => {
   state.lists = [];
   state.products = [];
   state.members = [];
+  state.invites = [];
   state.household = null;
   state.loaded = false;
   state.needsHousehold = false;
