@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    // One address: the old GitHub Pages copy sends visitors (and import/invite links) to the main one.
+    if (location.hostname === 'izztnrhkm.github.io') {
+      location.replace('https://shopee-list-dea0e.firebaseapp.com/' + location.pathname.replace(/^\/shopee-list\/?/, '') + location.search + location.hash);
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Shopee List</title>
   <meta name="description" content="Shopee Malaysia shopping lists with photos, the reason behind each pick, price history and a buy-next plan.">

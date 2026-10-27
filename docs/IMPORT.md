@@ -5,11 +5,11 @@ Shopee List can add researched items in one go. Ask Claude to research what you 
 - Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced.
 - The listing tagged `PICK` becomes the item's **Chosen** listing, so list totals use it.
 - Items with verdict `skip` are kept for reference but left out of the totals.
-- An import link (`https://izztnrhkm.github.io/shopee-list/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
+- An import link (`https://shopee-list-dea0e.firebaseapp.com/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
 
 ## Research library
 
-Researched lists can also be saved in this repo under `research/<date>/<list>.json` and added to `research/index.json`. They appear on the [Research library](https://izztnrhkm.github.io/shopee-list/research/) page with an **Add to Shopee List** button, which builds the import link in the browser.
+Researched lists can also be saved in this repo under `research/<date>/<list>.json` and added to `research/index.json`. They appear on the [Research library](https://shopee-list-dea0e.firebaseapp.com/research/) page with an **Add to Shopee List** button, which builds the import link in the browser.
 
 ## Where the research happens
 

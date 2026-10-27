@@ -12,7 +12,7 @@ A phone-first shopping list for Shopee Malaysia (shopee.com.my) that syncs betwe
 
 - **Household:** invite your partner with a link (WhatsApp works). You both see and edit the same lists, and ticks show who bought what.
 - **Add from Claude:** pick one or several lists from the research library in the app, or paste an import block from a chat. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
-- **Research library:** ready-made researched lists at [/research/](https://izztnrhkm.github.io/shopee-list/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
+- **Research library:** ready-made researched lists at [/research/](https://shopee-list-dea0e.firebaseapp.com/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
 
 The app itself does not read Shopee: Shopee blocks automated access, so research happens in a Claude chat that can use your Chrome browser, or you type details in yourself.
 

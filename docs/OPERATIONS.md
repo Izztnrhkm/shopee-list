@@ -5,7 +5,7 @@
 | Address | Use |
 | --- | --- |
 | https://shopee-list-dea0e.firebaseapp.com/ | **Main address.** Use this one, and add this one to your phone's home screen. Sign-in works in the browser and in the iPhone home-screen app. |
-| https://izztnrhkm.github.io/shopee-list/ | Old address (GitHub Pages). Still works in a browser tab. An iPhone home-screen app added from here cannot sign in; it shows a button to the main address. |
+| https://izztnrhkm.github.io/shopee-list/ | Old address (GitHub Pages). Sends every visit, import link and invite link to the main address. |
 
 Both addresses use the same Firebase project, so lists are the same on both.
 
@@ -40,3 +40,9 @@ These roles can publish the website only; they cannot read or change your lists.
 ## Sign-in on iPhone home-screen app
 
 The home-screen app signs in by redirect. Firebase marks a redirect in progress in sessionStorage, which iOS can drop on the way to Google and back; the app keeps its own mark in localStorage (`shopee-list-redirect`, valid 15 minutes) and restores Firebase's mark before collecting the result. If a sign-in still does not finish, the sign-in screen shows a line like `[home-screen, note lost, restored, empty]`: send that to Claude.
+
+## Backups
+
+Household tab › **Download backup** saves every list and item as a `.json` file (open it in any text editor). Firebase's own scheduled backups need the paid Blaze plan, so this is the free way. Suggested: once a month, and before any big change. To restore, give the file to Claude: it holds the same fields as the database (`lists`, `products`), so it can be written back with the same ids.
+
+Your lists from before households also still sit under your account (`users/{uid}/lists`, `users/{uid}/products`) as a read-only copy from 26 Oct.
