@@ -92,3 +92,43 @@ test('small text helpers', () => {
   assert.equal(ageText('card', '2026-10-26'), '');
   assert.equal(daysBetween('2026-12-31', '2027-01-01'), 1);
 });
+
+test('re-import replaces the item photo when the research has a new one', () => {
+  const first = parseImport(block([{ name: 'Poncho', image: 'https://cdn.example/women.jpg', listings: [listing()] }]));
+  const saved = { id: 'p1', name: 'Poncho', image: first.items[0].image, listings: first.items[0].listings, chosenListingId: first.items[0].chosenListingId };
+  const again = parseImport(block([{ name: 'Poncho', image: 'https://cdn.example/men.jpg', listings: [listing()] }]));
+  const { updates } = planImport(again, [saved]);
+  assert.equal(updates[0].patch.image, 'https://cdn.example/men.jpg');
+  const same = planImport(parseImport(block([{ name: 'Poncho', image: 'https://cdn.example/women.jpg', listings: [listing()] }])), [saved]);
+  assert.equal(same.updates[0].patch.image, undefined);
+});
+
+test('a saved listing the new research dropped is marked, not deleted, and the pick follows the research', () => {
+  const wrong = 'https://shopee.com.my/product/9/9';
+  const first = parseImport(block([{ name: 'Poncho', listings: [listing({ url: wrong })] }]));
+  const manual = { id: 'm1', url: 'https://example.com/mine', shop: 'Mine', price: 50, src: 'manual' };
+  const saved = { id: 'p1', name: 'Poncho', listings: [...first.items[0].listings, manual], chosenListingId: first.items[0].chosenListingId };
+  const right = 'https://www.decathlon.my/p/poncho.html';
+  const again = parseImport(block([{ name: 'Poncho', listings: [listing({ url: right, price: 99 })] }], { researchedAt: '2026-10-28' }));
+  const u = planImport(again, [saved]).updates[0];
+  assert.equal(u.dropped, 1);
+  const byUrl = Object.fromEntries(u.patch.listings.map((l) => [l.url, l]));
+  assert.equal(byUrl[wrong].dropped, '2026-10-28');
+  assert.equal(byUrl[manual.url].dropped, undefined); // hand-added listings are never marked
+  assert.equal(u.patch.chosenListingId, byUrl[right].id);
+});
+
+test('a dropped listing that comes back in research is unmarked', () => {
+  const url = 'https://shopee.com.my/product/1/2';
+  const saved = { id: 'p1', name: 'A', listings: [{ id: 'l1', url, price: 10, dropped: '2026-10-28', history: [{ date: '2026-10-26', price: 10 }] }], chosenListingId: 'l1' };
+  const u = planImport(parseImport(block([{ name: 'A', listings: [listing({ url, price: 10 })] }])), [saved]).updates[0];
+  assert.equal(u.patch.listings[0].dropped, null);
+  assert.equal(u.dropped, 0);
+});
+
+test('research without listings never marks saved listings', () => {
+  const saved = { id: 'p1', name: 'A', listings: [{ id: 'l1', url: 'https://shopee.com.my/product/1/2', price: 10 }], chosenListingId: 'l1' };
+  const u = planImport(parseImport(block([{ name: 'A', verdict: 'skip', summary: 'Not worth it.', listings: [] }])), [saved]).updates[0];
+  assert.equal(u.dropped, 0);
+  assert.equal(u.patch.listings[0].dropped, undefined);
+});

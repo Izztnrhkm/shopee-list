@@ -95,8 +95,10 @@ export function pickListing(product) {
   const listings = product.listings || [];
   const chosen = listings.find((l) => l.id === product.chosenListingId);
   if (chosen) return chosen;
+  // Listings the latest research dropped only count when nothing else has a price.
+  const current = listings.filter((l) => !l.dropped);
   let best = null;
-  for (const l of listings) {
+  for (const l of current.length ? current : listings) {
     const total = listingTotal(l, product.qty);
     if (total === null) continue;
     if (!best || total < listingTotal(best, product.qty)) best = l;

@@ -2,7 +2,8 @@
 
 Shopee List can add researched items in one go. Ask Claude to research what you want to buy, and it gives you an import block (or link). In the app, tap **Add from Claude** › **Or paste research from a chat** (or ⋯ › Paste research from chat inside a list), paste it, and tap **Import**. To start new research from the app, tap **Ask Claude to research**: it opens a Claude chat with the request written for you. Every item is added with its listings and a verdict.
 
-- Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced.
+- Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced, and so is the item photo when the research has a different one.
+- A saved listing whose link the new research leaves out is kept but marked **Not in latest research** (it sorts last and never counts as cheapest). If it was the pick, the pick moves to the new research pick. Listings added by hand in the app are never marked. If a later import includes the link again, the mark is removed.
 - The listing tagged `PICK` becomes the item's **Chosen** listing, so list totals use it.
 - Items with verdict `skip` are kept for reference but left out of the totals.
 - An import link (`https://shopee-list-dea0e.firebaseapp.com/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
