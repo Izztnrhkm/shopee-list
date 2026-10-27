@@ -161,6 +161,27 @@ async function context(b, who) {
   check(await A.locator('text=by Aisyah').count() >= 1, 'recently bought shows Aisyah');
   await A.screenshot({ path: __dirname + '/e2e-household-after.png' });
 
+  // 4b. Light and dark: header button, Household setting, Auto follows the phone, saved per phone.
+  const theme = () => A.evaluate(() => document.documentElement.getAttribute('data-theme'));
+  const bg = () => A.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  check(await theme() === 'light', 'starts light when the phone is light (Auto)');
+  await A.click('#theme-btn'); await A.waitForTimeout(800);
+  check(await theme() === 'dark' && await bg() === 'rgb(22, 21, 20)', `header button switches to dark (${await bg()})`);
+  check(await A.evaluate(() => localStorage.getItem('shopee-list-theme')) === 'dark', 'dark choice saved on this phone');
+  check(await A.locator('[aria-label="Appearance"] button[aria-checked="true"]').textContent() === 'Dark', 'Household shows Dark selected');
+  check(await A.getAttribute('#theme-btn', 'aria-label') === 'Switch to light mode', 'button label offers light mode');
+  await A.reload(); await A.waitForSelector('text=Appearance');
+  check(await theme() === 'dark', 'dark is kept after reload');
+  await A.click('[aria-label="Appearance"] button:has-text("Light")'); await A.waitForTimeout(800);
+  check(await theme() === 'light' && await bg() === 'rgb(246, 245, 243)', 'Household Light switches back');
+  await A.click('[aria-label="Appearance"] button:has-text("Auto")'); await A.waitForTimeout(800);
+  check(await A.evaluate(() => localStorage.getItem('shopee-list-theme')) === null, 'Auto clears the saved choice');
+  await A.emulateMedia({ colorScheme: 'dark' }); await A.waitForTimeout(300);
+  check(await theme() === 'dark', 'Auto follows the phone turning dark');
+  await A.screenshot({ path: __dirname + '/e2e-household-dark.png' });
+  await A.emulateMedia({ colorScheme: 'light' }); await A.waitForTimeout(300);
+  check(await theme() === 'light', 'Auto follows the phone turning light');
+
   // 5. Mallory tries the same link: refused, and cannot read the lists.
   const M = await context(b, 'mallory');
   await M.goto(link.replace(/^https?:\/\/[^/]+\/[^#]*/, 'http://localhost:8765/'));

@@ -8,6 +8,15 @@
       location.replace('https://shopee-list-dea0e.firebaseapp.com/' + location.pathname.replace(/^\/shopee-list\/?/, '') + location.search + location.hash);
     }
   </script>
+  <script>
+    // Light or dark before the first paint (see js/theme.js): the saved choice, else the phone's.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('shopee-list-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Shopee List</title>
   <meta name="description" content="Shopee Malaysia shopping lists with photos, the reason behind each pick, price history and a buy-next plan.">
@@ -23,6 +32,8 @@
   <link rel="modulepreload" href="js/store.js">
   <link rel="modulepreload" href="js/util.js">
   <link rel="modulepreload" href="js/importer.js">
+  <link rel="modulepreload" href="js/theme.js">
+  <link rel="modulepreload" href="js/fx.js">
   <link rel="modulepreload" href="js/firebase-config.js">
   <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js">
   <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js">
@@ -32,6 +43,12 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#/"><img class="brand-logo" src="img/icon-64.png" alt="" width="32" height="32">Shopee List</a>
+    <button id="theme-btn" class="icon-btn theme-btn" type="button" data-sound="toggle" aria-label="Switch to dark mode" title="Light or dark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <g class="sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g>
+        <path class="moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>
+      </svg>
+    </button>
     <div id="header-user" class="header-user"></div>
   </header>
   <main id="main" class="container" aria-live="polite">
