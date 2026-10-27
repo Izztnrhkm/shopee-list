@@ -334,6 +334,10 @@ function errorView(err) {
 }
 
 function signInView() {
+  if (store.isFinishingSignIn()) {
+    store.whenSignInChecked().then(() => render());
+    return loadingView('Finishing sign-in…');
+  }
   const status = h('p', { class: 'muted small', role: 'status' });
   const button = h('button', {
     class: 'btn primary big',
@@ -355,6 +359,12 @@ function signInView() {
       }
     },
   }, 'Sign in with Google');
+  const problem = store.signInProblem();
+  if (problem) {
+    status.className = 'error-text small';
+    status.textContent = 'Sign-in did not finish. Tap Sign in with Google again. If this keeps happening, send Claude a screenshot of this line: '
+      + `[${problem.standalone ? 'home-screen' : 'browser'}, note ${problem.firebaseNote ? 'kept' : 'lost'}${problem.restored ? ', restored' : ''}, ${problem.result}]`;
+  }
 
   if (store.signInNeedsBrowser()) {
     return h('section', { class: 'card signin' },
