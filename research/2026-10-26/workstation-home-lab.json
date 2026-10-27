@@ -63,10 +63,13 @@
      "price": 159.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "SIRIM, 1700 J surge",
      "sold": "414",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mtrpyey8rtvu3e",
+     "rating": 4.9,
+     "ratingCount": 135
     },
     {
      "url": "https://mypowertools.easy.co/products/sum-3-4-5-extension-socket-with-surge-protect-2-usb-port-sirim-approved-",
@@ -78,7 +81,8 @@
      "notes": "Basic surge only, no joule rating",
      "tag": "ALT"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mtrpyey8rtvu3e"
   },
   {
    "name": "Desk mat (TTRacing DAX)",
@@ -96,13 +100,16 @@
      "price": 144.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "1k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134201-7ras8-macxwmmd651228",
+     "ratingCount": 574
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134201-7ras8-macxwmmd651228"
   },
   {
    "name": "USB hub with LAN for the laptop",
@@ -120,14 +127,16 @@
      "price": 44.9,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
-     "ratingCount": 952,
+     "ratingCount": 954,
      "sold": "3k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-22110-7s5s0o1urwjvda"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-22110-7s5s0o1urwjvda"
   },
   {
    "name": "Webcam (Logitech Brio 100)",
@@ -256,13 +265,16 @@
      "price": 1199.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Card price; variant not opened",
      "rating": 4.7,
-     "sold": "52",
-     "tag": "PICK"
+     "sold": "53",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7r990-lmr9thhbkwr7c3",
+     "ratingCount": 14
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7r990-lmr9thhbkwr7c3"
   }
  ]
 }

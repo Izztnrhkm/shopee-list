@@ -88,11 +88,13 @@
      "price": 217.1,
      "badge": "mall",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-26",
-     "notes": "Pre-order, ships in 14 days (get by 11 Nov). Good brush, recheck later.",
+     "checked": "2026-10-27",
+     "notes": "Pre-order, ships in 14 days (get by 11 Nov). Good brush, recheck later. Pre-order on 2026-10-27.",
      "rating": 5.0,
-     "ratingCount": "2",
-     "tag": "CHEAPER_BUT"
+     "ratingCount": 2,
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134301-825a7-msvgcxa5zpc2be",
+     "sold": "22"
     },
     {
      "url": "https://shopee.com.my/product/4402428/4195538407",

@@ -16,15 +16,16 @@
     {
      "url": "https://shopee.com.my/product/910952224/42118041757",
      "shop": "ESR Official Store",
-     "price": 53,
+     "price": 53.0,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Official shop, MagSafe magnets, Camera Control cut-out. iPhone 17 variant shows RM59 (list RM139).",
      "rating": 5.0,
-     "ratingCount": "495",
+     "ratingCount": 495,
      "sold": "1k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-824j3-mee4h2yx8jyd3d"
     },
     {
      "url": "https://shopee.com.my/product/1127938701/29306111620",
@@ -32,27 +33,30 @@
      "price": 48,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Most reviews among branded cases. RM48 to RM68 by variant.",
      "rating": 4.9,
-     "ratingCount": "1.3k",
-     "sold": "4k+",
-     "tag": "ALT"
+     "ratingCount": 1400,
+     "sold": "5k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lb-mum2h5cfy5my5a"
     },
     {
      "url": "https://shopee.com.my/product/832540531/28491316676",
      "shop": "Spigen Malaysia Official Store",
-     "price": 125.91,
+     "price": 113.31,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Official, mil-grade drop claim. Pricier; fewer reviews. 86% response.",
      "rating": 5.0,
-     "ratingCount": "55",
+     "ratingCount": 55,
      "sold": "162",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mfauacmwyi3025"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-824j3-mee4h2yx8jyd3d"
   },
   {
    "name": "Screen protector",
@@ -67,30 +71,33 @@
     {
      "url": "https://shopee.com.my/product/1234422565/28173838011",
      "shop": "Furycube",
-     "price": 13.9,
+     "price": 13.41,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Two pieces. Listing also has privacy/matte variants: choose HD. Price from search card.",
      "rating": 4.9,
-     "ratingCount": "7.2k",
+     "ratingCount": 7300,
      "sold": "30k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mj6oiah6lerr6a"
     },
     {
      "url": "https://shopee.com.my/product/1699786913/53762722098",
      "shop": "king-mall",
-     "price": 3.99,
+     "price": 4.39,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Cheapest, very popular. RM3.99 to RM5.69 by variant. Shop 10 months old.",
-     "rating": 5.0,
-     "ratingCount": "7.9k",
-     "sold": "70k+",
-     "tag": "ALT"
+     "rating": 4.9,
+     "ratingCount": 1400,
+     "sold": "10k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-824ie-mpuncu9f43ylc8"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mj6oiah6lerr6a"
   },
   {
    "name": "Charger (no adapter in the box)",
@@ -105,42 +112,47 @@
     {
      "url": "https://shopee.com.my/product/82080415/25642892593",
      "shop": "Ugreen Flagship Store",
-     "price": 53.9,
+     "price": 24.6,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Hits the 40W+ fast-charge tier and powers MagSafe at 25W. Select the 45W variant.",
      "rating": 5.0,
-     "ratingCount": "18.7k",
+     "ratingCount": 18900,
      "sold": "60k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mhht9l9bxermd6"
     },
     {
      "url": "https://shopee.com.my/product/82080415/25642892593",
      "shop": "Ugreen Flagship Store",
-     "price": 32.9,
+     "price": 24.6,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Enough for MagSafe 25W; wired charging slower than max.",
      "rating": 5.0,
-     "ratingCount": "18.7k",
+     "ratingCount": 18900,
      "sold": "60k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mhht9l9bxermd6"
     },
     {
      "url": "https://shopee.com.my/product/64923440/24445816117",
      "shop": "UGREEN",
-     "price": 60.72,
+     "price": 53.34,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Alternative listing. Card only.",
      "rating": 5.0,
-     "sold": "8k+",
-     "tag": "ALT"
+     "sold": "10k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-mbpazd0qo05929",
+     "ratingCount": 1500
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mhht9l9bxermd6"
   },
   {
    "name": "Magnetic power bank (optional)",
@@ -158,38 +170,44 @@
      "price": 206.55,
      "badge": "mall",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Qi2.2 25W, built-in stand, airline-safe size. Snaps onto a MagSafe case.",
      "rating": 4.9,
-     "ratingCount": "1.1k",
+     "ratingCount": 1100,
      "sold": "3k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-82594-mr16dhrdbjeq28"
     },
     {
      "url": "https://shopee.com.my/product/82080415/42261995778",
      "shop": "Ugreen Flagship Store",
-     "price": 198.99,
+     "price": 213.99,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Older Qi2 version. Card only.",
      "rating": 5.0,
-     "sold": "173",
-     "tag": "ALT"
+     "sold": "3k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mu4bc9uy3zes0e",
+     "ratingCount": 1200
     },
     {
      "url": "https://shopee.com.my/product/1067124434/43534312207",
      "shop": "",
-     "price": 449,
+     "price": 449.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Premium option. Card only.",
      "rating": 4.8,
-     "sold": "93",
-     "tag": "ALT"
+     "sold": "112",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mulrt1ri2y9t7f",
+     "ratingCount": 48
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-82594-mr16dhrdbjeq28"
   },
   {
    "name": "Car mount (optional)",
@@ -207,14 +225,16 @@
      "price": 32.13,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Magnetic mount for a MagSafe case. Check variant if you want charging.",
      "rating": 5.0,
-     "ratingCount": "2k",
+     "ratingCount": 2000,
      "sold": "10k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mtnov97mvf2a2f"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/cn-11134207-820l4-mtnov97mvf2a2f"
   },
   {
    "name": "Camera lens protector (optional)",
@@ -232,27 +252,30 @@
      "price": 2.78,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-27",
      "notes": "Very cheap; check for night-shot flare.",
      "rating": 4.8,
-     "ratingCount": "196",
-     "sold": "922",
-     "tag": "PICK"
+     "ratingCount": 199,
+     "sold": "935",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mua50eyhvthh69"
     },
     {
      "url": "https://shopee.com.my/product/239538362/20894048169",
      "shop": "KYMAX",
-     "price": 39,
+     "price": 36.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-21",
+     "checked": "2026-10-27",
      "notes": "Better build, local shop 7 yrs. Confirm iPhone 17 variant.",
      "rating": 4.9,
-     "ratingCount": "406",
+     "ratingCount": 406,
      "sold": "1k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820ld-mun51mb9otfl76"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mua50eyhvthh69"
   }
  ]
 }
