@@ -1,0 +1,208 @@
+{
+ "shopeeList": 1,
+ "list": "Laptop",
+ "researchedAt": "2026-10-27",
+ "items": [
+  {
+   "name": "Laptop for IT and travel (ASUS Zenbook 14 OLED 32GB)",
+   "qty": 1,
+   "notes": "Covers IT work, light gaming and thin-and-light; pairs with the planned desktop.",
+   "verdict": "buy",
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mlyhkgtfe2o5e2",
+   "summary": "Best value x86 laptop with 32 GB for VMs, 1.2 kg and a 75 Wh battery. Keep the planned desktop for gaming.",
+   "pros": [
+    "32 GB for VMs",
+    "1.2 kg, 75 Wh",
+    "4.9 stars, 239 sold"
+   ],
+   "cons": [
+    "RAM soldered",
+    "60 Hz glossy OLED",
+    "Light gaming only"
+   ],
+   "sources": [
+    "https://www.notebookcheck.net/Asus-Zenbook-14-UM3406GA.1242382.0.html",
+    "https://community.broadcom.com/vmware-cloud-foundation/question/snapdragon-x-laptops-does-vmware-workstation-work"
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/475306177/8076360021",
+     "shop": "ASUS Brand Store - P.C. Image",
+     "price": 5759,
+     "shipping": "",
+     "rating": 4.9,
+     "ratingCount": 83,
+     "sold": "239",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "Ryzen AI 7 445 (6 cores), 32 GB LPDDR5X soldered, 512 GB, 14in OLED 60 Hz, 75 Wh, 1.2 kg. x86 so VMware and x86 VMs work. Review count relaxed.",
+     "tag": "PICK",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mlyhkgtfe2o5e2"
+    },
+    {
+     "url": "https://shopee.com.my/product/46495394/49165487388",
+     "shop": "Lenovo Malaysia Official Store",
+     "price": 5379,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 2,
+     "sold": "8",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "10% off, min spend RM50, capped RM240 (included)",
+     "notes": "Yoga Slim 7 14AKP10, 14in OLED. RM380 less but only 16 GB (not upgradable).",
+     "tag": "CHEAPER_BUT",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mrihgoppt7gsca"
+    },
+    {
+     "url": "https://shopee.com.my/product/1278832578/48757753251",
+     "shop": "Apple Flagship Store",
+     "price": 4999,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 466,
+     "sold": "1k+",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "MacBook Air 13in M5 16/512. Pre-order, ships in 30 days (by 17 Nov), every colour. ARM: no x86 VMs or VMware Workstation.",
+     "tag": "CHEAPER_BUT",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820li-mmiqvb9h1jwv6b"
+    },
+    {
+     "url": "https://shopee.com.my/product/304504082/53458120489",
+     "shop": "Switch Official Store",
+     "price": 5104,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 63,
+     "sold": "200",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "MacBook Air 13in M5 16/512. Pre-order, gets by 4 Dec.",
+     "tag": "",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134211-820l8-mmk2p5doibr9b5"
+    }
+   ]
+  },
+  {
+   "name": "Gaming laptop (MSI Cyborg A15 Max RTX 5060)",
+   "qty": 1,
+   "notes": "Only if you want a laptop instead of the planned IdealTech desktop.",
+   "verdict": "consider",
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257t-mrtpeolki9du10",
+   "summary": "Cheapest RTX 5060 laptop from an official store. It overlaps with the planned desktop, so buy it only if you need to carry it.",
+   "pros": [
+    "RTX 5060 at 100 W",
+    "2 RAM slots, max 64 GB",
+    "MSI official, 2-yr warranty"
+   ],
+   "cons": [
+    "Older Zen 3+ CPU",
+    "16 GB at start",
+    "FHD screen, 60 Wh"
+   ],
+   "sources": [
+    "https://www.notebookcheck.net/AMD-Ryzen-7-170-Processor-Benchmarks-and-Specs.1148247.0.html",
+    "https://www.notebookcheck.net/Lenovo-Legion-5-or-LOQ-Which-AMD-gaming-laptop-is-better.1350302.0.html"
+   ],
+   "listings": [
+    {
+     "url": "https://shopee.com.my/product/95958256/53865914578",
+     "shop": "MSI Malaysia Official Store",
+     "price": 5419,
+     "shipping": "Free shipping",
+     "rating": 5.0,
+     "ratingCount": 3,
+     "sold": "8",
+     "badge": "mall",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "10% off, min spend RM50, capped RM240 (included)",
+     "notes": "Ryzen 7 170 (renamed 7735HS, Zen 3+, 8 cores), RTX 5060 100 W, 16 GB DDR5 (2 slots, max 64 GB), 512 GB, 15.6in FHD 144 Hz, 60 Wh. 2-yr MSI warranty, free backpack. Review count relaxed (official store). 40 GB variant RM7,919.",
+     "tag": "PICK",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257t-mrtpeolki9du10"
+    },
+    {
+     "url": "https://shopee.com.my/product/475306177/56113724220",
+     "shop": "ASUS Brand Store - P.C. Image",
+     "price": 6659,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 19,
+     "sold": "44",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "i7-14650HX, RTX 5060, 16 GB, 512 GB, 16in 144 Hz. Newer, faster CPU. Review count relaxed.",
+     "tag": "ALT",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mqgzkrdarpjg44"
+    },
+    {
+     "url": "https://shopee.com.my/product/46495394/51813030893",
+     "shop": "Lenovo Malaysia Official Store",
+     "price": 8109,
+     "shipping": "",
+     "rating": 4.9,
+     "ratingCount": 8,
+     "sold": "19",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "10% off, min spend RM50, capped RM240 (included)",
+     "notes": "Step-up: Ryzen 7 250, RTX 5070, 16 GB, 15.3in OLED. Listing specs inconsistent (spec table says Core i7, 1 TB); ask the store.",
+     "tag": "",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820le-mq1kz5s0uy30f2"
+    },
+    {
+     "url": "https://shopee.com.my/product/43829688/11213150025",
+     "shop": "Seller in Johor (not checked)",
+     "price": 5259,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 4,
+     "sold": "",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "Same MSI model, RM160 less, but shop not verified as authorised.",
+     "tag": "CHEAPER_BUT",
+     "checked": "card",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820li-mtbz6i1eb6ko79"
+    },
+    {
+     "url": "https://shopee.com.my/product/822504733/20962620020",
+     "shop": "Small reseller (sells refurbished too)",
+     "price": 6574,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 5,
+     "sold": "13",
+     "badge": "none",
+     "shipsFrom": "Malaysia",
+     "overseas": false,
+     "voucher": "",
+     "notes": "Lenovo LOQ 15AHP11 RTX 5060. Fails floor: not official, 80% response; dearer than the MSI.",
+     "tag": "",
+     "checked": "2026-10-27",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mu4m111n6haf13"
+    }
+   ]
+  }
+ ]
+}
