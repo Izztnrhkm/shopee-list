@@ -10,6 +10,8 @@ A phone-first shopping list for Shopee Malaysia (shopee.com.my) that syncs betwe
 - For each item, compare the Shopee listings you are considering: price, shipping, rating, sold count, seller type, where it ships from, vouchers and notes. The pick drives the list totals.
 - **Price history:** every re-check (typed in, or a new import from Claude) adds a dated price, so the item shows up or down since research and the lowest price seen.
 
+- **Ask Claude to research:** type what you want to buy; the app opens a Claude chat with the full research request written (list, budget, quality rules, where to send the result). The research itself runs in the chat, in your Chrome.
+- **Feel:** short sounds, light vibration on Android, and small animations (a tick pops, a bought item slides away with confetti). Sounds can be turned off in Household; iPhone stays quiet in silent mode; animations follow Reduce Motion.
 - **Household:** invite your partner with a link (WhatsApp works). You both see and edit the same lists, and ticks show who bought what.
 - **Add from Claude:** pick one or several lists from the research library in the app, or paste an import block from a chat. Every item is added with its best listings and a verdict (Worth it, Consider, Skip) with pros, cons and sources. See [docs/IMPORT.md](docs/IMPORT.md).
 - **Research library:** ready-made researched lists at [/research/](https://shopee-list-dea0e.firebaseapp.com/research/). Tap **Add to Shopee List** on any of them to import it. The data lives in `research/<date>/*.json`, listed in `research/index.json`.
@@ -70,6 +72,7 @@ Open http://localhost:8000. `localhost` is an authorized domain in Firebase by d
 | `js/store.js` | Firebase sign-in and database access |
 | `js/util.js` | Parsing and formatting helpers |
 | `js/importer.js` | Reads and checks import data from Claude |
+| `js/fx.js` | Sounds (Web Audio, no files), vibration, confetti, number count-up |
 | `docs/IMPORT.md` | Import format and the prompt to use with Claude |
 | `js/firebase-config.js` | Firebase project config |
 | `fonts/` | Plus Jakarta Sans, self-hosted (SIL Open Font License, `fonts/OFL.txt`) |

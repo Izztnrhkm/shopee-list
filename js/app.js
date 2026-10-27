@@ -1,4 +1,5 @@
 import * as store from './store.js';
+import * as fx from './fx.js';
 import {
   h,
   formatRM,
@@ -65,6 +66,7 @@ const ICONS = {
   lists: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
   people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.5c2.4.2 4 1.8 4.5 4.5"/></svg>',
   share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg>',
+  spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>',
   cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>',
 };
 
@@ -80,6 +82,7 @@ let toastTimer;
 function toast(message, kind = 'info') {
   toastEl.textContent = message;
   toastEl.className = `toast show ${kind}`;
+  if (kind === 'error') fx.play('error');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { toastEl.className = 'toast'; }, kind === 'error' ? 7000 : 2500);
 }
@@ -252,6 +255,7 @@ function render() {
     else if (route.view === 'household') view = householdView();
     else view = listsView();
   }
+  const prevView = lastView;
   lastView = `${route.view}:${route.listId || ''}:${route.productId || ''}`;
   renderTabbar(route.view);
 
@@ -260,8 +264,13 @@ function render() {
   main.querySelectorAll('[data-keep]').forEach((el) => { kept[el.dataset.keep] = el.value; });
   const focused = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.keep : null;
 
+  const entering = lastView !== prevView;
   main.className = `container${route.view === 'list' || route.view === 'product' || route.view === 'add' ? ' has-totalbar' : ''}`;
+  if (entering) view.classList.add('enter');
   main.replaceChildren(view);
+  if (entering) {
+    main.querySelectorAll('[data-count]').forEach((el) => fx.countUp(el, Number(el.dataset.count), formatRM));
+  }
 
   main.querySelectorAll('[data-keep]').forEach((el) => {
     if (kept[el.dataset.keep] !== undefined) el.value = kept[el.dataset.keep];
@@ -419,17 +428,18 @@ function listsView() {
     h('h1', { class: 'page-title' }, 'Your lists'),
     h('div', { class: 'hero-cta' },
       h('a', { class: 'btn primary big block', href: '#/add' }, icon('plus'), 'Add from Claude'),
-      h('p', {}, 'From the research library, with photos and prices')),
+      h('button', { class: 'btn outline block', type: 'button', onClick: () => askClaudeDialog() }, icon('spark'), 'Ask Claude to research'),
+      h('p', {}, 'Add research that is ready, or ask Claude for new research')),
     h('div', { class: 'summary-cards' },
       h('a', { class: 'card summary-card', href: '#/next' },
         h('span', { class: 'kicker' }, 'Buy next'),
-        h('span', { class: 'big-num' }, formatRM(sumEstimates(must).total)),
+        h('span', { class: 'big-num', 'data-count': sumEstimates(must).total }, formatRM(sumEstimates(must).total)),
         h('span', { class: 'muted' }, must.length
           ? `${must.length} must-have${must.length === 1 ? '' : 's'} in ${mustLists} list${mustLists === 1 ? '' : 's'}`
           : 'Mark items as Must-have')),
       h('a', { class: 'card summary-card sale', href: '#/next/sale' },
         h('span', { class: 'kicker' }, `${next.label} sale`),
-        h('span', { class: 'big-num' }, formatRM(sumEstimates(sale).total)),
+        h('span', { class: 'big-num', 'data-count': sumEstimates(sale).total }, formatRM(sumEstimates(sale).total)),
         h('span', { class: 'muted' }, `${sale.length} item${sale.length === 1 ? '' : 's'}, ${next.days === 0 ? 'today' : `in ${next.days} day${next.days === 1 ? '' : 's'}`}`))),
     h('div', { class: 'row-between' },
       h('h2', { style: 'font-size: 17px' }, `${lists.length} list${lists.length === 1 ? '' : 's'}`),
@@ -482,6 +492,7 @@ function listView(listId) {
   const rows = shown.map((p) => itemRow(listId, p));
 
   const more = () => menuDialog(list.name, [
+    menuButton('Ask Claude to research for this list', () => askClaudeDialog(list.name)),
     menuButton('Add an item yourself', () => addItemDialog(listId)),
     menuButton('Paste research from chat', () => importDialog(listId)),
     menuButton('Copy re-check request for Claude', () => copyText(recheckRequest(list.name, open), 'Copied. Paste it to Claude to re-check prices.')),
@@ -553,9 +564,21 @@ function itemRow(listId, p) {
         why ? h('span', { class: 'item-why' }, why) : null,
         h('span', { class: 'chips' }, chips))),
     h('button', {
-      class: 'tick', type: 'button', 'aria-pressed': String(!!p.bought),
+      class: 'tick', type: 'button', 'aria-pressed': String(!!p.bought), 'data-sound': 'none',
       'aria-label': `${p.bought ? 'Mark not bought' : 'Mark bought'}: ${p.name}`,
-      onClick: () => save(store.updateProduct(p.id, boughtPatch(!p.bought)), p.bought ? null : `Bought: ${short}`),
+      onClick: (e) => {
+        const btn = e.currentTarget;
+        const row = btn.closest('li');
+        const nowBought = !p.bought;
+        fx.play(nowBought ? 'bought' : 'unbought');
+        btn.setAttribute('aria-pressed', String(nowBought));
+        btn.classList.add('pop');
+        if (nowBought) fx.confetti(btn);
+        // The row leaves this filter: let it slide out before the list re-draws.
+        const leaves = state.filter !== 'bought' ? nowBought : !nowBought;
+        if (leaves && row && !fx.reducedMotion()) row.classList.add('leaving');
+        setTimeout(() => save(store.updateProduct(p.id, boughtPatch(nowBought)), nowBought ? `Bought: ${short}` : null), leaves && !fx.reducedMotion() ? 260 : 0);
+      },
     }, h('span', {}, icon('check'))),
   );
 }
@@ -659,11 +682,11 @@ function productView(listId, productId) {
       h('h2', { class: 'section-label' }, 'Priority'),
       h('div', { class: 'segmented', role: 'radiogroup', 'aria-label': 'Priority' },
         Object.entries(PRIORITIES).map(([key, label]) => h('button', {
-          type: 'button', role: 'radio', 'aria-checked': String(pri === key),
+          type: 'button', role: 'radio', 'aria-checked': String(pri === key), 'data-sound': 'toggle',
           onClick: () => { if (product.priority !== key) save(store.updateProduct(product.id, { priority: key })); },
         }, label))),
       h('button', {
-        class: 'switch-row', type: 'button', role: 'switch', 'aria-checked': String(!!product.saleDay),
+        class: 'switch-row', type: 'button', role: 'switch', 'aria-checked': String(!!product.saleDay), 'data-sound': 'toggle',
         onClick: () => save(store.updateProduct(product.id, { saleDay: !product.saleDay })),
       },
       h('span', {}, h('strong', {}, `Buy on ${next.label} sale`), h('span', { class: 'muted' }, next.days === 0 ? 'The sale is today' : `In ${next.days} day${next.days === 1 ? '' : 's'}. Shows in the sale list.`)),
@@ -678,8 +701,12 @@ function productView(listId, productId) {
     h('div', { class: 'bottom-actions' },
       h('div', { class: 'inner' },
         h('button', {
-          class: `btn big ${product.bought ? '' : 'dark'}`, type: 'button', 'aria-pressed': String(!!product.bought),
-          onClick: () => save(store.updateProduct(product.id, boughtPatch(!product.bought)), product.bought ? 'Marked not bought' : 'Marked as bought'),
+          class: `btn big ${product.bought ? '' : 'dark'}`, type: 'button', 'aria-pressed': String(!!product.bought), 'data-sound': 'none',
+          onClick: (e) => {
+            fx.play(product.bought ? 'unbought' : 'bought');
+            if (!product.bought) fx.confetti(e.currentTarget);
+            save(store.updateProduct(product.id, boughtPatch(!product.bought)), product.bought ? 'Marked not bought' : 'Marked as bought');
+          },
         }, product.bought
           ? `Bought${product.boughtBy && product.boughtBy.name ? ` by ${product.boughtBy.name.split(' ')[0]}` : ''} · tap to undo`
           : 'Mark as bought'))),
@@ -794,7 +821,7 @@ function planView(mode) {
 
   const banner = h('div', { class: `banner${mode === 'sale' ? ' sale' : ''}` },
     h('span', { class: 'kicker' }, mode === 'sale' ? `${next.label} sale · ${next.days === 0 ? 'today' : `in ${next.days} day${next.days === 1 ? '' : 's'}`}` : 'Must-haves to buy'),
-    h('span', { class: 'big-num' }, formatRM(total)),
+    h('span', { class: 'big-num', 'data-count': total }, formatRM(total)),
     h('span', { class: 'sub' }, mode === 'sale'
       ? `${picked.length} item${picked.length === 1 ? '' : 's'} tagged for the sale`
       : `${picked.length} item${picked.length === 1 ? '' : 's'} in ${groups.length} list${groups.length === 1 ? '' : 's'}`));
@@ -856,7 +883,9 @@ function addView() {
     h('div', { class: 'nav-row' }, h('a', { class: 'back', href: '#/' }, icon('back'), 'Lists')),
     h('h1', { class: 'page-title' }, 'Add from Claude'),
     h('p', { class: 'page-sub' }, 'Pick researched lists. Photos, prices and reasons come with them.'),
-    h('button', { class: 'btn ghost small', type: 'button', style: 'align-self: flex-start', onClick: () => importDialog(null) }, 'Or paste research from a chat'));
+    h('div', { class: 'row-actions', style: 'justify-content: flex-start' },
+      h('button', { class: 'btn ghost small', type: 'button', onClick: () => importDialog(null) }, 'Or paste research from a chat'),
+      h('button', { class: 'btn ghost small', type: 'button', onClick: () => askClaudeDialog() }, icon('spark'), 'Ask for new research')));
 
   if (!state.library) {
     if (!state.libraryError) loadLibrary();
@@ -931,12 +960,96 @@ async function addPicked(button) {
     }
     state.picked.clear();
     toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}`);
+    fx.play('success');
     location.hash = '#/';
   } catch (err) {
     toast(describeError(err), 'error');
     button.disabled = false;
     render();
   }
+}
+
+// ----- ask Claude -----
+
+// Builds a ready-to-send research request and opens Claude with it. The app cannot run the
+// research itself: Claude does it in a chat, in the user's Chrome, then sends the result back
+// through the research library or a paste block.
+function buildResearchRequest({ what, list, isNew, budget, laptop, dest }) {
+  return [
+    'Shopee research for my Shopee List app.',
+    `What I want: ${what}`,
+    `Budget: ${budget || 'no fixed budget; best value with real quality'}`,
+    `List: "${list}"${isNew ? ' (a new list)' : ''}`,
+    laptop
+      ? 'Use my shopee-compare skill and check real prices, ratings and shops on Shopee in my Chrome.'
+      : 'My laptop is off: use web search only and mark prices as not verified on Shopee. I will ask for a Shopee re-check later.',
+    'Include each product photo and shop name.',
+    dest === 'library'
+      ? 'When done, add it to the Shopee List research library (repo Izztnrhkm/shopee-list) as a pull request for me to merge.'
+      : 'When done, give me a Shopee List import block to paste into the app.',
+  ].join('\n');
+}
+
+function askClaudeDialog(presetList = '') {
+  const lists = [...state.lists].sort((a, b) => a.name.localeCompare(b.name));
+  const what = h('textarea', { id: 'ask-what', rows: 3, maxlength: 600, placeholder: 'e.g. air fryer under RM400 and silicone liners for it', 'data-keep': 'ask-what' });
+  const listSel = h('select', { id: 'ask-list' },
+    lists.map((l) => h('option', { value: l.name, selected: l.name === presetList }, l.name)),
+    h('option', { value: '__new', selected: !presetList }, 'New list…'));
+  const newName = h('input', { id: 'ask-new', type: 'text', maxlength: 80, placeholder: 'New list name, e.g. Baby' });
+  const newField = h('div', { class: 'field full', hidden: !!presetList || undefined }, h('label', { for: 'ask-new' }, 'New list name'), newName);
+  listSel.addEventListener('change', () => { newField.hidden = listSel.value !== '__new'; });
+  const budget = h('input', { id: 'ask-budget', type: 'text', maxlength: 60, placeholder: 'Optional, e.g. under RM400' });
+  const laptop = h('input', { id: 'ask-laptop', type: 'checkbox', checked: true });
+  const destLib = h('input', { type: 'radio', name: 'ask-dest', value: 'library', checked: true, id: 'ask-dest-lib' });
+  const destPaste = h('input', { type: 'radio', name: 'ask-dest', value: 'paste', id: 'ask-dest-paste' });
+  const errorEl = h('p', { class: 'error-text small', role: 'alert' });
+
+  const request = () => {
+    const w = what.value.trim();
+    if (!w) return { problem: 'Say what you want to buy.' };
+    const isNew = listSel.value === '__new';
+    const list = isNew ? (newName.value.trim() || 'New list') : listSel.value;
+    return {
+      text: buildResearchRequest({
+        what: w, list, isNew, budget: budget.value.trim(), laptop: laptop.checked, dest: destLib.checked ? 'library' : 'paste',
+      }),
+    };
+  };
+
+  const openBtn = h('button', { class: 'btn primary', type: 'button', 'data-sound': 'none' }, icon('spark'), 'Open Claude');
+  const copyBtn = h('button', { class: 'btn ghost', type: 'button' }, icon('copy'), 'Copy request');
+  const { close } = sheet('Ask Claude to research',
+    h('div', { class: 'fields' },
+      h('p', { class: 'muted small field full' }, 'Claude does the research in a chat, then it comes back here through Add from Claude. Real Shopee prices need your laptop on with Chrome open.'),
+      h('div', { class: 'field full' }, h('label', { for: 'ask-what' }, 'What do you want to buy?'), what),
+      h('div', { class: 'field' }, h('label', { for: 'ask-list' }, 'Put it in'), listSel),
+      h('div', { class: 'field' }, h('label', { for: 'ask-budget' }, 'Budget'), budget),
+      newField,
+      h('label', { class: 'field full check-field', for: 'ask-laptop' }, laptop, ' My laptop is on: check real Shopee prices'),
+      h('fieldset', { class: 'field full radio-set' },
+        h('legend', {}, 'Send the result'),
+        h('label', { for: 'ask-dest-lib' }, destLib, ' To the research library (I merge it)'),
+        h('label', { for: 'ask-dest-paste' }, destPaste, ' As a block I paste here'))),
+    h('div', {}, errorEl, h('div', { class: 'sheet-foot' }, copyBtn, openBtn)));
+
+  openBtn.addEventListener('click', () => {
+    const r = request();
+    if (r.problem) { errorEl.textContent = r.problem; fx.play('error'); return; }
+    fx.play('success');
+    // Open first, inside the tap, so the browser does not block it; then copy as a backup.
+    window.open(`https://claude.ai/new?q=${encodeURIComponent(r.text)}`, '_blank', 'noopener');
+    navigator.clipboard && navigator.clipboard.writeText(r.text).catch(() => {});
+    close();
+    toast('Opened Claude. The request is also copied: if the chat opens empty, paste it.');
+  });
+  copyBtn.addEventListener('click', () => {
+    const r = request();
+    if (r.problem) { errorEl.textContent = r.problem; fx.play('error'); return; }
+    copyText(r.text, 'Request copied. Paste it into a Claude chat.');
+    close();
+  });
+  what.focus();
 }
 
 // ----- household -----
@@ -1014,6 +1127,12 @@ function householdView() {
             listName(p.listId),
             new Date(p.boughtAt).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' }),
           ].filter(Boolean).join(' · '))))))) : null,
+    h('button', {
+      class: 'switch-row', type: 'button', role: 'switch', 'aria-checked': String(fx.soundOn()), 'data-sound': 'none',
+      onClick: () => { fx.setSound(!fx.soundOn()); render(); },
+    },
+    h('span', {}, h('strong', {}, 'Sounds'), h('span', { class: 'muted' }, 'On this phone only. iPhone stays quiet in silent mode.')),
+    h('span', { class: 'switch', 'aria-hidden': 'true' })),
     h('section', { class: 'card pad stack tight' },
       h('h2', { style: 'font-size: 16px' }, 'Backup'),
       h('p', { class: 'small', style: 'color: var(--text-2)' }, `Save every list and item (${state.lists.length} lists, ${state.products.length} items) as a file on this phone. Do it about once a month.`),
@@ -1044,6 +1163,7 @@ function downloadBackup() {
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
   toast(`Backup saved: ${state.lists.length} lists, ${state.products.length} items`);
+  fx.play('success');
 }
 
 async function joinDialog(join) {
@@ -1098,6 +1218,7 @@ async function joinDialog(join) {
       state.needsHousehold = false;
       startHousehold(state.user, true);
       toast(`You joined ${info.from}'s household`);
+      fx.play('success');
       location.hash = '#/';
     } catch (err) {
       joinBtn.disabled = false;
@@ -1470,6 +1591,7 @@ function importDialog(fromListId, initialText = '') {
       }
       const { listId, done } = store.importItems(p.listId, parsed.listName, p);
       save(done, `Imported ${parsed.items.length} item${parsed.items.length === 1 ? '' : 's'}`);
+      fx.play('success');
       close();
       location.hash = listHref(listId);
     },
@@ -1502,6 +1624,7 @@ function importDialog(fromListId, initialText = '') {
 
 // ---------- start ----------
 
+fx.installTapSounds();
 takeImportLink();
 
 function stopAll() {

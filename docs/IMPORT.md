@@ -1,6 +1,6 @@
 # Importing research from Claude
 
-Shopee List can add researched items in one go. Ask Claude to research what you want to buy, and it gives you an import block (or link). In the app, tap **Import from Claude** (on the lists page) or **Import** (inside a list), paste it, and tap **Import**. Every item is added with its listings and a verdict.
+Shopee List can add researched items in one go. Ask Claude to research what you want to buy, and it gives you an import block (or link). In the app, tap **Add from Claude** › **Or paste research from a chat** (or ⋯ › Paste research from chat inside a list), paste it, and tap **Import**. To start new research from the app, tap **Ask Claude to research**: it opens a Claude chat with the request written for you. Every item is added with its listings and a verdict.
 
 - Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced.
 - The listing tagged `PICK` becomes the item's **Chosen** listing, so list totals use it.

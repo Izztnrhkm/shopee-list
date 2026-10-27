@@ -458,3 +458,55 @@ textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mono
   .item-link { gap: 8px; }
   .list-card .thumbs .photo + .photo { display: none; }
 }
+
+/* ---------- motion ----------
+   Short and quiet: presses shrink a little, screens rise in, ticks pop, a bought row slides
+   out, and buying throws a small burst of confetti. All of it is off with Reduce Motion. */
+
+.btn, .icon-btn, .filters button, .segmented button, .segmented a, .switch-row, .check-row, .tick, .tabbar a, .card.list-card, .card.summary-card, .plan-row {
+  transition: transform 0.08s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:active, .icon-btn:active, .filters button:active, .segmented button:active, .segmented a:active,
+.switch-row:active, .check-row:active, .tabbar a:active { transform: scale(0.96); }
+.card.list-card:active, .card.summary-card:active, .plan-row:active, .item-link:active { transform: scale(0.985); }
+@media (hover: hover) {
+  .card.list-card:hover, .card.summary-card:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); }
+}
+
+.enter { animation: rise-in 0.22s ease-out both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.tick.pop span { animation: tick-pop 0.32s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes tick-pop { 0% { transform: scale(0.7); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+.tick[aria-pressed="true"] svg { transition: opacity 0.12s ease 0.05s; }
+
+li.item.leaving { animation: row-out 0.26s ease-in forwards; pointer-events: none; }
+@keyframes row-out { to { opacity: 0; transform: translateX(28px); } }
+
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 30; }
+.confetti i {
+  position: absolute; width: 7px; height: 9px; border-radius: 2px; margin: -4px 0 0 -3px;
+  animation: confetti 0.85s cubic-bezier(.2, .7, .4, 1) forwards;
+}
+@keyframes confetti {
+  0% { transform: translate(0, 0) rotate(0); opacity: 1; }
+  100% { transform: translate(var(--dx), calc(var(--dy) + 60px)) rotate(var(--rot)); opacity: 0; }
+}
+
+dialog.sheet[open] { animation: sheet-in 0.2s cubic-bezier(.2, .8, .3, 1); }
+dialog.sheet[open]::backdrop { animation: fade-in 0.2s ease; }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.radio-set { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.radio-set legend { font-size: 13.5px; font-weight: 700; color: var(--muted); padding: 0; margin-bottom: 2px; }
+.radio-set label { min-height: 40px; display: flex; align-items: center; gap: 8px; font-size: 14.5px; cursor: pointer; }
+.radio-set input { width: 20px; height: 20px; accent-color: var(--accent); margin: 0; }
+.hero-cta .btn.outline { background: var(--surface); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .btn:active, .icon-btn:active, .filters button:active, .segmented button:active, .segmented a:active,
+  .switch-row:active, .check-row:active, .tabbar a:active, .card.list-card:active, .card.summary-card:active,
+  .plan-row:active, .item-link:active { transform: none; }
+}
