@@ -403,7 +403,7 @@
   {
    "name": "Desktop PC (IdealTech Radiance Turbo, R5 7500F + RTX 5060, 32 GB)",
    "qty": 1,
-   "notes": "",
+   "notes": "Base 16 GB RM4,199; with 32 GB RM5,058.",
    "verdict": "consider",
    "summary": "RM4,199 base + RM859 TEAMGROUP 2x16 GB upgrade. Move your 2 TB 990 PRO into it.",
    "pros": [],
@@ -417,7 +417,7 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-28",
-     "notes": "",
+     "notes": "Price check 28 Oct 2026: IdealTech base with 16 GB is RM4,199; RM5,058 = RM4,199 + RM859 upgrade to 32 GB (2x16 GB DDR5-6000). If you add your own RAM later, the base is RM4,199.",
      "tag": "PICK",
      "image": "https://idealtech.com.my/wp-content/uploads/2024/07/2610_4199_RAD_TURBO-cxm2.webp"
     }
