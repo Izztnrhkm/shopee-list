@@ -117,7 +117,7 @@
    "file": "2026-10-26/home-fitness.json",
    "name": "Home Fitness",
    "items": 7,
-   "listings": 7,
+   "listings": 13,
    "about": "Mat, 20 kg dumbbells, bands, rope, pull-up bar, foam roller from Decathlon.",
    "group": "Outdoors, fitness & travel"
   },
@@ -125,7 +125,7 @@
    "file": "2026-10-26/travel.json",
    "name": "Travel",
    "items": 5,
-   "listings": 6,
+   "listings": 10,
    "about": "Travel 500 cabin backpacks, wash bag, eye masks, Anker 65W charger, AirTags.",
    "group": "Outdoors, fitness & travel"
   },
