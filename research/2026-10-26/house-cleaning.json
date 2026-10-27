@@ -121,11 +121,13 @@
      "price": 1230.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-28",
      "notes": "Up to 24 m2, HEPA, Malaysian warranty",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://my.priceshop.com/imgps/op/75ce408e287f43649f47f28bb7623224?preset=my-prod-m"
     }
-   ]
+   ],
+   "image": "https://my.priceshop.com/imgps/op/75ce408e287f43649f47f28bb7623224?preset=my-prod-m"
   }
  ]
 }

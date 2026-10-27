@@ -116,7 +116,8 @@
      "ratingCount": 13,
      "tag": "PICK"
     }
-   ]
+   ],
+   "image": "https://store.dremc.com.au/cdn/shop/files/pinecil-smart-mini-portable-soldering-iron-version-2-pinecil-bb2-6446351.jpg?v=1755906832"
   },
   {
    "name": "Cordless drill (Bosch GSB 18V-50 kit)",
@@ -134,11 +135,13 @@
      "price": 455.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-28",
      "notes": "",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://cthardware.com/cdn/shop/files/gsb18v50-01.jpg?crop=center&height=1200&v=1743058574&width=1200"
     }
-   ]
+   ],
+   "image": "https://cthardware.com/cdn/shop/files/gsb18v50-01.jpg?crop=center&height=1200&v=1743058574&width=1200"
   },
   {
    "name": "Rotary hammer (Bosch GBH 2-26 DRE)",
