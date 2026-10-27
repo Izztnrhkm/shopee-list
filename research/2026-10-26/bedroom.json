@@ -19,13 +19,16 @@
      "price": 111.43,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Card price may be the smallest size",
      "rating": 4.9,
-     "ratingCount": 385,
-     "tag": "PICK"
+     "ratingCount": 631,
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lh-mspekj02c26916",
+     "sold": "2k+"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lh-mspekj02c26916"
   },
   {
    "name": "Waterproof mattress protector King (AKEMI)",
@@ -40,15 +43,19 @@
     {
      "url": "https://shopee.com.my/product/95725650/1631643079",
      "shop": "AKEMI official",
-     "price": 118.21,
+     "price": 106.38,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "sold": "6k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l7-mgvrvqesny1481",
+     "rating": 4.9,
+     "ratingCount": 2000
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l7-mgvrvqesny1481"
   },
   {
    "name": "Hygrometer (Xiaomi LYWSD03MMC)",
@@ -66,13 +73,16 @@
      "price": 18.9,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "6k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/829c2a370e16c82b8f4ae1bdeefbe77b",
+     "ratingCount": 1400
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/829c2a370e16c82b8f4ae1bdeefbe77b"
   },
   {
    "name": "Bedside lamp (Xiaomi Bedside Lamp 2)",
@@ -100,11 +110,16 @@
      "price": 229.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98x-lt6m74v7dp13c3",
+     "rating": 5.0,
+     "ratingCount": 74,
+     "sold": "228"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98x-lt6m74v7dp13c3"
   },
   {
    "name": "Sleep earplugs (Loop Quiet 2)",
@@ -132,13 +147,16 @@
      "price": 9.5,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Almost certainly fake at this price",
-     "rating": 4.9,
-     "sold": "10k+",
-     "tag": "CHEAPER_BUT"
+     "rating": 3.7,
+     "sold": "16",
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mlyq1vwyi7eq38",
+     "ratingCount": 3
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mlyq1vwyi7eq38"
   }
  ]
 }

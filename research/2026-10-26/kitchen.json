@@ -19,11 +19,13 @@
      "price": 294.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "81",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m14xe0fmtlcx7f",
+     "ratingCount": 29
     },
     {
      "url": "https://shopee.com.my/product/62541355/24825979250",
@@ -31,11 +33,13 @@
      "price": 304.9,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "More sales",
      "rating": 4.9,
      "sold": "313",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rd5n-luffxsr1046hae",
+     "ratingCount": 94
     },
     {
      "url": "https://shopee.com.my/product/62541355/42057695307",
@@ -43,13 +47,16 @@
      "price": 299.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "SR-DC186 alternative",
      "rating": 4.9,
      "sold": "19",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rdyg-mbw79muvro0e70",
+     "ratingCount": 7
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m14xe0fmtlcx7f"
   },
   {
    "name": "Philips HD9396 kettle (7000 series)",
@@ -67,11 +74,13 @@
      "price": 252.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "865",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257y-mt13rovk63no14",
+     "ratingCount": 238
     },
     {
      "url": "",
@@ -83,7 +92,8 @@
      "notes": "Lazada price for comparison",
      "tag": "ALT"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257y-mt13rovk63no14"
   },
   {
    "name": "Philips HR2223 blender",
@@ -101,25 +111,30 @@
      "price": 322.18,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "1k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/sg-11134201-8258n-mt13rnfmg0ed2d",
+     "ratingCount": 445
     },
     {
      "url": "https://shopee.com.my/product/154039251/20738559613",
-     "shop": "",
+     "shop": "Smart Lifestyle Distributor",
      "price": 323.38,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
-     "sold": "947",
-     "tag": "ALT"
+     "sold": "948",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lh-mr6zdia0347484",
+     "ratingCount": 301
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-8258n-mt13rnfmg0ed2d"
   },
   {
    "name": "Philips 2000 Series air fryer 6.2 L (NA231/09)",
@@ -159,13 +174,16 @@
      "price": 267.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "60",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/a8843b77b1d1316d0d077c4acace89aa",
+     "ratingCount": 27
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/a8843b77b1d1316d0d077c4acace89aa"
   },
   {
    "name": "Tefal Natura 32 cm wok with lid",
@@ -183,11 +201,13 @@
      "price": 130.0,
      "badge": "mall",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "4k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul0-lhq145jay19p81",
+     "ratingCount": 1900
     },
     {
      "url": "",
@@ -199,7 +219,8 @@
      "notes": "RM7 cheaper on Lazada",
      "tag": "ALT"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul0-lhq145jay19p81"
   },
   {
    "name": "Tefal Daisy 28 cm frypan",

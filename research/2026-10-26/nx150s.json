@@ -479,7 +479,7 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-27",
-     "notes": "Stock height, 13 colours Pre-order on 2026-10-27.",
+     "notes": "Stock height, 13 colours Pre-order on 2026-10-27. Pre-order on 2026-10-27.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mt7uzr9zrshw9c",
      "rating": 4.8,
@@ -982,15 +982,20 @@
    "listings": [
     {
      "url": "https://shopee.com.my/product/132531093/46162428686",
-     "shop": "",
+     "shop": "Serdang Motorcycle",
      "price": 279.12,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-17",
+     "checked": "2026-10-27",
      "notes": "Only if replacing your open-face helmets",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mplxnj3tb3lu9d",
+     "rating": 5.0,
+     "ratingCount": 169,
+     "sold": "445"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mplxnj3tb3lu9d"
   },
   {
    "name": "Star Field Knight SKJ853 armoured jacket",
@@ -1008,11 +1013,16 @@
      "price": 167.12,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-17",
+     "checked": "2026-10-27",
      "notes": "Pick sizes",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820la-mmr7ao4syx382d",
+     "rating": 5.0,
+     "ratingCount": 866,
+     "sold": "1k+"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820la-mmr7ao4syx382d"
   }
  ]
 }
