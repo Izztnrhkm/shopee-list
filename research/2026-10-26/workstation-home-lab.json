@@ -276,13 +276,15 @@
      "price": 59.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
+     "checked": "2026-10-28",
      "notes": "",
      "rating": 4.5,
      "ratingCount": 69,
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://www.ikea.com/my/en/images/products/dagotto-foot-rest-black__0156454_pe315498_s5.jpg"
     }
-   ]
+   ],
+   "image": "https://www.ikea.com/my/en/images/products/dagotto-foot-rest-black__0156454_pe315498_s5.jpg"
   },
   {
    "name": "UPS (APC BX1200MI-MS)",
