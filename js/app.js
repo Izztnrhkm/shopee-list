@@ -1014,10 +1014,36 @@ function householdView() {
             listName(p.listId),
             new Date(p.boughtAt).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' }),
           ].filter(Boolean).join(' · '))))))) : null,
+    h('section', { class: 'card pad stack tight' },
+      h('h2', { style: 'font-size: 16px' }, 'Backup'),
+      h('p', { class: 'small', style: 'color: var(--text-2)' }, `Save every list and item (${state.lists.length} lists, ${state.products.length} items) as a file on this phone. Do it about once a month.`),
+      h('button', { class: 'btn outline', type: 'button', onClick: downloadBackup }, 'Download backup')),
     h('div', { class: 'card pad stack tight' },
       h('p', { class: 'muted small' }, `Signed in as ${me.email || me.displayName || ''}`),
       h('button', { class: 'btn', type: 'button', onClick: () => store.signOut().catch((err) => toast(describeError(err), 'error')) }, 'Sign out')),
   );
+}
+
+// Everything the household has, in the same shape as the database, so it can be restored as is.
+function downloadBackup() {
+  const today = todayISO();
+  const data = {
+    app: 'shopee-list',
+    backupVersion: 1,
+    exportedAt: new Date().toISOString(),
+    household: state.household ? { id: state.household.id, name: state.household.name } : null,
+    members: state.members.map((m) => ({ uid: m.uid, name: m.name, role: m.role })),
+    lists: state.lists,
+    products: state.products,
+  };
+  const blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = h('a', { href: url, download: `shopee-list-backup-${today}.json` });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+  toast(`Backup saved: ${state.lists.length} lists, ${state.products.length} items`);
 }
 
 async function joinDialog(join) {
