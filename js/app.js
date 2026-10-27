@@ -27,6 +27,9 @@ const BADGES = {
   mall: 'Shopee Mall',
 };
 
+// The app's main address (Firebase Hosting). Sign-in from an iPhone home-screen app only works here.
+const APP_HOME = 'https://shopee-list-dea0e.firebaseapp.com/';
+
 const state = {
   user: undefined, // undefined = still checking, null = signed out
   lists: [],
@@ -90,6 +93,7 @@ function describeError(err) {
     return 'Google sign-in is turned off. Enable it in Firebase console under Authentication > Sign-in method.';
   }
   if (code === 'auth/network-request-failed') return 'No connection. Check your internet and try again.';
+  if (code === 'auth/popup-blocked') return `Your browser blocked the Google sign-in window. Allow pop-ups, or open the app at ${APP_HOME}.`;
   if (code === 'permission-denied') {
     return 'The database refused access. If the app was just updated, publish the new rules from firestore.rules in Firebase console > Firestore > Rules. If you joined with a link, it may have been used already or expired.';
   }
@@ -351,6 +355,16 @@ function signInView() {
       }
     },
   }, 'Sign in with Google');
+
+  if (store.signInNeedsBrowser()) {
+    return h('section', { class: 'card signin' },
+      h('img', { class: 'signin-logo', src: 'img/logo-360.png', alt: 'Shopee List', width: 180, height: 180 }),
+      h('h1', { style: 'font-size: 20px' }, 'Shopee List has a new address'),
+      h('p', {}, 'On iPhone, the home-screen app can only sign in from the new address. Open it in Safari, sign in, then tap Share › Add to Home Screen and remove this old icon.'),
+      h('a', { class: 'btn primary big', href: APP_HOME, target: '_blank', rel: 'noopener' }, 'Open the new address'),
+      h('p', { class: 'muted small' }, APP_HOME.replace('https://', '').replace(/\/$/, '')),
+    );
+  }
 
   return h('section', { class: 'card signin' },
     h('img', { class: 'signin-logo', src: 'img/logo-360.png', alt: 'Shopee List', width: 180, height: 180, fetchpriority: 'high' }),

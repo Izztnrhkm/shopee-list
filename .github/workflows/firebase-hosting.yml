@@ -1,0 +1,29 @@
+# Deploys the app to Firebase Hosting (https://shopee-list-dea0e.firebaseapp.com) on every push to main.
+# Needs the repository secret FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST: a service account key with the roles
+# Firebase Hosting Admin and API Keys Viewer (see docs/OPERATIONS.md).
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: firebase-hosting
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Logic tests
+        run: node --test tests/logic.test.mjs
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST }}
+          projectId: shopee-list-dea0e
+          channelId: live
