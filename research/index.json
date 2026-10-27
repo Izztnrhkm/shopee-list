@@ -61,7 +61,7 @@
    "file": "2026-10-26/kitchen.json",
    "name": "Kitchen",
    "items": 11,
-   "listings": 21,
+   "listings": 20,
    "about": "Rice cooker, kettle, blender, knife, pans, plus cheap IKEA swaps for boards, utensils and containers.",
    "group": "Home"
   },
@@ -101,7 +101,7 @@
    "file": "2026-10-26/hiking.json",
    "name": "Hiking",
    "items": 16,
-   "listings": 32,
+   "listings": 28,
    "about": "Shoes, socks, leech socks, rain gear, headlamp, poles and first aid, mostly Decathlon.",
    "group": "Outdoors, fitness & travel"
   },
@@ -125,7 +125,7 @@
    "file": "2026-10-26/travel.json",
    "name": "Travel",
    "items": 5,
-   "listings": 10,
+   "listings": 9,
    "about": "Travel 500 cabin backpacks, wash bag, eye masks, Anker 65W charger, AirTags.",
    "group": "Outdoors, fitness & travel"
   },

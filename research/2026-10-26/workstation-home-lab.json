@@ -336,23 +336,24 @@
    "sources": [],
    "listings": [
     {
-     "url": "https://shopee.com.my/product/265509453/50701552572",
-     "shop": "network.online.my",
+     "url": "https://shopee.com.my/product/15240952/26385373002",
+     "shop": "ITS System Services Sdn Bhd",
+     "price": 157.0,
+     "shipping": "",
+     "rating": 5.0,
+     "ratingCount": 1,
+     "sold": "5",
      "badge": "none",
-     "shipsFrom": "",
+     "shipsFrom": "Selangor",
      "overseas": false,
-     "voucher": "",
-     "tag": "",
-     "checked": "2026-10-27",
-     "image": "https://down-my.img.susercontent.com/file/sg-11134201-82627-mjicnbqa54hy96",
-     "notes": "Found by Shopee search on 2026-10-27: \"888 tplink TL-SG108E 8 Port Gigabit Easy Smart Switch SG108E\". Check it is the same model before buying.",
-     "price": 200.75,
-     "rating": 4.9,
-     "ratingCount": 30,
-     "sold": "172"
+     "voucher": "RM22 off shop voucher shown",
+     "tag": "RELAXED",
+     "checked": "2026-10-28",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mh1kfh9u7uh657",
+     "notes": "TP-Link Omada 8-Port Easy Smart Switch (TL-SG108E/ES208G, the same switch under its new Omada name). Shop 10 yrs, 99% response, ships from Selangor. Only 1 review, so review count relaxed. TP-Link Official Store on Shopee does not sell it."
     }
    ],
-   "image": "https://down-my.img.susercontent.com/file/sg-11134201-82627-mjicnbqa54hy96"
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mh1kfh9u7uh657"
   },
   {
    "name": "Backup SSD (Samsung T7 Shield 2 TB)",
