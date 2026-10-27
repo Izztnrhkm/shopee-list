@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27",
+ "updated": "2026-10-28",
  "lists": [
   {
    "file": "2026-10-26/toothbrush-toothpaste.json",
@@ -144,6 +144,14 @@
    "listings": 9,
    "about": "ASUS Zenbook 14 OLED 32GB for IT and travel; MSI Cyborg A15 Max RTX 5060 if a laptop replaces the desktop.",
    "group": "Personal & tech"
+  },
+  {
+   "file": "2026-10-28/proton-saga.json",
+   "name": "Proton Saga",
+   "items": 1,
+   "listings": 8,
+   "about": "Wipers 22\"/17\": Bosch Advantage RM21.90 pick, Bosch Clear Advantage RM43.15 step-up.",
+   "group": "Vehicles"
   }
  ],
  "groups": [
