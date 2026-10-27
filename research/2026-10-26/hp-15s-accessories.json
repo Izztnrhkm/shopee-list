@@ -156,15 +156,19 @@
     {
      "url": "https://shopee.com.my/product/58359596/19094362677",
      "shop": "ALL IT Hypermarket",
-     "price": 159,
+     "price": 143.1,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Slim, quiet, multi-device (3 devices). Card only.",
-     "sold": "486",
-     "tag": "ALT"
+     "sold": "3k+",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mp3d5chfas5pd4",
+     "rating": 5.0,
+     "ratingCount": 454
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mp3d5chfas5pd4"
   },
   {
    "name": "USB hub / Ethernet",
