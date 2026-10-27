@@ -14,10 +14,10 @@ function patchedStore() {
   let s = fs.readFileSync(REPO + 'js/store.js', 'utf8');
   s = s.replace("  signOut as fbSignOut,\n}", "  signOut as fbSignOut,\n  connectAuthEmulator,\n  signInWithCredential,\n}");
   s = s.replace("  Timestamp,\n}", "  Timestamp,\n  connectFirestoreEmulator,\n}");
-  s = s.replace("const auth = getAuth(app);", "const auth = getAuth(app);\nconnectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });");
+  s = s.replace(/const auth = initializeAuth\([^;]*\);/, (m) => `${m}\nconnectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });`);
   s = s.replace(/let db;\ntry \{[\s\S]*?\n\}\n/, "let db = initializeFirestore(app, {});\nconnectFirestoreEmulator(db, '127.0.0.1', 8080);\n");
   s = s.replace(/export async function signIn\(\) \{[\s\S]*?\n\}\n/, "export async function signIn() {\n  await signInWithCredential(auth, GoogleAuthProvider.credential(JSON.stringify(window.__testUser)));\n}\n");
-  if (!s.includes('connectFirestoreEmulator(db')) throw new Error('patch failed');
+  if (!s.includes('connectFirestoreEmulator(db') || !s.includes('connectAuthEmulator(auth')) throw new Error('patch failed');
   return s;
 }
 
