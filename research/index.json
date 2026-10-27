@@ -93,7 +93,7 @@
    "file": "2026-10-26/tools-electrical.json",
    "name": "Tools & Electrical",
    "items": 14,
-   "listings": 22,
+   "listings": 23,
    "about": "Fluke 101, voltage tester, Pinecil, Bosch drills and bits, safety gear, tyre inflator.",
    "group": "Home"
   },
@@ -101,7 +101,7 @@
    "file": "2026-10-26/hiking.json",
    "name": "Hiking",
    "items": 16,
-   "listings": 29,
+   "listings": 32,
    "about": "Shoes, socks, leech socks, rain gear, headlamp, poles and first aid, mostly Decathlon.",
    "group": "Outdoors, fitness & travel"
   },
@@ -109,7 +109,7 @@
    "file": "2026-10-26/picnic-day-trips.json",
    "name": "Picnic & Day Trips",
    "items": 5,
-   "listings": 6,
+   "listings": 7,
    "about": "Cool box, Paruv umbrella and base, two low chairs, compact table.",
    "group": "Outdoors, fitness & travel"
   },
