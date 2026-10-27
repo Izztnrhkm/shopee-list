@@ -58,6 +58,8 @@ async function context(b, who) {
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 } });
   const store = patchedStore();
   await ctx.route('**/js/store.js', (r) => r.fulfill({ contentType: 'text/javascript', body: store }));
+  // Deploys write version.json (see the workflow); the local server has none, so serve one.
+  await ctx.route('**/version.json*', (r) => r.fulfill({ contentType: 'application/json', body: '{"version":"test"}' }));
   await ctx.addInitScript((u) => {
     window.__testUser = u;
     window.__copied = [];
@@ -205,6 +207,43 @@ async function context(b, who) {
     const real = p.errs.filter((e) => !/permission|Missing or insufficient|offline|Failed to get document|evaluation error|false for/i.test(e));
     check(real.length === 0, `${n}: no unexpected console errors ${real.length ? JSON.stringify(real.slice(0, 3)) : ''}`);
   }
+  // 7. Refresh: header button, pull down from the top, and the "New version ready" pill.
+  const R = await (await b.newContext({ viewport: { width: 320, height: 640 }, hasTouch: true, isMobile: true })).newPage();
+  R.errs = []; R.on('pageerror', (e) => R.errs.push(e.message));
+  let version = 'aaaaaaa';
+  await R.route('**/version.json*', (r) => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ version }) }));
+  const fresh = async () => { await R.goto('http://localhost:8765/'); await R.waitForSelector('#refresh-btn'); await R.waitForTimeout(800); await R.evaluate(() => { window.__old = true; }); };
+  const reloaded = async () => { await R.waitForTimeout(1500); await R.waitForSelector('#refresh-btn'); return R.evaluate(() => !window.__old); };
+  await fresh();
+  const hb = await R.evaluate(() => { const h = document.querySelector('.topbar'); return [h.scrollWidth, h.clientWidth]; });
+  check(hb[0] <= hb[1], `header fits a 320 px phone (${hb.join(' / ')})`);
+  await R.click('#refresh-btn');
+  check(await reloaded(), 'refresh button reloads the app');
+  await fresh();
+  const pull = (dy, endIt) => R.evaluate(([dy, endIt]) => {
+    const t = (y) => new Touch({ identifier: 1, target: document.body, clientX: 160, clientY: y });
+    const fire = (type, y) => window.dispatchEvent(new TouchEvent(type, { touches: type === 'touchend' ? [] : [t(y)], changedTouches: [t(y)], bubbles: true }));
+    fire('touchstart', 100);
+    for (let y = 100; y <= 100 + dy; y += 10) fire('touchmove', y);
+    const state = document.getElementById('ptr').className;
+    if (endIt) fire('touchend', 100 + dy);
+    return state;
+  }, [dy, endIt]);
+  check(!/ready/.test(await pull(40, true)), 'a short pull does not refresh');
+  await R.waitForTimeout(600);
+  check(await R.evaluate(() => window.__old === true), 'page stays after a short pull');
+  check(/ready/.test(await pull(120, true)), 'a long pull turns the arrow orange');
+  check(await reloaded(), 'letting go after a long pull reloads the app');
+  await fresh();
+  check(await R.locator('#update-pill').isHidden(), 'no update pill while the version is the same');
+  version = 'bbbbbbb';
+  await R.evaluate(() => window.dispatchEvent(new Event('focus'))); await R.waitForTimeout(600);
+  check(await R.locator('#update-pill').isVisible(), 'update pill appears after a new deploy');
+  await R.screenshot({ path: __dirname + '/e2e-update-pill.png' });
+  await R.click('#update-pill button');
+  check(await reloaded(), 'tapping Refresh on the pill reloads the app');
+  check(await R.locator('#update-pill').isHidden(), 'pill is gone after the refresh');
+  check(R.errs.length === 0, `refresh: no page errors ${JSON.stringify(R.errs.slice(0, 2))}`);
   await b.close();
   log(fails ? `${fails} FAILED` : 'ALL PASSED');
   process.exit(fails ? 1 : 0);

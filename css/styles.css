@@ -95,6 +95,11 @@ p { margin: 0; }
 .brand-logo { width: 32px; height: 32px; border-radius: 8px; background: #fff; display: block; }
 .header-user { display: flex; align-items: center; gap: 4px; }
 
+/* Refresh button spins while the page reloads. */
+.refresh-btn { color: var(--muted); }
+.refresh-btn svg { width: 21px; height: 21px; }
+.reloading .refresh-btn svg { animation: spin 0.7s linear infinite; }
+
 /* Light/dark button: the sun and moon swap with a turn. */
 .theme-btn { color: var(--muted); }
 .theme-btn svg { width: 22px; height: 22px; overflow: visible; }
@@ -535,3 +540,38 @@ dialog.sheet[open]::backdrop { animation: fade-in 0.2s ease; }
 .theme-fading, .theme-fading *, .theme-fading *::before, .theme-fading *::after {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease !important;
 }
+
+/* ---------- refresh ----------
+   Pull down from the top: a round arrow slides out from under the header and turns as you
+   pull; past the line it goes orange, and letting go reloads the app. The page itself doesn't
+   bounce, so the phone's own pull-to-refresh (Safari, Chrome) doesn't fire as well. */
+html, body { overscroll-behavior-y: none; }
+.ptr {
+  position: fixed; left: 50%; top: calc(env(safe-area-inset-top) + 60px); z-index: 4;
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16); pointer-events: none;
+  transform: translate(-50%, -48px); opacity: 0;
+  transition: transform 0.28s cubic-bezier(.2, .8, .3, 1), opacity 0.2s ease, color 0.15s ease;
+}
+.ptr.pulling { transition: color 0.15s ease; }
+.ptr svg { width: 22px; height: 22px; transform: rotate(var(--turn, 0deg)); }
+.ptr.ready, .ptr.refreshing { color: var(--accent-ink); }
+.ptr.ready svg { transform: rotate(var(--turn, 0deg)) scale(1.12); transition: transform 0.15s ease; }
+.ptr.refreshing { opacity: 1; }
+.ptr.refreshing svg { animation: spin 0.7s linear infinite; }
+
+/* After a deploy: a pill under the header offering the new version. */
+.update-pill {
+  position: fixed; left: 50%; top: calc(env(safe-area-inset-top) + 70px); z-index: 15;
+  transform: translateX(-50%); display: flex; align-items: center; gap: 10px; white-space: nowrap;
+  padding: 5px 5px 5px 16px; border-radius: 999px; background: var(--text); color: var(--bg);
+  font-size: 14px; font-weight: 600; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  animation: pill-in 0.4s cubic-bezier(.2, .9, .3, 1.2);
+}
+.update-pill[hidden] { display: none; }
+.update-pill button {
+  min-height: 36px; padding: 0 16px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--accent); color: var(--accent-text); font: inherit; font-weight: 700;
+}
+@keyframes pill-in { from { opacity: 0; transform: translate(-50%, -14px) scale(0.95); } to { opacity: 1; transform: translateX(-50%); } }
