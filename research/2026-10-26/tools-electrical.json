@@ -19,11 +19,13 @@
      "price": 218.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
-     "sold": "380",
-     "tag": "PICK"
+     "sold": "381",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mn6o05w4yp6t0c",
+     "ratingCount": 130
     },
     {
      "url": "https://shopee.com.my/product/233594553/4634515169",
@@ -31,11 +33,13 @@
      "price": 310.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
-     "sold": "682",
-     "tag": "ALT"
+     "sold": "684",
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mu0cahri3yme37",
+     "ratingCount": 265
     },
     {
      "url": "https://techno.my/products/fluke-101-basic-digital-multimeter-pocket",
@@ -47,7 +51,8 @@
      "notes": "",
      "tag": "ALT"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mn6o05w4yp6t0c"
   },
   {
    "name": "Non-contact voltage tester (Fluke 1AC II)",
@@ -65,11 +70,13 @@
      "price": 290.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "84",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/2f030273dfe44675b88cc32792da99fd",
+     "ratingCount": 26
     },
     {
      "url": "https://shopee.com.my/product/4834854/13635109455",
@@ -77,13 +84,16 @@
      "price": 116.43,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "1AC-C2 is the China-market version; no Malaysian warranty",
      "rating": 4.9,
      "sold": "164",
-     "tag": "CHEAPER_BUT"
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/60066c6b760aab3be1b1f26c179f60ea",
+     "ratingCount": 41
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/2f030273dfe44675b88cc32792da99fd"
   },
   {
    "name": "Soldering iron (Pinecil V2)",
@@ -164,17 +174,20 @@
    "listings": [
     {
      "url": "https://shopee.com.my/product/34647548/1662987442",
-     "shop": "",
+     "shop": "Sun Wintra Hardware",
      "price": 46.41,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "633",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/76ebd11f7e58a1c54e45ba3ec297768f",
+     "ratingCount": 259
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/76ebd11f7e58a1c54e45ba3ec297768f"
   },
   {
    "name": "Screwdriver set (Stanley cushion grip)",
@@ -192,13 +205,16 @@
      "price": 22.13,
      "badge": "none",
      "shipsFrom": "Johor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Card price is the smallest set; pick the 6 to 8 piece variant",
      "rating": 5.0,
      "sold": "10k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lb-mtg9balh6akqc7",
+     "ratingCount": 1700
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lb-mtg9balh6akqc7"
   },
   {
    "name": "Earmuffs (3M Peltor Optime III H540A)",
@@ -216,12 +232,16 @@
      "price": 89.75,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "sold": "388",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasj-mcvuhuuozymt21",
+     "rating": 5.0,
+     "ratingCount": 91
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasj-mcvuhuuozymt21"
   },
   {
    "name": "N95 masks (3M 8210, box of 20)",
@@ -239,11 +259,13 @@
      "price": 66.8,
      "badge": "none",
      "shipsFrom": "Pahang",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "9k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/5f114c8c87a10b28dc4f7b7cb22fd18f",
+     "ratingCount": 952
     },
     {
      "url": "",
@@ -255,7 +277,8 @@
      "notes": "Cheaper but only 28 sold",
      "tag": "ALT"
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/5f114c8c87a10b28dc4f7b7cb22fd18f"
   },
   {
    "name": "Tyre inflator (Xiaomi Air Compressor 2)",
@@ -273,13 +296,16 @@
      "price": 159.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.9,
      "sold": "2k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7ras9-m7t528of32z193",
+     "ratingCount": 963
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7ras9-m7t528of32z193"
   },
   {
    "name": "Scooter oil (Mobil Super Moto Scooter 10W-40, 1 L)",
@@ -293,15 +319,17 @@
    "listings": [
     {
      "url": "https://shopee.com.my/product/1378688601/44212399262",
-     "shop": "",
+     "shop": "DB Moto Sdn Bhd",
      "price": 37.0,
      "badge": "none",
      "shipsFrom": "Johor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
      "sold": "54",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-musua6x7280329",
+     "ratingCount": 10
     },
     {
      "url": "https://shopee.com.my/product/418272681/48956866011",
@@ -309,13 +337,16 @@
      "price": 12.59,
      "badge": "none",
      "shipsFrom": "Johor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Far below real price; avoid",
      "rating": 4.9,
-     "sold": "211",
-     "tag": "CHEAPER_BUT"
+     "sold": "216",
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l6-mlh7f0ro2nlv92",
+     "ratingCount": 76
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-musua6x7280329"
   },
   {
    "name": "Tape measure (Stanley PowerLock 5 m)",

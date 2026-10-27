@@ -53,11 +53,13 @@
      "price": 62.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 4.5,
      "sold": "97",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasa-m6ovhmcohpgm09",
+     "ratingCount": 17
     },
     {
      "url": "https://shopee.com.my/product/1207749167/27373770463",
@@ -65,13 +67,16 @@
      "price": 8.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Generic insulation cloth, not a certified fire blanket",
-     "rating": 5.0,
-     "sold": "10k+",
-     "tag": "CHEAPER_BUT"
+     "rating": 4.7,
+     "sold": "186",
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-m5412xm78d1t9f",
+     "ratingCount": 21
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasa-m6ovhmcohpgm09"
   },
   {
    "name": "Fire extinguisher 1 kg ABC",
@@ -89,24 +94,30 @@
      "price": 54.88,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "rating": 5.0,
-     "sold": "9k+",
-     "tag": "PICK"
+     "sold": "10k+",
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98t-lm8lxwf38slv6c",
+     "ratingCount": 1300
     },
     {
      "url": "https://shopee.com.my/product/489273495/8384146849",
      "shop": "Fire Fighter (FF) official",
-     "price": 90.0,
+     "price": 70.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "3 kg size",
      "sold": "5k+",
-     "tag": "ALT"
+     "tag": "ALT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820le-mmjsjv97mpzj49",
+     "rating": 5.0,
+     "ratingCount": 1500
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98t-lm8lxwf38slv6c"
   },
   {
    "name": "Home camera (TP-Link Tapo C210)",
@@ -124,13 +135,16 @@
      "price": 88.5,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "Listing marked SIRIM",
      "rating": 5.0,
      "sold": "50k+",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mumv74pn7soxc5",
+     "ratingCount": 13300
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mumv74pn7soxc5"
   },
   {
    "name": "Rechargeable lamp (Xiaomi Flexible)",
@@ -148,12 +162,16 @@
      "price": 139.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "card",
+     "checked": "2026-10-27",
      "notes": "",
      "sold": "48",
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-m535fwjv51igde",
+     "rating": 5.0,
+     "ratingCount": 15
     }
-   ]
+   ],
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-m535fwjv51igde"
   }
  ]
 }
