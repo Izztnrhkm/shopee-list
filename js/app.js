@@ -653,6 +653,7 @@ function productView(listId, productId) {
   const listings = [...(product.listings || [])].sort((a, b) => {
     if (a.id === product.chosenListingId) return -1;
     if (b.id === product.chosenListingId) return 1;
+    if (!!a.dropped !== !!b.dropped) return a.dropped ? 1 : -1; // not in latest research go last
     const ta = listingTotal(a, qty);
     const tb = listingTotal(b, qty);
     if (ta === null && tb === null) return 0;
@@ -785,15 +786,17 @@ function priceCard(product, pick, listName) {
 function listingCard(product, l, all) {
   const qty = product.qty || 1;
   const isChosen = l.id === product.chosenListingId;
-  const totals = all.map((x) => listingTotal(x, qty)).filter(Number.isFinite);
+  const current = all.filter((x) => !x.dropped);
+  const totals = current.map((x) => listingTotal(x, qty)).filter(Number.isFinite);
   const total = listingTotal(l, qty);
-  const cheapest = all.length > 1 && total !== null && total === Math.min(...totals);
+  const cheapest = !l.dropped && current.length > 1 && total !== null && total === Math.min(...totals);
   const ship = Number.isFinite(l.shipping) ? (l.shipping === 0 ? 'Free shipping' : `Shipping ${formatRM(l.shipping)}`) : '';
   const tags = [];
   tags.push(h('span', { class: `chip ${isChosen ? 'solid' : ''}` }, isChosen ? 'Pick' : (TAGS[l.tag] && l.tag !== 'PICK' ? TAGS[l.tag] : 'Alternative')));
   if (cheapest) tags.push(h('span', { class: 'chip buy' }, 'Cheapest'));
   if (l.badge === 'mall') tags.push(h('span', { class: 'chip mall' }, 'Mall'));
   if (l.overseas) tags.push(h('span', { class: 'chip warn' }, 'Overseas'));
+  if (l.dropped) tags.push(h('span', { class: 'chip warn', title: `Research on ${formatDate(l.dropped)} no longer includes this listing` }, 'Not in latest research'));
 
   return h('div', { class: `card listing${isChosen ? ' is-pick' : ''}` },
     h('div', { class: 'head' }, h('span', { class: 'chips' }, tags), h('span', { class: 'price' }, formatRM(total))),
@@ -977,6 +980,7 @@ async function addPicked(button) {
   button.textContent = 'Adding…';
   let added = 0;
   let updated = 0;
+  let dropped = 0;
   try {
     for (const entry of chosen) {
       const res = await fetch(`research/${entry.file}`, { cache: 'no-cache' });
@@ -989,9 +993,10 @@ async function addPicked(button) {
       save(done);
       added += plan.creates.length;
       updated += plan.updates.length;
+      dropped += plan.updates.reduce((a, u) => a + (u.dropped || 0), 0);
     }
     state.picked.clear();
-    toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}`);
+    toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}${dropped ? `. ${dropped} old listing${dropped === 1 ? '' : 's'} marked "Not in latest research"` : ''}`);
     fx.play('success');
     location.hash = '#/';
   } catch (err) {
@@ -1534,6 +1539,7 @@ function listingDialog(product, existing) {
       let listing = {
         ...l, // keep research fields such as tag, checked, image and history
         id: l.id || newId(),
+        src: existing ? (l.src || '') : 'manual', // added by hand: research never marks it as dropped
         url,
         shop: v.shop.trim(),
         price: existing ? l.price : price,
@@ -1591,6 +1597,7 @@ function importDialog(fromListId, initialText = '') {
     const { creates, updates } = plan();
     const listingCount = [...creates.map((i) => i.listings.length), ...updates.map((u) => u.added)].reduce((a, b) => a + b, 0);
     const repriced = updates.reduce((a, u) => a + (u.repriced || 0), 0);
+    const dropped = updates.reduce((a, u) => a + (u.dropped || 0), 0);
     const verdicts = parsed.items.reduce((acc, i) => {
       const v = i.research && i.research.verdict;
       if (v) acc[v] = (acc[v] || 0) + 1;
@@ -1603,6 +1610,9 @@ function importDialog(fromListId, initialText = '') {
         `, ${listingCount} new listing${listingCount === 1 ? '' : 's'}`,
         repriced ? `, ${repriced} price change${repriced === 1 ? '' : 's'}` : '',
         '.'),
+      dropped
+        ? h('p', { class: 'muted small' }, `${dropped} saved listing${dropped === 1 ? ' is' : 's are'} no longer in the research. ${dropped === 1 ? 'It stays' : 'They stay'}, marked "Not in latest research", so you can delete ${dropped === 1 ? 'it' : 'them'}.`)
+        : null,
       Object.keys(verdicts).length
         ? h('p', { class: 'muted small' }, Object.entries(verdicts).map(([v, n]) => `${n} ${VERDICTS[v].toLowerCase()}`).join(' · '))
         : null,

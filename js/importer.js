@@ -135,7 +135,12 @@ export function parseImport(text) {
 
 // Merge imported items into a list. Items with the same name (ignoring case) are updated:
 // listings with a new link are added; a link already saved gets the new price, rating and
-// sold count, and a price change is added to its price history. The research is replaced.
+// sold count, and a price change is added to its price history. The research is replaced,
+// and so is the item photo when the research has a different one.
+// A saved listing whose link the new research no longer includes is not deleted: it is
+// marked `dropped` (the research date) so the app can show it as "Not in latest research".
+// Listings the user added by hand (src 'manual') are never marked. If the pick was one of
+// the dropped listings, the pick moves to the new research pick.
 export function planImport(parsed, existingProducts) {
   const byName = new Map(existingProducts.map((p) => [p.name.trim().toLowerCase(), p]));
   const creates = [];
@@ -147,23 +152,37 @@ export function planImport(parsed, existingProducts) {
       continue;
     }
     const incoming = new Map(item.listings.filter((l) => l.url).map((l) => [l.url, l]));
+    // Only research that brings listings can say a saved listing was dropped.
+    const canDrop = incoming.size > 0;
     let repriced = 0;
+    let dropped = 0;
     const kept = (match.listings || []).map((old) => {
       const fresh = old.url && incoming.get(old.url);
-      if (!fresh) return old;
-      const merged = refreshListing(old, fresh);
-      if (merged.price !== old.price) repriced += 1;
-      return merged;
+      if (fresh) {
+        const merged = refreshListing(old, fresh);
+        if (merged.price !== old.price) repriced += 1;
+        return merged;
+      }
+      if (canDrop && old.url && old.src !== 'manual' && !old.dropped) {
+        dropped += 1;
+        return { ...old, dropped: parsed.researchedAt };
+      }
+      return old;
     });
     const known = new Set(kept.map((l) => l.url).filter(Boolean));
     const added = item.listings.filter((l) => !l.url || !known.has(l.url));
-    const patch = { listings: [...kept, ...added] };
+    const all = [...kept, ...added];
+    const patch = { listings: all };
     if (item.research) patch.research = item.research;
-    if (item.image && !match.image) patch.image = item.image;
-    if (!match.chosenListingId && item.chosenListingId && added.some((l) => l.id === item.chosenListingId)) {
-      patch.chosenListingId = item.chosenListingId;
+    if (item.image && item.image !== match.image) patch.image = item.image;
+    const chosen = all.find((l) => l.id === match.chosenListingId);
+    if (!chosen || chosen.dropped) {
+      // Follow the research pick: a newly added one, or a saved one with the same link.
+      const pick = item.listings.find((l) => l.id === item.chosenListingId);
+      const target = pick && (added.includes(pick) ? pick : kept.find((l) => l.url && l.url === pick.url));
+      if (target && target.id !== match.chosenListingId) patch.chosenListingId = target.id;
     }
-    updates.push({ id: match.id, name: match.name, added: added.length, repriced, patch });
+    updates.push({ id: match.id, name: match.name, added: added.length, repriced, dropped, patch });
   }
   return { creates, updates };
 }
@@ -190,6 +209,7 @@ function refreshListing(old, fresh) {
     tag: fresh.tag || old.tag,
     checked: fresh.checked || old.checked,
     image: fresh.image || old.image || '',
+    dropped: null, // back in the research
     history: history.slice(-MAX_HISTORY),
   };
 }
