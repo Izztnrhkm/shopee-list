@@ -49,14 +49,72 @@ const app = initializeApp(firebaseConfig);
 // The Google sign-in helper (an iframe plus about 130 KB) is only needed when someone signs in,
 // so it is passed to the sign-in calls instead of loading on every visit.
 const auth = initializeAuth(app, { persistence: [indexedDBLocalPersistence, browserLocalPersistence] });
-const REDIRECT_FLAG = 'shopee-list-redirect';
-try {
-  if (sessionStorage.getItem(REDIRECT_FLAG)) {
-    sessionStorage.removeItem(REDIRECT_FLAG);
-    getRedirectResult(auth, browserPopupRedirectResolver).catch((err) => console.warn('Redirect sign-in failed', err));
+const REDIRECT_MARK = 'shopee-list-redirect';
+const REDIRECT_MAX_AGE = 15 * 60 * 1000;
+// Firebase notes a redirect in progress under this sessionStorage key (firebase/auth 1.x).
+const pendingKey = () => `firebase:pendingRedirect:${firebaseConfig.apiKey}:${app.name}`;
+
+// Coming back from Google after a redirect sign-in, the result has to be collected with
+// getRedirectResult. Firebase only does that when its sessionStorage note survived the trip,
+// and an iPhone home-screen app can lose sessionStorage on the way to Google and back. So the
+// app also keeps its own note in localStorage and, when Firebase's is gone, puts it back.
+function readMark() {
+  try {
+    const at = Number(localStorage.getItem(REDIRECT_MARK) || 0);
+    localStorage.removeItem(REDIRECT_MARK);
+    return at && Date.now() - at < REDIRECT_MAX_AGE ? at : 0;
+  } catch {
+    return 0;
   }
-} catch {
-  // sessionStorage can be blocked; the redirect result is then picked up by onAuthStateChanged anyway.
+}
+
+let finishingSignIn = false;
+let lastSignInProblem = null;
+const signInChecked = (async () => {
+  const mark = readMark();
+  if (!mark) return;
+  finishingSignIn = true;
+  const info = { standalone: isStandalone(), firebaseNote: false, restored: false, result: 'none' };
+  try {
+    try {
+      info.firebaseNote = sessionStorage.getItem(pendingKey()) !== null;
+      if (!info.firebaseNote) {
+        sessionStorage.setItem(pendingKey(), JSON.stringify('true'));
+        info.restored = true;
+      }
+    } catch {
+      info.result = 'no-session-storage';
+    }
+    await auth.authStateReady();
+    if (!auth.currentUser) {
+      // Never leave the screen on "Finishing sign-in" if the helper does not answer.
+      const timeout = new Promise((resolve) => { setTimeout(() => resolve('timeout'), 20000); });
+      const res = await Promise.race([getRedirectResult(auth, browserPopupRedirectResolver), timeout]);
+      info.result = res === 'timeout' ? 'timeout' : res ? 'signed-in' : 'empty';
+    } else {
+      info.result = 'already-signed-in';
+    }
+  } catch (err) {
+    info.result = (err && err.code) || 'error';
+    console.warn('Redirect sign-in failed', err);
+  } finally {
+    finishingSignIn = false;
+    if (!auth.currentUser) lastSignInProblem = info;
+  }
+})();
+
+// True while a sign-in that came back from Google is being finished.
+export function isFinishingSignIn() {
+  return finishingSignIn;
+}
+
+export function whenSignInChecked() {
+  return signInChecked;
+}
+
+// Details of a redirect sign-in that came back without signing in, for the sign-in screen.
+export function signInProblem() {
+  return lastSignInProblem;
 }
 
 // Local cache keeps the list readable and editable offline; changes sync when back online.
@@ -99,7 +157,7 @@ export async function signIn() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   const redirect = async () => {
-    try { sessionStorage.setItem(REDIRECT_FLAG, '1'); } catch { /* ignore */ }
+    try { localStorage.setItem(REDIRECT_MARK, String(Date.now())); } catch { /* ignore */ }
     await signInWithRedirect(auth, provider, browserPopupRedirectResolver);
   };
   if (isStandalone() && redirectWorksHere()) {

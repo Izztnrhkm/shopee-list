@@ -26,13 +26,17 @@ The workflow needs the repository secret `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`.
 
 1. Open [Google Cloud › Service accounts](https://console.cloud.google.com/iam-admin/serviceaccounts?project=shopee-list-dea0e) and check the project is **shopee-list-dea0e**.
 2. **+ Create service account**. Name: `github-deploy`. **Create and continue**.
-3. Add two roles: **Firebase Hosting Admin** and **API Keys Viewer**. **Continue**, **Done**.
+3. Add three roles: **Firebase Hosting Admin**, **API Keys Viewer** and **Service Usage Consumer** (the deploy checks that Hosting is enabled; without this role it fails with "403 Permission denied to get service firebasehosting.googleapis.com"). **Continue**, **Done**.
 4. Open the new account › **Keys** › **Add key** › **Create new key** › **JSON** › **Create**. A `.json` file downloads.
 5. Open [GitHub › repo Settings › Secrets and variables › Actions](https://github.com/Izztnrhkm/shopee-list/settings/secrets/actions) › **New repository secret**. Name: `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`. Secret: open the `.json` file in Notepad, copy everything, paste. **Add secret**.
 6. Delete the downloaded `.json` file. Anyone with it can deploy to your hosting.
 
-These two roles can publish the website only; they cannot read or change your lists.
+These roles can publish the website only; they cannot read or change your lists.
 
 ## Security rules
 
 `firestore.rules` is not deployed automatically. After changing it: Firebase console › Firestore Database › Rules › paste the file › **Publish**. Test first: from `tests/`, `npm install` then `npm run test:rules`.
+
+## Sign-in on iPhone home-screen app
+
+The home-screen app signs in by redirect. Firebase marks a redirect in progress in sessionStorage, which iOS can drop on the way to Google and back; the app keeps its own mark in localStorage (`shopee-list-redirect`, valid 15 minutes) and restores Firebase's mark before collecting the result. If a sign-in still does not finish, the sign-in screen shows a line like `[home-screen, note lost, restored, empty]`: send that to Claude.
