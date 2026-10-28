@@ -1,14 +1,14 @@
 {
  "shopeeList": 1,
  "list": "Workstation & Home Lab",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Under-desk cable tray (TTRacing Titus)",
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Made for the Titus desk.",
+   "summary": "Changed 28 Oct: TTRacing Official on Shopee is RM5 cheaper and in stock; the TTRacing site is pre-order. Made for the Titus desk.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -20,8 +20,8 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "notes": "Pre-order on the TTRacing site (ships 12 to 19 Nov).",
+     "tag": "ALT"
     },
     {
      "url": "https://shopee.com.my/product/296677843/19966323216",
@@ -30,10 +30,10 @@
      "shipsFrom": "",
      "overseas": false,
      "voucher": "",
-     "tag": "",
-     "checked": "2026-10-27",
+     "tag": "PICK",
+     "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/my-11134201-7rasj-macxwopu3p4mc9",
-     "notes": "Found by Shopee search on 2026-10-27: \"TTRacing Titus Cable Organizer RM 104.00 RM 179.00 -42% Shop\". Check it is the same model before buying.",
+     "notes": "Same TTRacing Titus Cable Organizer. 00 -42% Shop\". Check it is the same model before buying. Verified 2026-10-28: shop 6 yrs, 100% response.",
      "price": 104.0,
      "rating": 4.9,
      "ratingCount": 713,
@@ -47,7 +47,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "9 kg, VESA 75/100; the MSI is 100x100.",
+   "summary": "Changed 28 Oct: the RM159 TTRacing site price is pre-order only; Shopee official RM234 is in stock. Wait for the site stock if RM75 matters more than 3 weeks. 9 kg, VESA 75/100; the MSI is 100x100.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -59,8 +59,8 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "notes": "RM75 cheaper but pre-order (ships 12 to 19 Nov). Worth it if you can wait.",
+     "tag": "ALT"
     },
     {
      "url": "https://shopee.com.my/product/296677843/42518162893",
@@ -69,10 +69,10 @@
      "shipsFrom": "",
      "overseas": false,
      "voucher": "",
-     "tag": "",
+     "tag": "PICK",
      "checked": "2026-10-27",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mefaq0d97qpv6a",
-     "notes": "Found by Shopee search on 2026-10-27: \"TTRacing NOX Adjustable Monitor Arm - Single/Dual Arm, With \". Check it is the same model before buying.",
+     "notes": "Single Arm variant RM234, in stock. ",
      "price": 234.0,
      "rating": 4.8,
      "ratingCount": 263,
@@ -86,7 +86,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "A joule-rated strip is worth it for a RM5k PC.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. reTouch has 135 reviews; it is kept because it is SIRIM-marked with 1700 J. A joule-rated strip is worth it for a RM5k PC.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -96,14 +96,15 @@
      "shop": "reTouch",
      "price": 159.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "SIRIM, 1700 J surge",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: reTouch has 135 reviews; it is kept because it is SIRIM-marked with 1700 J. SIRIM, 1700 J surge Verified 2026-10-28: shop 9 yrs, 92% response.",
      "sold": "414",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mtrpyey8rtvu3e",
      "rating": 4.9,
-     "ratingCount": 135
+     "ratingCount": 135,
+     "overseas": false
     },
     {
      "url": "https://mypowertools.easy.co/products/sum-3-4-5-extension-socket-with-surge-protect-2-usb-port-sirim-approved-",
@@ -114,6 +115,21 @@
      "checked": "2026-10-26",
      "notes": "Basic surge only, no joule rating",
      "tag": "ALT"
+    },
+    {
+     "url": "https://shopee.com.my/product/1057570991/29504510861",
+     "shop": "TESSAN Official Shop",
+     "price": 97.8,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "overseas": false,
+     "voucher": "",
+     "tag": "CHEAPER_BUT",
+     "checked": "2026-10-28",
+     "notes": "1700 J surge tower, 2.6k reviews, but no SIRIM mark found on the listing. Shop 3 yrs, 100% response.",
+     "rating": 5.0,
+     "ratingCount": 2600,
+     "sold": "10k+"
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mtrpyey8rtvu3e"
@@ -347,10 +363,10 @@
      "shipsFrom": "Selangor",
      "overseas": false,
      "voucher": "RM22 off shop voucher shown",
-     "tag": "RELAXED",
+     "tag": "PICK",
      "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mh1kfh9u7uh657",
-     "notes": "TP-Link Omada 8-Port Easy Smart Switch (TL-SG108E/ES208G, the same switch under its new Omada name). Shop 10 yrs, 99% response, ships from Selangor. Only 1 review, so review count relaxed. TP-Link Official Store on Shopee does not sell it."
+     "notes": "RELAXED: 1 review, but authorised IT shop (10 yrs, 99%). TP-Link Omada 8-Port Easy Smart Switch (TL-SG108E/ES208G, the same switch under its new Omada name). Shop 10 yrs, 99% response, ships from Selangor. Only 1 review, so review count relaxed. TP-Link Official Store on Shopee does not sell it. Verified 2026-10-28: shop 10 yrs, 99% response."
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mh1kfh9u7uh657"
@@ -360,7 +376,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Back up the laptop before moving the 990 PRO into the desktop. Avoid RM77 \"T7 Shield\" listings from China: fakes.",
+   "summary": "Changed 28 Oct: no T7 Shield 2TB in stock from a passing shop. The plain T7 2TB from Samsung's authorised partner is the pick. SSD prices are high this year. Back up the laptop before moving the 990 PRO into the desktop. Avoid RM77 \"T7 Shield\" listings from China: fakes.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -370,17 +386,34 @@
      "shop": "ITCOM ONLINE",
      "price": 1199.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Card price; variant not opened",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "2TB Shield variants out of stock on 28 Oct; 4.7 stars from 14 reviews. Card price; variant not opened Verified 2026-10-28: shop 9 yrs, 79% response.",
      "rating": 4.7,
      "sold": "53",
-     "tag": "PICK",
+     "tag": "",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7r990-lmr9thhbkwr7c3",
-     "ratingCount": 14
+     "ratingCount": 14,
+     "overseas": false
+    },
+    {
+     "url": "https://shopee.com.my/product/140734063/3452392886",
+     "shop": "Samsung Authorized Partner - Memory",
+     "price": 1259.99,
+     "badge": "none",
+     "shipsFrom": "Selangor",
+     "overseas": false,
+     "voucher": "RM90 off; ShopeeVIP early-access price",
+     "tag": "PICK",
+     "checked": "2026-10-28",
+     "notes": "Samsung T7 (not Shield) 2TB, RM1,259.99 after voucher. Same speed; no IP65 rugged shell. Authorised partner, 8 yrs, 94% response.",
+     "rating": 5.0,
+     "ratingCount": 531,
+     "sold": "1k+",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-mb1td81ei1aj71"
     }
    ],
-   "image": "https://down-my.img.susercontent.com/file/my-11134207-7r990-lmr9thhbkwr7c3"
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rase-mb1td81ei1aj71"
   }
  ]
 }

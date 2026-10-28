@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Car Wash",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Pressure washer (Kärcher K2 Power VPS)",
@@ -45,7 +45,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Snow-foam nozzle for the K2. RM47 cheaper on Shopee than Lazada.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. GST Hardware has 63 reviews; Kärcher Malaysia's own store does not list the FJ 6. Snow-foam nozzle for the K2. RM47 cheaper on Shopee than Lazada.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -56,13 +56,14 @@
      "price": 57.59,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: GST Hardware has 63 reviews; Kärcher Malaysia's own store does not list the FJ 6. Verified 2026-10-28: shop 10 yrs, 98% response.",
      "rating": 5.0,
      "sold": "149",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-825an-mrqpe8x9v6koe9",
-     "ratingCount": 63
+     "ratingCount": 63,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/25685981/10271125494",
@@ -97,13 +98,14 @@
      "price": 91.12,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 9 yrs, 98% response.",
      "sold": "9k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/d040ddb3ac8676981c0598e0fb6a5731",
      "rating": 5.0,
-     "ratingCount": 1200
+     "ratingCount": 1300,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/d040ddb3ac8676981c0598e0fb6a5731"
@@ -124,13 +126,14 @@
      "price": 72.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 9 yrs, 98% response.",
      "sold": "1k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/c73b970f95c89d2fdaf9c70218aee712",
      "rating": 4.9,
-     "ratingCount": 515
+     "ratingCount": 515,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/c73b970f95c89d2fdaf9c70218aee712"
@@ -151,13 +154,14 @@
      "price": 37.6,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 9 yrs, 98% response.",
      "rating": 4.9,
      "sold": "4k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/45778f05c5c1f7b5a93a96a7c1770847",
-     "ratingCount": 1500
+     "ratingCount": 1500,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/36055865/17941945265",

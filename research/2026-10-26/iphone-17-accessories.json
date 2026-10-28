@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "iPhone 17 Accessories",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Case (MagSafe)",
@@ -73,14 +73,15 @@
      "shop": "Furycube",
      "price": 13.41,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Two pieces. Listing also has privacy/matte variants: choose HD. Price from search card.",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Two pieces. Listing also has privacy/matte variants: choose HD. Price from search card. Verified 2026-10-28: shop 2 yrs, 100% response.",
      "rating": 4.9,
      "ratingCount": 7300,
      "sold": "30k+",
      "tag": "PICK",
-     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mj6oiah6lerr6a"
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mj6oiah6lerr6a",
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/1699786913/53762722098",
@@ -241,7 +242,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "consider",
-   "summary": "Protects the raised lenses; can cause flare. The metal-ring listing now shows 4.8 from only 196 reviews, below the quality floor.",
+   "summary": "Changed 28 Oct: KYMAX now the pick (passes the floor); the RM2.78 ring is from a 4-month-old shop. Protects the raised lenses; can cause flare. The metal-ring listing now shows 4.8 from only 196 reviews, below the quality floor.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -251,31 +252,33 @@
      "shop": "NANAS.CASE",
      "price": 2.78,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Very cheap; check for night-shot flare.",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Shop only 4 months old, 201 reviews: fails the quality floor. Very cheap; check for night-shot flare. Verified 2026-10-28: shop 4 months, 100% response.",
      "rating": 4.8,
-     "ratingCount": 199,
-     "sold": "935",
-     "tag": "PICK",
-     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mua50eyhvthh69"
+     "ratingCount": 201,
+     "sold": "936",
+     "tag": "CHEAPER_BUT",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mua50eyhvthh69",
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/239538362/20894048169",
      "shop": "KYMAX",
      "price": 36.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Better build, local shop 7 yrs. Confirm iPhone 17 variant.",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Better build, local shop 7 yrs. Confirm iPhone 17 variant. Verified 2026-10-28: shop 7 yrs, 82% response.",
      "rating": 4.9,
      "ratingCount": 406,
      "sold": "1k+",
-     "tag": "ALT",
-     "image": "https://down-my.img.susercontent.com/file/my-11134207-820ld-mun51mb9otfl76"
+     "tag": "PICK",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820ld-mun51mb9otfl76",
+     "overseas": false
     }
    ],
-   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l5-mua50eyhvthh69"
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820ld-mun51mb9otfl76"
   }
  ]
 }

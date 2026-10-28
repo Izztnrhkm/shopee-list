@@ -1,14 +1,14 @@
 {
  "shopeeList": 1,
  "list": "Tools & Electrical",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Multimeter (Fluke 101)",
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Genuine Fluke, CAT III 600 V; enough for home appliance work. The Fluke 117 (RM1,901) is overkill.",
+   "summary": "Changed 28 Oct: Fluke Official Store is the pick that passes the floor. Electrical World is RM92 cheaper with 130 reviews if you accept the risk. Genuine Fluke, CAT III 600 V; enough for home appliance work. The Fluke 117 (RM1,901) is overkill.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -19,13 +19,14 @@
      "price": 218.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "RM92 cheaper, but only 130 reviews and not an official store. Verified 2026-10-28: shop 8 yrs, 99% response.",
      "rating": 4.9,
      "sold": "381",
-     "tag": "PICK",
+     "tag": "CHEAPER_BUT",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mn6o05w4yp6t0c",
-     "ratingCount": 130
+     "ratingCount": 130,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/233594553/4634515169",
@@ -33,13 +34,14 @@
      "price": 310.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Official Fluke store with Malaysian warranty. Verified 2026-10-28: shop 7 yrs, 86% response.",
      "rating": 4.9,
      "sold": "684",
-     "tag": "ALT",
+     "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mu0cahri3yme37",
-     "ratingCount": 265
+     "ratingCount": 265,
+     "overseas": false
     },
     {
      "url": "https://techno.my/products/fluke-101-basic-digital-multimeter-pocket",
@@ -52,7 +54,7 @@
      "tag": "ALT"
     }
    ],
-   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lg-mn6o05w4yp6t0c"
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mu0cahri3yme37"
   },
   {
    "name": "Non-contact voltage tester (Fluke 1AC II)",
@@ -70,13 +72,14 @@
      "price": 290.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 7 yrs, 86% response.",
      "rating": 5.0,
      "sold": "84",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/2f030273dfe44675b88cc32792da99fd",
-     "ratingCount": 26
+     "ratingCount": 26,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/4834854/13635109455",
@@ -84,13 +87,14 @@
      "price": 116.43,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "1AC-C2 is the China-market version; no Malaysian warranty",
+     "checked": "2026-10-28",
+     "notes": "1AC-C2 is the China-market version; no Malaysian warranty Verified 2026-10-28: shop 11 yrs, 87% response.",
      "rating": 4.9,
      "sold": "164",
      "tag": "CHEAPER_BUT",
      "image": "https://down-my.img.susercontent.com/file/60066c6b760aab3be1b1f26c179f60ea",
-     "ratingCount": 41
+     "ratingCount": 41,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/2f030273dfe44675b88cc32792da99fd"
@@ -124,7 +128,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Covers most jobs except concrete. Confirm the 2-battery kit is in stock.",
+   "summary": "Changed 28 Oct: the GSB 18V-50 kit is sold out at CT Hardware and the RM455 price was the bare tool. Bosch Official GSB 120-LI Gen 2 kit (RM356.65, 6.1k reviews) is the in-stock pick. Covers most jobs except concrete. Confirm the 2-battery kit is in stock.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -132,16 +136,32 @@
     {
      "url": "https://cthardware.com/products/bosch-gsb-18v-50-brushless-cordless-impact-drill-18v-2-0ah-420-1600rpm-30-17nm-come-with-2x-battery-1x-charger-set-06019h51l0-gsb18v50",
      "shop": "CT Hardware",
-     "price": 455.0,
+     "price": 835.0,
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-28",
-     "notes": "",
-     "tag": "PICK",
+     "notes": "Sold out on 28 Oct. RM455 was the bare tool (no battery); the 2-battery kit is RM835.",
+     "tag": "",
      "image": "https://cthardware.com/cdn/shop/files/gsb18v50-01.jpg?crop=center&height=1200&v=1743058574&width=1200"
+    },
+    {
+     "url": "https://shopee.com.my/product/12851682/5016421289",
+     "shop": "Bosch Power Tools Official Store",
+     "price": 356.65,
+     "badge": "mall",
+     "shipsFrom": "Selangor",
+     "overseas": false,
+     "voucher": "",
+     "tag": "PICK",
+     "checked": "2026-10-28",
+     "notes": "Bosch GSB 120-LI Gen 2 kit (12 V, 30 Nm). Less power than the 18 V model but plenty for home drilling and screwing. Shop 10 yrs, 98% response.",
+     "rating": 4.9,
+     "ratingCount": 6100,
+     "sold": "10k+",
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mgbpa8ds5r0v2d"
     }
    ],
-   "image": "https://cthardware.com/cdn/shop/files/gsb18v50-01.jpg?crop=center&height=1200&v=1743058574&width=1200"
+   "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mgbpa8ds5r0v2d"
   },
   {
    "name": "Rotary hammer (Bosch GBH 2-26 DRE)",
@@ -187,7 +207,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Drills tile, brick, wood and metal.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. Sun Wintra has 259 reviews, just under 300; shop 9 yrs, 99% response. Drills tile, brick, wood and metal.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -198,13 +218,14 @@
      "price": 46.41,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: Sun Wintra has 259 reviews, just under 300; shop 9 yrs, 99% response. Verified 2026-10-28: shop 9 yrs, 99% response.",
      "rating": 5.0,
      "sold": "633",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/76ebd11f7e58a1c54e45ba3ec297768f",
-     "ratingCount": 259
+     "ratingCount": 259,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/76ebd11f7e58a1c54e45ba3ec297768f"
@@ -225,13 +246,14 @@
      "price": 22.13,
      "badge": "none",
      "shipsFrom": "Johor",
-     "checked": "2026-10-27",
-     "notes": "Card price is the smallest set; pick the 6 to 8 piece variant",
+     "checked": "2026-10-28",
+     "notes": "Card price is the smallest set; pick the 6 to 8 piece variant Verified 2026-10-28: shop 9 yrs, 99% response.",
      "rating": 5.0,
      "sold": "10k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lb-mtg9balh6akqc7",
-     "ratingCount": 1700
+     "ratingCount": 734,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820lb-mtg9balh6akqc7"
@@ -251,14 +273,15 @@
      "shop": "3M Safety Official Store",
      "price": 89.75,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "",
+     "shipsFrom": "Johor",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 8 yrs, 98% response.",
      "sold": "388",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasj-mcvuhuuozymt21",
      "rating": 5.0,
-     "ratingCount": 91
+     "ratingCount": 91,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasj-mcvuhuuozymt21"
@@ -279,13 +302,14 @@
      "price": 66.8,
      "badge": "none",
      "shipsFrom": "Pahang",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 6 yrs, response rate not shown response.",
      "rating": 5.0,
      "sold": "9k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/5f114c8c87a10b28dc4f7b7cb22fd18f",
-     "ratingCount": 952
+     "ratingCount": 952,
+     "overseas": false
     },
     {
      "url": "",
@@ -332,7 +356,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "consider",
-   "summary": "Check the grade in your NX150S manual first.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. DB Moto has 10 reviews and 60% response; Mobil Central has 28% response. Check the grade in your NX150S manual first.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -343,13 +367,14 @@
      "price": 37.0,
      "badge": "none",
      "shipsFrom": "Johor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: DB Moto has 10 reviews and 60% response; Mobil Central has 28% response. Verified 2026-10-28: shop 2 yrs, 60% response.",
      "rating": 5.0,
      "sold": "54",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-musua6x7280329",
-     "ratingCount": 10
+     "ratingCount": 10,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/418272681/48956866011",
