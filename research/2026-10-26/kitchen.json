@@ -1,14 +1,14 @@
 {
  "shopeeList": 1,
  "list": "Kitchen",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Rice cooker 1.8 L (Panasonic SR-DA182)",
    "qty": 1,
    "notes": "Shared family kitchen: check what the family already has first.",
    "verdict": "buy",
-   "summary": "Current Panasonic 1.8 L microcomputer model with 6 auto menus. SR-DF181 (old pick) is archived; SR-DM184 not sold locally.",
+   "summary": "Changed 28 Oct: Panasonic Official Store is now the pick; the RM294 reseller has only 29 reviews. Current Panasonic 1.8 L microcomputer model with 6 auto menus. SR-DF181 (old pick) is archived; SR-DM184 not sold locally.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -19,11 +19,11 @@
      "price": 294.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Only 29 reviews and not an official store; RM10.90 saving. Verified 2026-10-28: shop 7 yrs, 87% response.",
      "rating": 5.0,
      "sold": "81",
-     "tag": "PICK",
+     "tag": "CHEAPER_BUT",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m14xe0fmtlcx7f",
      "ratingCount": 29
     },
@@ -33,13 +33,14 @@
      "price": 304.9,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "More sales",
+     "checked": "2026-10-28",
+     "notes": "RELAXED: official store, 94 reviews. More sales Verified 2026-10-28: shop 9 yrs, 100% response.",
      "rating": 4.9,
      "sold": "313",
-     "tag": "ALT",
+     "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rd5n-luffxsr1046hae",
-     "ratingCount": 94
+     "ratingCount": 94,
+     "overseas": false
     },
     {
      "url": "https://shopee.com.my/product/62541355/42057695307",
@@ -47,16 +48,17 @@
      "price": 299.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "SR-DC186 alternative",
+     "checked": "2026-10-28",
+     "notes": "SR-DC186 alternative Verified 2026-10-28: shop 9 yrs, 100% response.",
      "rating": 4.9,
      "sold": "19",
      "tag": "ALT",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rdyg-mbw79muvro0e70",
-     "ratingCount": 7
+     "ratingCount": 7,
+     "overseas": false
     }
    ],
-   "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m14xe0fmtlcx7f"
+   "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rd5n-luffxsr1046hae"
   },
   {
    "name": "Philips HD9396 kettle (7000 series)",
@@ -74,13 +76,14 @@
      "price": 252.0,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 7 yrs, 100% response.",
      "rating": 4.9,
      "sold": "865",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257y-mt13rovk63no14",
-     "ratingCount": 238
+     "ratingCount": 238,
+     "overseas": false
     },
     {
      "url": "",
@@ -140,8 +143,8 @@
    "name": "Philips 2000 Series air fryer 6.2 L (NA231/09)",
    "qty": 1,
    "notes": "",
-   "verdict": "consider",
-   "summary": "Low-oil cooking; genuine Philips.",
+   "verdict": "buy",
+   "summary": "Changed 28 Oct: Philips Home Appliances Estore on Shopee (RM426.40, 1.8k reviews) replaces Lapasar (RM509.99, on backorder). Low-oil cooking; genuine Philips.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -153,24 +156,25 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "notes": "On backorder on 28 Oct.",
+     "tag": "ALT"
     },
     {
      "url": "https://shopee.com.my/product/175347531/24833028788",
      "shop": "Philips Home Appliances Estore",
      "badge": "none",
-     "shipsFrom": "",
+     "shipsFrom": "Selangor",
      "overseas": false,
-     "voucher": "",
-     "tag": "",
-     "checked": "2026-10-27",
+     "voucher": "ShopeeVIP early-access price RM426.40 after voucher",
+     "tag": "PICK",
+     "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-825au-mt13rmkym0wafe",
-     "notes": "Found by Shopee search on 2026-10-27: \"Philips NA231   13-in-1 Digital Airfryer   6.2L   RapidAir T\". Check it is the same model before buying.",
-     "price": 410.41,
+     "notes": "Confirmed NA231/09 on the listing, free shipping, 67 in stock. Found by Shopee search on 2026-10-27: \"Philips NA231   13-in-1 Digital Airfryer   6.2L   RapidAir T\". Check it is the same model before buying. Verified 2026-10-28: shop 7 yrs, 100% response.",
+     "price": 426.4,
      "rating": 5.0,
      "ratingCount": 1800,
-     "sold": "6k+"
+     "sold": "6k+",
+     "shipping": 0
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-825au-mt13rmkym0wafe"
@@ -180,7 +184,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "buy",
-   "summary": "Standard pro-kitchen chef knife.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. SLS has 27 reviews; the other sellers have 38 (TouchDIY, RM247.30) or a 56% response rate (Victorinox Store). Standard pro-kitchen chef knife.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -191,13 +195,14 @@
      "price": 267.0,
      "badge": "none",
      "shipsFrom": "W.P. Kuala Lumpur",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: SLS has 27 reviews; the other sellers have 38 (TouchDIY, RM247.30) or a 56% response rate (Victorinox Store). Verified 2026-10-28: shop 9 yrs, 93% response.",
      "rating": 5.0,
      "sold": "60",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/a8843b77b1d1316d0d077c4acace89aa",
-     "ratingCount": 27
+     "ratingCount": 27,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/a8843b77b1d1316d0d077c4acace89aa"

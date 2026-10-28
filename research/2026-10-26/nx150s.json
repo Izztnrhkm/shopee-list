@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "NX150S",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Muc-Off Bike Cleaner 1L",
@@ -18,14 +18,15 @@
      "shop": "MUCOFFOFFICIALMY",
      "price": 48.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "1L",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "1L Verified 2026-10-28: shop 3 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul5-lhu8wand7oj187",
      "rating": 5.0,
      "ratingCount": 117,
-     "sold": "330"
+     "sold": "330",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul5-lhu8wand7oj187"
@@ -45,14 +46,15 @@
      "shop": "CAREGA",
      "price": 11.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Small 23.5 cm (with 14L bucket: RM35.61 after voucher)",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Small 23.5 cm (with 14L bucket: RM35.61 after voucher) Verified 2026-10-28: shop 5 yrs, 89% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mu4camnfjnd1ab",
      "rating": 5.0,
      "ratingCount": 453,
-     "sold": "1k+"
+     "sold": "1k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mu4camnfjnd1ab"
@@ -72,14 +74,15 @@
      "shop": "CAREGA",
      "price": 7.5,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 5 yrs, 89% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98p-lrzk5386otus69",
      "rating": 4.9,
      "ratingCount": 671,
-     "sold": "1k+"
+     "sold": "1k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98p-lrzk5386otus69"
@@ -99,14 +102,15 @@
      "shop": "MeeGoo Car",
      "price": 3.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "50x60 cm",
+     "shipsFrom": "Melaka",
+     "checked": "2026-10-28",
+     "notes": "50x60 cm Verified 2026-10-28: shop 2 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-mp7lirxyfwg20d",
      "rating": 4.9,
      "ratingCount": 13800,
-     "sold": "90k+"
+     "sold": "90k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-mp7lirxyfwg20d"
@@ -126,14 +130,15 @@
      "shop": "VGMOTO",
      "price": 4.2,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "5PCS",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "5PCS Verified 2026-10-28: shop 3 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rd5f-lviop2jz3fk1f0",
      "rating": 4.9,
      "ratingCount": 1500,
-     "sold": "3k+"
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-7rd5f-lviop2jz3fk1f0"
@@ -180,14 +185,15 @@
      "shop": "Motormad Malaysia",
      "price": 65.63,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "710ml (was RM87.50)",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "RELAXED: Mall shop, Meguiar's distributor; 10 reviews. 710ml (was RM87.50) Verified 2026-10-28: shop 8 yrs, 82% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-mphdx3dyrxfy1c",
      "rating": 5.0,
      "ratingCount": 10,
-     "sold": "24"
+     "sold": "24",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-mphdx3dyrxfy1c"
@@ -207,14 +213,15 @@
      "shop": "BBM CYCLES",
      "price": 79,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "250ml sealed (instead of Meguiar's)",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "250ml sealed (instead of Meguiar's) Verified 2026-10-28: shop 10 yrs, 85% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/8eb70730b936948e9a2acf9144641eb5",
      "rating": 4.9,
      "ratingCount": 448,
-     "sold": "2k+"
+     "sold": "2k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/8eb70730b936948e9a2acf9144641eb5"
@@ -224,7 +231,7 @@
    "qty": 1,
    "notes": "500ml | Bike care (matte-safe)",
    "verdict": "consider",
-   "summary": "Optional. Longer-lasting SiO2 sealant made for matte, from Gyeon's own Shopee store (5.0, 10 ratings, 40% response). The same bottle is RM181 to RM196 on gyeon.com.my, so buy it there if you want it.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. GYEON MALAYSIA is the local distributor but has a 40% response rate and 10 reviews. Optional. Longer-lasting SiO2 sealant made for matte, from Gyeon's own Shopee store (5.0, 10 ratings, 40% response). The same bottle is RM181 to RM196 on gyeon.com.my, so buy it there if you want it.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -234,14 +241,15 @@
      "shop": "GYEON MALAYSIA",
      "price": 223.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "500ml",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: GYEON MALAYSIA is the local distributor but has a 40% response rate and 10 reviews. 500ml Verified 2026-10-28: shop 6 yrs, 40% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l7-mu92yry870u885",
      "rating": 5.0,
      "ratingCount": 10,
-     "sold": "45"
+     "sold": "45",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l7-mu92yry870u885"
@@ -251,7 +259,7 @@
    "qty": 1,
    "notes": "30ml | Bike care (matte-safe)",
    "verdict": "consider",
-   "summary": "Optional. Coating for unpainted black plastic that lasts months. 5.0 from 15 ratings, Gyeon's own store. Expensive, and gyeon.com.my lists it at RM270. Keep it off the paint, seat, footboard and tyres.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. GYEON MALAYSIA is the local distributor but has a 40% response rate and 15 reviews. Optional. Coating for unpainted black plastic that lasts months. 5.0 from 15 ratings, Gyeon's own store. Expensive, and gyeon.com.my lists it at RM270. Keep it off the paint, seat, footboard and tyres.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -261,14 +269,15 @@
      "shop": "GYEON MALAYSIA",
      "price": 293.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "30ml",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: GYEON MALAYSIA is the local distributor but has a 40% response rate and 15 reviews. 30ml Verified 2026-10-28: shop 6 yrs, 40% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mthtue4d6v4117",
      "rating": 5.0,
      "ratingCount": 15,
-     "sold": "43"
+     "sold": "43",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mthtue4d6v4117"
@@ -288,14 +297,15 @@
      "shop": "KEDAI RUNCIT Jiesaiji",
      "price": 20.5,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "(Manual)-2L; electric RM59.90",
+     "shipsFrom": "Perak",
+     "checked": "2026-10-28",
+     "notes": "(Manual)-2L; electric RM59.90 Verified 2026-10-28: shop 2 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mfvyxpnnthc8ce",
      "rating": 5.0,
      "ratingCount": 1400,
-     "sold": "10k+"
+     "sold": "10k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mfvyxpnnthc8ce"
@@ -315,14 +325,15 @@
      "shop": "MP Racing",
      "price": 129.82,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Premium PP Box 45L",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Premium PP Box 45L Verified 2026-10-28: shop 9 yrs, 99% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-7ra1p-mbjq6udauyosd1",
      "rating": 5.0,
      "ratingCount": 3000,
-     "sold": "5k+"
+     "sold": "5k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-7ra1p-mbjq6udauyosd1"
@@ -342,14 +353,15 @@
      "shop": "F2-Moto",
      "price": 52.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Handlebar or mirror mount",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Handlebar or mirror mount Verified 2026-10-28: shop 4 yrs, 97% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-8262f-mlrh5fte92pv95",
      "rating": 5.0,
      "ratingCount": 2600,
-     "sold": "10k+"
+     "sold": "10k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-8262f-mlrh5fte92pv95"
@@ -369,14 +381,15 @@
      "shop": "Peeos Security Lock & Key Technology",
      "price": 23.75,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "PD28 Pro Alarm (cable sold separately)",
+     "shipsFrom": "Pulau Pinang",
+     "checked": "2026-10-28",
+     "notes": "PD28 Pro Alarm (cable sold separately) Verified 2026-10-28: shop 9 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasa-m22on51qxn8y26",
      "rating": 5.0,
      "ratingCount": 966,
-     "sold": "2k+"
+     "sold": "2k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasa-m22on51qxn8y26"
@@ -396,14 +409,15 @@
      "shop": "ICE.GA",
      "price": 13.99,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Silver XL",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Silver XL Verified 2026-10-28: shop 5 yrs, response rate not shown response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-820nu-mnmn6fsxp5ac34",
      "rating": 4.9,
-     "ratingCount": 692,
-     "sold": "3k+"
+     "ratingCount": 694,
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-820nu-mnmn6fsxp5ac34"
@@ -423,14 +437,15 @@
      "shop": "FIRST MOTOR",
      "price": 47.99,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "RM9.88 + RM9.34 + RM47.99, minus RM6 shop voucher",
+     "shipsFrom": "Negeri Sembilan",
+     "checked": "2026-10-28",
+     "notes": "RELAXED: NX150S-specific part; shop 8 yrs, 95%. RM9.88 + RM9.34 + RM47.99, minus RM6 shop voucher Verified 2026-10-28: shop 8 yrs, 95% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-8258b-mt85im0wiaywde",
      "rating": 5.0,
      "ratingCount": 11,
-     "sold": "27"
+     "sold": "27",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-8258b-mt85im0wiaywde"
@@ -450,14 +465,15 @@
      "shop": "BLH Motor",
      "price": 169.61,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Instead of F2-MOTO",
+     "shipsFrom": "Melaka",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: 67% response. Every GIVI seller checked (SLS RM165, Ban Lee Hin RM163.80) is under 80%. Instead of F2-MOTO Verified 2026-10-28: shop 5 yrs, 67% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98o-lkrhvlarkft76f",
      "rating": 5.0,
      "ratingCount": 1400,
-     "sold": "3k+"
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7r98o-lkrhvlarkft76f"
@@ -477,14 +493,15 @@
      "shop": "Mahadstore Custom Plate",
      "price": 68.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Stock height, 13 colours Pre-order on 2026-10-27. Pre-order on 2026-10-27.",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Stock height, 13 colours Verified 2026-10-28: shop 11 months, 31% response, PRE-ORDER.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mt7uzr9zrshw9c",
      "rating": 4.8,
      "ratingCount": 17,
-     "sold": "31"
+     "sold": "31",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l8-mt7uzr9zrshw9c"
@@ -504,14 +521,15 @@
      "shop": "Sha.ID Smart Shop",
      "price": 35.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Single version",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "2026-10-28",
+     "notes": "RELAXED: NX150S-specific part; shop 8 yrs, 100%. Single version Verified 2026-10-28: shop 8 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134201-820lf-mtb9ttohcglk9b",
      "rating": 5.0,
      "ratingCount": 9,
-     "sold": "13"
+     "sold": "13",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134201-820lf-mtb9ttohcglk9b"
@@ -531,14 +549,15 @@
      "shop": "FIRST MOTOR",
      "price": 9.88,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "GOLD, 2PCS",
+     "shipsFrom": "Negeri Sembilan",
+     "checked": "2026-10-28",
+     "notes": "RELAXED: NX150S-specific part; shop 8 yrs, 95%. GOLD, 2PCS Verified 2026-10-28: shop 8 yrs, 95% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-824h9-mq1sy42lum1ac4",
      "rating": 4.9,
      "ratingCount": 7,
-     "sold": "23"
+     "sold": "23",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-824h9-mq1sy42lum1ac4"
@@ -585,14 +604,15 @@
      "shop": "XMTOROT",
      "price": 58.47,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Gold or Titanium",
+     "shipsFrom": "Mainland China",
+     "checked": "2026-10-28",
+     "notes": "Gold or Titanium Verified 2026-10-28: shop 12 months, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-822zf-mof42lbo2x3547",
      "rating": 5.0,
      "ratingCount": 3,
-     "sold": "12"
+     "sold": "12",
+     "overseas": true
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-822zf-mof42lbo2x3547"
@@ -602,7 +622,7 @@
    "qty": 1,
    "notes": "30x100 cm, small accents only | Styling: brown and brass",
    "verdict": "consider",
-   "summary": "Style only. In your cart on 21 Oct.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. Miguo0.my has 183 reviews. Style only. In your cart on 21 Oct.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -612,14 +632,15 @@
      "shop": "Miguo0.my",
      "price": 7.88,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "30x100 cm, small accents only",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: Miguo0.my has 183 reviews. 30x100 cm, small accents only Verified 2026-10-28: shop 2 yrs, 98% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-m6hqnkxn0ly4f9",
      "rating": 4.9,
-     "ratingCount": 182,
-     "sold": "583"
+     "ratingCount": 183,
+     "sold": "584",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-m6hqnkxn0ly4f9"
@@ -666,14 +687,15 @@
      "shop": "Your Car Care Solution",
      "price": 40.73,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Plastic 355ml, Rain X (1 bottle for both visors)",
+     "shipsFrom": "Pulau Pinang",
+     "checked": "2026-10-28",
+     "notes": "Plastic 355ml, Rain X (1 bottle for both visors) Verified 2026-10-28: shop 4 yrs, 88% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7qula-lk0k17haxwrefe",
      "rating": 4.9,
      "ratingCount": 1200,
-     "sold": "10k+"
+     "sold": "10k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7qula-lk0k17haxwrefe"
@@ -693,14 +715,15 @@
      "shop": "TRADEMOTO.my",
      "price": 24.34,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "1 per visor",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "1 per visor Verified 2026-10-28: shop 4 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul7-lgqhz9rxvsvq31",
      "rating": 4.9,
      "ratingCount": 655,
-     "sold": "3k+"
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul7-lgqhz9rxvsvq31"
@@ -720,14 +743,15 @@
      "shop": "Hollywood MotorSport",
      "price": 35.25,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "MOTUL HELMET INNER",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "MOTUL HELMET INNER Verified 2026-10-28: shop 7 yrs, 98% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mitt3j4eggzr14",
      "rating": 5.0,
-     "ratingCount": 1300,
-     "sold": "5k+"
+     "ratingCount": 1400,
+     "sold": "6k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820lc-mitt3j4eggzr14"
@@ -747,14 +771,15 @@
      "shop": "S_superbike",
      "price": 12.5,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "KHI, Keith or HNJ print",
+     "shipsFrom": "W.P. Kuala Lumpur",
+     "checked": "2026-10-28",
+     "notes": "KHI, Keith or HNJ print Verified 2026-10-28: shop 7 yrs, 88% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-821fz-mh7d1p20w6bx7a",
      "rating": 4.9,
      "ratingCount": 1400,
-     "sold": "10k+"
+     "sold": "10k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-821fz-mh7d1p20w6bx7a"
@@ -774,14 +799,15 @@
      "shop": "superkuruma",
      "price": 6.99,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "1 per helmet",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "1 per helmet Verified 2026-10-28: shop 3 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134201-7ra1d-m4qwr8mhnuk02c",
      "rating": 4.9,
      "ratingCount": 489,
-     "sold": "4k+"
+     "sold": "4k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-7ra1d-m4qwr8mhnuk02c"
@@ -840,14 +866,15 @@
      "shop": "Serdang Motorcycle",
      "price": 79.92,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Pick each person's size",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Pick each person's size Verified 2026-10-28: shop 8 yrs, 99% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-23030-w2o5ugp7upov91",
      "rating": 4.9,
      "ratingCount": 34400,
-     "sold": "60k+"
+     "sold": "60k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-23030-w2o5ugp7upov91"
@@ -867,14 +894,15 @@
      "shop": "MK_BIKER",
      "price": 52.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Pick sizes",
+     "shipsFrom": "Pulau Pinang",
+     "checked": "2026-10-28",
+     "notes": "Pick sizes Verified 2026-10-28: shop 8 yrs, 80% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lev2p99likk57f",
      "rating": 4.9,
-     "ratingCount": 413,
-     "sold": "3k+"
+     "ratingCount": 566,
+     "sold": "5k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lev2p99likk57f"
@@ -894,14 +922,15 @@
      "shop": "MP Racing",
      "price": 18.7,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "For the top box",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "For the top box Verified 2026-10-28: shop 9 yrs, 99% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/sg-11134202-7rd62-lx00ujjjts9y25",
      "rating": 5.0,
      "ratingCount": 1800,
-     "sold": "3k+"
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134202-7rd62-lx00ujjjts9y25"
@@ -948,14 +977,15 @@
      "shop": "Aik Huat Hardware",
      "price": 5.34,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Strap type",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Strap type Verified 2026-10-28: shop 6 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m20k9go0fzleb8",
      "rating": 5.0,
      "ratingCount": 1700,
-     "sold": "20k+"
+     "sold": "20k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7rask-m20k9go0fzleb8"
@@ -975,14 +1005,15 @@
      "shop": "Kebidumei",
      "price": 119.7,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Hard Mic 2pcs, instead of TNICER",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Hard Mic 2pcs, instead of TNICER Verified 2026-10-28: shop 3 yrs, 100% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-mc7ggphstgd221",
      "rating": 5.0,
      "ratingCount": 596,
-     "sold": "3k+"
+     "sold": "3k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/cn-11134207-7ras8-mc7ggphstgd221"
@@ -992,7 +1023,7 @@
    "qty": 2,
    "notes": "Only if replacing your open-face helmets | Rider and pillion gear",
    "verdict": "consider",
-   "summary": "Optional. Full-face protection with an easy flip-up for the pillion. Confirm the SIRIM label with the seller.",
+   "summary": "Checked 28 Oct: no listing passes the quality floor. Serdang Motorcycle has 169 reviews for this helmet (shop 8 yrs, 99%). KHI's own store is RM294.80 with 51% response. Optional. Full-face protection with an easy flip-up for the pillion. Confirm the SIRIM label with the seller.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -1002,14 +1033,15 @@
      "shop": "Serdang Motorcycle",
      "price": 279.12,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Only if replacing your open-face helmets",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Fails the floor: Serdang Motorcycle has 169 reviews for this helmet (shop 8 yrs, 99%). KHI's own store is RM294.80 with 51% response. Only if replacing your open-face helmets Verified 2026-10-28: shop 8 yrs, 99% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mplxnj3tb3lu9d",
      "rating": 5.0,
      "ratingCount": 169,
-     "sold": "445"
+     "sold": "445",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820l9-mplxnj3tb3lu9d"
@@ -1029,14 +1061,15 @@
      "shop": "Serdang Motorcycle",
      "price": 167.12,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "Pick sizes",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Pick sizes Verified 2026-10-28: shop 8 yrs, 99% response.",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820la-mmr7ao4syx382d",
      "rating": 5.0,
      "ratingCount": 866,
-     "sold": "1k+"
+     "sold": "1k+",
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-820la-mmr7ao4syx382d"

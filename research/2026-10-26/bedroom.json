@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Bedroom",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "King fitted sheet set (AKEMI Cotton Twill Adore)",
@@ -73,13 +73,14 @@
      "price": 18.9,
      "badge": "none",
      "shipsFrom": "Selangor",
-     "checked": "2026-10-27",
-     "notes": "",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 6 yrs, 97% response.",
      "rating": 4.9,
      "sold": "6k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/829c2a370e16c82b8f4ae1bdeefbe77b",
-     "ratingCount": 1400
+     "ratingCount": 1400,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/829c2a370e16c82b8f4ae1bdeefbe77b"

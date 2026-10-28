@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Hiking",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Hiking shoes (Quechua MH500 waterproof)",
@@ -497,9 +497,9 @@
      "price": 129.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "",
-     "sold": "803",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 2 yrs, 100% response.",
+     "sold": "804",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7rasf-mcbnnjsczy4r09",
      "rating": 4.9,
@@ -521,11 +521,11 @@
     {
      "url": "https://www.watsons.com.my/uv-aqua-rich-watery-essence-spf-50-1s/p/BP_39046",
      "shop": "Watsons Malaysia",
-     "price": 24.5,
+     "price": 29.75,
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-26",
-     "notes": "",
+     "notes": "RM29.75 on 28 Oct (15% off RM35).",
      "tag": "PICK"
     },
     {

@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Home Fitness",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Exercise mat (Kimjaly 8 mm)",
@@ -213,7 +213,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "consider",
-   "summary": "Measure the door frame first.",
+   "summary": "Changed 28 Oct: Decathlon Official Store on Shopee is RM4 cheaper than decathlon.my. Measure the door frame first.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -228,19 +228,19 @@
      "notes": "",
      "rating": 4.6,
      "ratingCount": 2498,
-     "tag": "PICK"
+     "tag": "ALT"
     },
     {
      "url": "https://shopee.com.my/product/476554380/13579280139",
      "shop": "Decathlon Official Store",
      "badge": "none",
-     "shipsFrom": "",
+     "shipsFrom": "Johor",
      "overseas": false,
      "voucher": "",
-     "tag": "",
-     "checked": "2026-10-27",
+     "tag": "PICK",
+     "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-820l4-mrgnpxa8inlu99",
-     "notes": "Found by Shopee search on 2026-10-27: \"Decathlon Locking Door Mount 70 cm Pull-Up Bar BT 150\". Check it is the same model before buying.",
+     "notes": "Decathlon Locking Door Mount 70 cm Pull-Up Bar BT 150. Verified 2026-10-28: shop 5 yrs, 100% response.",
      "price": 95.0,
      "rating": 4.9,
      "ratingCount": 416,

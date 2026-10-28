@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Travel",
- "researchedAt": "2026-10-26",
+ "researchedAt": "2026-10-28",
  "items": [
   {
    "name": "Cabin backpack (Quechua Travel 500, 30 L)",
@@ -67,13 +67,13 @@
      "url": "https://shopee.com.my/product/476554380/8280852097",
      "shop": "Decathlon Official Store",
      "badge": "none",
-     "shipsFrom": "",
+     "shipsFrom": "Johor",
      "overseas": false,
      "voucher": "",
      "tag": "",
-     "checked": "2026-10-27",
+     "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul0-lj537nxtd94325",
-     "notes": "Found by Shopee search on 2026-10-27: \"Decathlon Forclaz Hiking/Trekking Toiletry Bag Foldable\". Check it is the same model before buying.",
+     "notes": "Found by Shopee search on 2026-10-27: \"Decathlon Forclaz Hiking/Trekking Toiletry Bag Foldable\". Check it is the same model before buying. Verified 2026-10-28: shop 5 yrs, 100% response.",
      "price": 29.0,
      "rating": 4.9,
      "ratingCount": 1400,
@@ -138,14 +138,15 @@
      "shop": "Anker store",
      "price": 159.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-27",
-     "notes": "",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-28",
+     "notes": "Verified 2026-10-28: shop 3 yrs, 99% response.",
      "sold": "1k+",
      "tag": "PICK",
      "image": "https://down-my.img.susercontent.com/file/cn-11134207-7r98o-lv18qphbjv7xcf",
      "rating": 5.0,
-     "ratingCount": 569
+     "ratingCount": 569,
+     "overseas": false
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/cn-11134207-7r98o-lv18qphbjv7xcf"
@@ -155,7 +156,7 @@
    "qty": 1,
    "notes": "",
    "verdict": "consider",
-   "summary": "About RM107 each in the 4-pack.",
+   "summary": "Changed 28 Oct: Switch Official 4-pack (2nd Gen) RM407, RM22 under Apple. About RM102 each.",
    "pros": [],
    "cons": [],
    "sources": [],
@@ -167,21 +168,21 @@
      "badge": "none",
      "shipsFrom": "",
      "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "notes": "Apple price for the 4-pack (2nd Gen) is RM429.",
+     "tag": "ALT"
     },
     {
      "url": "https://shopee.com.my/product/304504082/53956690864",
      "shop": "Switch Official Store",
      "badge": "none",
-     "shipsFrom": "",
+     "shipsFrom": "Selangor",
      "overseas": false,
      "voucher": "",
-     "tag": "",
-     "checked": "2026-10-27",
+     "tag": "PICK",
+     "checked": "2026-10-28",
      "image": "https://down-my.img.susercontent.com/file/my-11134211-820le-mlddub254r9f9d",
-     "notes": "Found by Shopee search on 2026-10-27: \"Apple AirTag 2nd Gen (1-pack and 4-pack variants)\". Check it is the same model before buying. Price range RM116.00 - RM407.00 (lowest shown).",
-     "price": 116.0,
+     "notes": "AirTag 2nd Gen, 4 Pack variant RM407 (1 Pack RM116). Apple Authorised reseller.  Price range RM116.00 - RM407.00 (lowest shown). Verified 2026-10-28: shop 6 yrs, 100% response.",
+     "price": 407.0,
      "rating": 5.0,
      "ratingCount": 809,
      "sold": "6k+"

@@ -29,7 +29,7 @@
    "file": "2026-10-26/hp-15s-accessories.json",
    "name": "HP 15s Accessories",
    "items": 7,
-   "listings": 22,
+   "listings": 23,
    "about": "Stand, mouse, keyboard, USB hub with LAN, sleeve.",
    "group": "Personal & tech"
   },
@@ -37,7 +37,7 @@
    "file": "2026-10-26/workstation-home-lab.json",
    "name": "Workstation & Home Lab",
    "items": 11,
-   "listings": 17,
+   "listings": 19,
    "about": "Cable tray, monitor arm, surge strip, webcam, headset, UPS, backup SSD.",
    "group": "Personal & tech"
   },
@@ -85,7 +85,7 @@
    "file": "2026-10-26/home-safety.json",
    "name": "Home Safety",
    "items": 5,
-   "listings": 8,
+   "listings": 9,
    "about": "Smoke alarms, fire blanket, extinguisher, camera, lamp.",
    "group": "Home"
   },
@@ -93,7 +93,7 @@
    "file": "2026-10-26/tools-electrical.json",
    "name": "Tools & Electrical",
    "items": 14,
-   "listings": 23,
+   "listings": 24,
    "about": "Fluke 101, voltage tester, Pinecil, Bosch drills and bits, safety gear, tyre inflator.",
    "group": "Home"
   },
