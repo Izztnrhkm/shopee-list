@@ -981,6 +981,7 @@ async function addPicked(button) {
   let added = 0;
   let updated = 0;
   let dropped = 0;
+  let moved = 0;
   try {
     for (const entry of chosen) {
       const res = await fetch(`research/${entry.file}`, { cache: 'no-cache' });
@@ -994,9 +995,10 @@ async function addPicked(button) {
       added += plan.creates.length;
       updated += plan.updates.length;
       dropped += plan.updates.reduce((a, u) => a + (u.dropped || 0), 0);
+      moved += plan.updates.filter((u) => u.pickMoved).length;
     }
     state.picked.clear();
-    toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}${dropped ? `. ${dropped} old listing${dropped === 1 ? '' : 's'} marked "Not in latest research"` : ''}`);
+    toast(`Added ${added} item${added === 1 ? '' : 's'}${updated ? `, updated ${updated}` : ''}${moved ? `. ${moved} pick${moved === 1 ? '' : 's'} moved to the new research pick` : ''}${dropped ? `. ${dropped} old listing${dropped === 1 ? '' : 's'} marked "Not in latest research"` : ''}`);
     fx.play('success');
     location.hash = '#/';
   } catch (err) {
@@ -1598,6 +1600,7 @@ function importDialog(fromListId, initialText = '') {
     const listingCount = [...creates.map((i) => i.listings.length), ...updates.map((u) => u.added)].reduce((a, b) => a + b, 0);
     const repriced = updates.reduce((a, u) => a + (u.repriced || 0), 0);
     const dropped = updates.reduce((a, u) => a + (u.dropped || 0), 0);
+    const moved = updates.filter((u) => u.pickMoved).length;
     const verdicts = parsed.items.reduce((acc, i) => {
       const v = i.research && i.research.verdict;
       if (v) acc[v] = (acc[v] || 0) + 1;
@@ -1610,6 +1613,9 @@ function importDialog(fromListId, initialText = '') {
         `, ${listingCount} new listing${listingCount === 1 ? '' : 's'}`,
         repriced ? `, ${repriced} price change${repriced === 1 ? '' : 's'}` : '',
         '.'),
+      moved
+        ? h('p', { class: 'muted small' }, `${moved} item${moved === 1 ? '' : 's'} will switch to the new research pick. Picks you chose yourself stay.`)
+        : null,
       dropped
         ? h('p', { class: 'muted small' }, `${dropped} saved listing${dropped === 1 ? ' is' : 's are'} no longer in the research. ${dropped === 1 ? 'It stays' : 'They stay'}, marked "Not in latest research", so you can delete ${dropped === 1 ? 'it' : 'them'}.`)
         : null,

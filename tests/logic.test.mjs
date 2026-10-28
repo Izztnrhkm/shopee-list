@@ -132,3 +132,36 @@ test('research without listings never marks saved listings', () => {
   assert.equal(u.dropped, 0);
   assert.equal(u.patch.listings[0].dropped, undefined);
 });
+
+test('re-import moves the pick when the old pick was the research pick', () => {
+  const a = 'https://shopee.com.my/product/1/2';
+  const b = 'https://shopee.com.my/product/3/4';
+  const first = parseImport(block([{ name: 'A', listings: [listing({ url: a }), listing({ url: b, price: 250, tag: 'ALT' })] }]));
+  const saved = { id: 'p1', name: 'A', listings: first.items[0].listings, chosenListingId: first.items[0].chosenListingId };
+  const again = parseImport(block([{ name: 'A', listings: [listing({ url: a, tag: 'CHEAPER_BUT' }), listing({ url: b, price: 250, tag: 'PICK' })] }]));
+  const u = planImport(again, [saved]).updates[0];
+  const byUrl = Object.fromEntries(u.patch.listings.map((l) => [l.url, l]));
+  assert.equal(u.patch.chosenListingId, byUrl[b].id);
+  assert.equal(u.pickMoved, true);
+  assert.equal(byUrl[a].tag, 'CHEAPER_BUT');
+});
+
+test('re-import keeps a pick the user chose themselves', () => {
+  const a = 'https://shopee.com.my/product/1/2';
+  const b = 'https://shopee.com.my/product/3/4';
+  const c = 'https://shopee.com.my/product/5/6';
+  const first = parseImport(block([{ name: 'A', listings: [listing({ url: a }), listing({ url: b, price: 250, tag: 'ALT' }), listing({ url: c, price: 200, tag: '' })] }]));
+  const own = first.items[0].listings[2];
+  const saved = { id: 'p1', name: 'A', listings: first.items[0].listings, chosenListingId: own.id };
+  const again = parseImport(block([{ name: 'A', listings: [listing({ url: a, tag: 'ALT' }), listing({ url: b, price: 250, tag: 'PICK' }), listing({ url: c, price: 200, tag: '' })] }]));
+  const u = planImport(again, [saved]).updates[0];
+  assert.equal(u.patch.chosenListingId, undefined);
+  assert.equal(u.pickMoved, false);
+});
+
+test('a listing no longer tagged in the research loses its old tag', () => {
+  const first = parseImport(block([{ name: 'A', listings: [listing()] }]));
+  const saved = { id: 'p1', name: 'A', listings: first.items[0].listings, chosenListingId: first.items[0].chosenListingId };
+  const u = planImport(parseImport(block([{ name: 'A', listings: [listing({ tag: '' }), listing({ url: 'https://shopee.com.my/product/7/8', tag: 'PICK' })] }])), [saved]).updates[0];
+  assert.equal(u.patch.listings[0].tag, '');
+});

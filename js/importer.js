@@ -139,8 +139,9 @@ export function parseImport(text) {
 // and so is the item photo when the research has a different one.
 // A saved listing whose link the new research no longer includes is not deleted: it is
 // marked `dropped` (the research date) so the app can show it as "Not in latest research".
-// Listings the user added by hand (src 'manual') are never marked. If the pick was one of
-// the dropped listings, the pick moves to the new research pick.
+// Listings the user added by hand (src 'manual') are never marked. The pick moves to the
+// new research pick when the chosen listing was dropped, or when it was the old research
+// pick (tag PICK); a listing the user chose themselves is kept.
 export function planImport(parsed, existingProducts) {
   const byName = new Map(existingProducts.map((p) => [p.name.trim().toLowerCase(), p]));
   const creates = [];
@@ -175,14 +176,22 @@ export function planImport(parsed, existingProducts) {
     const patch = { listings: all };
     if (item.research) patch.research = item.research;
     if (item.image && item.image !== match.image) patch.image = item.image;
+    const before = (match.listings || []).find((l) => l.id === match.chosenListingId);
     const chosen = all.find((l) => l.id === match.chosenListingId);
-    if (!chosen || chosen.dropped) {
+    // The pick follows the research when nothing usable is chosen, or when the chosen
+    // listing was the old research pick. A listing the user picked themselves stays.
+    const followsResearch = before && before.tag === 'PICK';
+    let pickMoved = false;
+    if (!chosen || chosen.dropped || followsResearch) {
       // Follow the research pick: a newly added one, or a saved one with the same link.
       const pick = item.listings.find((l) => l.id === item.chosenListingId);
       const target = pick && (added.includes(pick) ? pick : kept.find((l) => l.url && l.url === pick.url));
-      if (target && target.id !== match.chosenListingId) patch.chosenListingId = target.id;
+      if (target && target.id !== match.chosenListingId) {
+        patch.chosenListingId = target.id;
+        pickMoved = Boolean(match.chosenListingId);
+      }
     }
-    updates.push({ id: match.id, name: match.name, added: added.length, repriced, dropped, patch });
+    updates.push({ id: match.id, name: match.name, added: added.length, repriced, dropped, pickMoved, patch });
   }
   return { creates, updates };
 }
@@ -206,7 +215,7 @@ function refreshListing(old, fresh) {
     badge: fresh.badge !== 'none' ? fresh.badge : old.badge,
     shipsFrom: fresh.shipsFrom || old.shipsFrom,
     voucher: fresh.voucher || old.voucher,
-    tag: fresh.tag || old.tag,
+    tag: fresh.tag, // the research decides the tags, so an old Pick tag does not linger
     checked: fresh.checked || old.checked,
     image: fresh.image || old.image || '',
     dropped: null, // back in the research
