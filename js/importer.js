@@ -142,6 +142,9 @@ export function parseImport(text) {
 // Listings the user added by hand (src 'manual') are never marked. The pick moves to the
 // new research pick when the chosen listing was dropped, or when it was the old research
 // pick (tag PICK); a listing the user chose themselves is kept.
+// Research listings without a link cannot be matched, so research that brings listings
+// replaces them instead of adding a copy each time. A replaced listing the user chose
+// themselves hands the choice to the new link-less listing from the same shop, if any.
 export function planImport(parsed, existingProducts) {
   const byName = new Map(existingProducts.map((p) => [p.name.trim().toLowerCase(), p]));
   const creates = [];
@@ -155,9 +158,11 @@ export function planImport(parsed, existingProducts) {
     const incoming = new Map(item.listings.filter((l) => l.url).map((l) => [l.url, l]));
     // Only research that brings listings can say a saved listing was dropped.
     const canDrop = incoming.size > 0;
+    const replaces = (old) => item.listings.length > 0 && !old.url && old.src !== 'manual';
+    const replaced = (match.listings || []).filter(replaces);
     let repriced = 0;
     let dropped = 0;
-    const kept = (match.listings || []).map((old) => {
+    const kept = (match.listings || []).filter((old) => !replaces(old)).map((old) => {
       const fresh = old.url && incoming.get(old.url);
       if (fresh) {
         const merged = refreshListing(old, fresh);
@@ -181,8 +186,14 @@ export function planImport(parsed, existingProducts) {
     // The pick follows the research when nothing usable is chosen, or when the chosen
     // listing was the old research pick. A listing the user picked themselves stays.
     const followsResearch = before && before.tag === 'PICK';
+    const shopOf = (l) => (l.shop || '').trim().toLowerCase();
+    const ownReplaced = !followsResearch && before && replaced.includes(before) && shopOf(before)
+      ? added.find((l) => !l.url && shopOf(l) === shopOf(before))
+      : null;
     let pickMoved = false;
-    if (!chosen || chosen.dropped || followsResearch) {
+    if (ownReplaced) {
+      patch.chosenListingId = ownReplaced.id;
+    } else if (!chosen || chosen.dropped || followsResearch) {
       // Follow the research pick: a newly added one, or a saved one with the same link.
       const pick = item.listings.find((l) => l.id === item.chosenListingId);
       const target = pick && (added.includes(pick) ? pick : kept.find((l) => l.url && l.url === pick.url));

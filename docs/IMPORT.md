@@ -5,6 +5,7 @@ Shopee List can add researched items in one go. Ask Claude to research what you 
 - Items whose name already exists in the target list are updated, not duplicated: new links are added; a link already saved gets the new price, rating and sold count, and a price change is added to its price history. The research is replaced, and so is the item photo when the research has a different one.
 - If the item's chosen listing was the old research pick, the pick moves to the new research pick. A listing you chose yourself stays chosen. Tags (Pick, Alternative, Cheaper, but) always follow the latest research.
 - A saved listing whose link the new research leaves out is kept but marked **Not in latest research** (it sorts last and never counts as cheapest). If it was the pick, the pick moves to the new research pick. Listings added by hand in the app are never marked. If a later import includes the link again, the mark is removed.
+- A research listing without a link cannot be matched to a saved one, so a re-import replaces the item's link-less research listings with the new ones instead of adding copies. If you had chosen one of them yourself, the choice moves to the new link-less listing from the same shop. Link-less listings added by hand are kept.
 - The listing tagged `PICK` becomes the item's **Chosen** listing, so list totals use it.
 - Items with verdict `skip` are kept for reference but left out of the totals.
 - An import link (`https://shopee-list-dea0e.firebaseapp.com/#import=...`) opens the same import screen. If you are signed out, it waits until you sign in.
@@ -23,7 +24,7 @@ Copy this, and replace the first line:
 
 ```
 Research these for Shopee Malaysia: <what you want, e.g. "air fryer under RM400, silicone liners for it">.
-Tell me if each is worth buying, then find the best listings using this rule: genuine brand from an official or established shop, rating 4.8+ with about 300+ reviews, ships from Malaysia, not pre-order, no replica signs; among those, the best value. Include one alternative and any cheaper listings that fail, with the reason.
+Tell me if each is worth buying, then find the best listings using this rule: genuine brand from an official or established shop, rating 4.8+ with about 300+ reviews, ships from Malaysia, not pre-order, no replica signs; among those, the best value. Include one alternative and any cheaper listings that fail, with the reason. Give every listing the link to its product page, not a search page.
 Finish with a Shopee List import block: a single ```json code block in the format from docs/IMPORT.md in github.com/Izztnrhkm/shopee-list. Put it in the list "<list name>".
 ```
 

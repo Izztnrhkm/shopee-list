@@ -165,3 +165,49 @@ test('a listing no longer tagged in the research loses its old tag', () => {
   const u = planImport(parseImport(block([{ name: 'A', listings: [listing({ tag: '' }), listing({ url: 'https://shopee.com.my/product/7/8', tag: 'PICK' })] }])), [saved]).updates[0];
   assert.equal(u.patch.listings[0].tag, '');
 });
+
+test('re-importing research with link-less listings replaces them instead of adding copies', () => {
+  const research = block([{ name: 'Tape measure', listings: [listing({ url: '', shop: 'Stanley', price: 25 }), listing({ price: 30, tag: 'ALT' })] }]);
+  const first = parseImport(research);
+  let saved = { id: 'p1', name: 'Tape measure', listings: first.items[0].listings, chosenListingId: first.items[0].chosenListingId };
+  for (let round = 0; round < 3; round++) {
+    const u = planImport(parseImport(research), [saved]).updates[0];
+    saved = { ...saved, ...u.patch };
+  }
+  assert.equal(saved.listings.length, 2);
+  assert.equal(saved.listings.filter((l) => l.tag === 'PICK').length, 1);
+  const chosen = saved.listings.find((l) => l.id === saved.chosenListingId);
+  assert.equal(chosen.tag, 'PICK');
+  assert.equal(chosen.url, '');
+});
+
+test('re-import clears link-less duplicates saved by earlier imports', () => {
+  const dupes = [1, 2, 3].map((n) => ({ id: `l${n}`, url: '', shop: 'Stanley', price: 25, tag: 'PICK' }));
+  const saved = { id: 'p1', name: 'A', listings: dupes, chosenListingId: 'l3' };
+  const u = planImport(parseImport(block([{ name: 'A', listings: [listing({ url: '', shop: 'Stanley', price: 24 })] }])), [saved]).updates[0];
+  assert.equal(u.patch.listings.length, 1);
+  assert.equal(u.patch.chosenListingId, u.patch.listings[0].id);
+});
+
+test('re-import keeps link-less listings added by hand, and research without listings keeps all', () => {
+  const own = { id: 'm1', url: '', shop: 'Pasar malam', price: 10, src: 'manual' };
+  const research = { id: 'r1', url: '', shop: 'Stanley', price: 25, tag: 'PICK' };
+  const saved = { id: 'p1', name: 'A', listings: [own, research], chosenListingId: 'r1' };
+  const withListings = planImport(parseImport(block([{ name: 'A', listings: [listing()] }])), [saved]).updates[0];
+  assert.deepEqual(withListings.patch.listings.map((l) => l.id).slice(0, 1), ['m1']);
+  assert.equal(withListings.patch.listings.some((l) => l.id === 'r1'), false);
+  const noListings = planImport(parseImport(block([{ name: 'A', verdict: 'skip', summary: 'Not worth it.', listings: [] }])), [saved]).updates[0];
+  assert.deepEqual(noListings.patch.listings.map((l) => l.id), ['m1', 'r1']);
+});
+
+test('a link-less listing the user chose stays chosen through re-import by its shop', () => {
+  const items = [listing(), listing({ url: '', shop: 'Kedai Ali', price: 20, tag: 'CHEAPER_BUT' })];
+  const first = parseImport(block([{ name: 'A', listings: items }]));
+  const mine = first.items[0].listings[1];
+  const saved = { id: 'p1', name: 'A', listings: first.items[0].listings, chosenListingId: mine.id };
+  const u = planImport(parseImport(block([{ name: 'A', listings: items }])), [saved]).updates[0];
+  const chosen = u.patch.listings.find((l) => l.id === u.patch.chosenListingId);
+  assert.equal(chosen.shop, 'Kedai Ali');
+  assert.equal(u.pickMoved, false);
+  assert.equal(u.patch.listings.length, 2);
+});
