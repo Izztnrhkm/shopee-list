@@ -1,6 +1,6 @@
 // Firebase web config. These values identify the project; they are not secrets.
-// Access to data is controlled by firestore.rules, which only lets a signed-in
-// user read and write their own documents.
+// Access to data is controlled by firestore.rules, which only lets members of a
+// household read and write its lists.
 export const firebaseConfig = {
   apiKey: 'AIzaSyDoVJA-1RkAMGvMixoOmXiYz20M2QijtQo',
   authDomain: 'shopee-list-dea0e.firebaseapp.com',
