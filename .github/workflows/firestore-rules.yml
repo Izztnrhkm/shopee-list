@@ -1,0 +1,59 @@
+# Tests the Firestore security rules on pull requests that change them, and on a push to main
+# also publishes them (https://console.firebase.google.com/project/shopee-list-dea0e/firestore/rules).
+# The publish uses the repository secret FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST, which needs the role
+# Firebase Rules Admin on top of the Hosting roles (see docs/OPERATIONS.md).
+name: Firestore rules
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - firestore.rules
+      - firebase.json
+      - tests/rules.test.mjs
+      - tests/package.json
+      - tests/package-lock.json
+      - .github/workflows/firestore-rules.yml
+  pull_request:
+    paths:
+      - firestore.rules
+      - firebase.json
+      - tests/rules.test.mjs
+      - tests/package.json
+      - tests/package-lock.json
+      - .github/workflows/firestore-rules.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never cancel a publish halfway; a newer push waits for the older one.
+concurrency:
+  group: firestore-rules-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install the test tools (exact versions from the lockfile)
+        working-directory: tests
+        run: npm ci
+      - name: Rules tests (Firestore emulator)
+        working-directory: tests
+        run: npm run test:rules
+      - name: Publish the rules
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST }}
+        run: |
+          key="$RUNNER_TEMP/service-account.json"
+          trap 'rm -f "$key"' EXIT
+          printf '%s' "$SERVICE_ACCOUNT" > "$key"
+          GOOGLE_APPLICATION_CREDENTIALS="$key" tests/node_modules/.bin/firebase deploy \
+            --only firestore:rules --project shopee-list-dea0e --non-interactive
