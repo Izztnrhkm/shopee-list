@@ -38,7 +38,7 @@ In the [Firebase console](https://console.firebase.google.com) for project `shop
 
 1. **Authentication > Sign-in method**: enable **Google**.
 2. **Authentication > Settings > Authorized domains**: add `izztnrhkm.github.io`.
-3. **Firestore Database**: create the database if you have not, then open **Rules**, replace everything with the contents of `firestore.rules`, and click **Publish**.
+3. **Firestore Database**: create the database if you have not. The rules are published from `firestore.rules` by GitHub Actions once the deploy key has the Firebase Rules Admin role ([docs/OPERATIONS.md](docs/OPERATIONS.md)); until then, open **Rules**, replace everything with the contents of `firestore.rules`, and click **Publish**.
 
 In this GitHub repo:
 
@@ -52,7 +52,7 @@ By default anyone with a Google account can sign in and get their own separate h
 
 1. Sign in to the app once.
 2. In Firebase console > Authentication > Users, copy your **User UID**.
-3. In `firestore.rules`, under `match /households/{hid}`, change the first line of `allow create` to `allow create: if signedIn() && me() == 'YOUR_UID'`, keep the lines after it, and publish.
+3. In `firestore.rules`, under `match /households/{hid}`, change the first line of `allow create` to `allow create: if signedIn() && me() == 'YOUR_UID'`, keep the lines after it, and merge the change to `main` (it is published from there; an edit made only in the Firebase console is replaced by the next publish).
 
 Anyone else who signs in then sees an error instead of their own household. People you invite join yours as before. Someone you remove from the household sees the same error, because they can no longer make their own.
 

@@ -17,6 +17,7 @@ Every push to `main` deploys automatically:
 
 - **Firebase Hosting**: `.github/workflows/firebase-hosting.yml` runs the logic tests, then deploys with [FirebaseExtended/action-hosting-deploy](https://github.com/FirebaseExtended/action-hosting-deploy). `firebase.json` lists what is served; tests, docs and rules are not.
 - **GitHub Pages**: GitHub's built-in Pages build.
+- **Security rules**: `.github/workflows/firestore-rules.yml` runs when `firestore.rules` (or its tests) changes: it runs the rules tests in the Firestore emulator, then publishes the rules. On a pull request it only runs the tests. See [Security rules](#security-rules).
 
 To redeploy without a code change: GitHub › Actions › Deploy to Firebase Hosting › Run workflow.
 
@@ -24,20 +25,24 @@ Each deploy writes `version.json` (the short commit id). An open app checks it w
 
 ### One-time setup: the deploy key
 
-The workflow needs the repository secret `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`.
+Both workflows use the repository secret `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`.
 
 1. Open [Google Cloud › Service accounts](https://console.cloud.google.com/iam-admin/serviceaccounts?project=shopee-list-dea0e) and check the project is **shopee-list-dea0e**.
 2. **+ Create service account**. Name: `github-deploy`. **Create and continue**.
-3. Add three roles: **Firebase Hosting Admin**, **API Keys Viewer** and **Service Usage Consumer** (the deploy checks that Hosting is enabled; without this role it fails with "403 Permission denied to get service firebasehosting.googleapis.com"). **Continue**, **Done**.
+3. Add four roles: **Firebase Hosting Admin**, **API Keys Viewer**, **Service Usage Consumer** (the deploy checks that Hosting is enabled; without this role it fails with "403 Permission denied to get service firebasehosting.googleapis.com") and **Firebase Rules Admin** (publishes `firestore.rules`). **Continue**, **Done**.
 4. Open the new account › **Keys** › **Add key** › **Create new key** › **JSON** › **Create**. A `.json` file downloads.
 5. Open [GitHub › repo Settings › Secrets and variables › Actions](https://github.com/Izztnrhkm/shopee-list/settings/secrets/actions) › **New repository secret**. Name: `FIREBASE_SERVICE_ACCOUNT_SHOPEE_LIST`. Secret: open the `.json` file in Notepad, copy everything, paste. **Add secret**.
 6. Delete the downloaded `.json` file. Anyone with it can deploy to your hosting.
 
-These roles can publish the website only; they cannot read or change your lists.
+These roles cannot read or change your lists directly. But Firebase Rules Admin can replace the security rules, and rules decide who can read the lists, so treat the key as having access to your data: keep it only in the GitHub secret.
+
+**Adding the rules role to an existing key:** open [Google Cloud › IAM](https://console.cloud.google.com/iam-admin/iam?project=shopee-list-dea0e), find the deploy account (`github-deploy@shopee-list-dea0e.iam.gserviceaccount.com` if you named it as above), click the pencil, **Add another role** › **Firebase Rules Admin** › **Save**. The key in the GitHub secret keeps working; no new key is needed.
 
 ## Security rules
 
-`firestore.rules` is not deployed automatically. After changing it: Firebase console › Firestore Database › Rules › paste the file › **Publish**. Test first: from `tests/`, `npm install` then `npm run test:rules`.
+`firestore.rules` in this repo is the source of truth. A push to `main` that changes it publishes it (after the rules tests pass), so **do not edit the rules in the Firebase console**: the next publish replaces console edits. To change the rules, change the file (with a test in `tests/rules.test.mjs`) and merge. To publish again without a change: GitHub › Actions › Firestore rules › Run workflow. If the rules are unchanged, the publish does nothing.
+
+To test locally: from `tests/`, `npm ci` then `npm run test:rules` (Java 21 or later).
 
 ## Sign-in on iPhone home-screen app
 
