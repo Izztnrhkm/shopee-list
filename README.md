@@ -21,7 +21,7 @@ The app itself does not read Shopee: Shopee blocks automated access, so research
 ## Tests
 
 - `node --test tests/logic.test.mjs`: import, price history and sale-date logic (Node 18 or later, no installs).
-- Security rules and the household flow need the Firestore emulator (Java). From `tests/`: `npm install`, then `npm run test:rules` (12 checks), and with the repo served on port 8765 (`python3 -m http.server 8765` in the repo root) `npm run test:e2e` (16 checks: copy of old lists, invite, join, shared ticks, refused reuse, removal).
+- Security rules and the household flow need the Firestore emulator (Java). From `tests/`: `npm install`, then `npm run test:rules` (12 checks), and with the repo served on port 8765 (`python3 -m http.server 8765` in the repo root) `npm run test:e2e` (47 checks: copy of old lists, invite, join, shared ticks, refused reuse, removal, light and dark, refresh and the update pill).
 
 ## How it works
 
@@ -46,13 +46,15 @@ In this GitHub repo:
 
 The site will be at https://izztnrhkm.github.io/shopee-list/ a minute or two later.
 
-### Optional: lock the database to your account only
+### Optional: allow only your household
 
-By default anyone with a Google account can sign in and create their own separate lists in your Firebase project (they can never see yours). To allow only you:
+By default anyone with a Google account can sign in and get their own separate household in your Firebase project (they can never see yours). To allow only you and the people you invite:
 
 1. Sign in to the app once.
 2. In Firebase console > Authentication > Users, copy your **User UID**.
-3. In the rules, change the condition to `request.auth != null && request.auth.uid == uid && uid == 'YOUR_UID'` and publish.
+3. In `firestore.rules`, under `match /households/{hid}`, change the first line of `allow create` to `allow create: if signedIn() && me() == 'YOUR_UID'`, keep the lines after it, and publish.
+
+Anyone else who signs in then sees an error instead of their own household. People you invite join yours as before. Someone you remove from the household sees the same error, because they can no longer make their own.
 
 ## Run locally
 
@@ -76,7 +78,7 @@ Open http://localhost:8000. `localhost` is an authorized domain in Firebase by d
 | `docs/IMPORT.md` | Import format and the prompt to use with Claude |
 | `js/firebase-config.js` | Firebase project config |
 | `fonts/` | Plus Jakarta Sans, self-hosted (SIL Open Font License, `fonts/OFL.txt`) |
-| `tests/` | Logic tests, run with `node --test tests/*.test.mjs` |
+| `tests/` | Logic, security rules and end-to-end tests (see [Tests](#tests)) |
 | `firestore.rules` | Database security rules |
 | `research/index.html` | Research library page (import links built in the browser) |
 | `research/index.json` | List of research files shown in the library |
