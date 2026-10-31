@@ -21,7 +21,7 @@ The app itself does not read Shopee: Shopee blocks automated access, so research
 ## Tests
 
 - `node --test tests/logic.test.mjs`: import, price history and sale-date logic (Node 18 or later, no installs).
-- Security rules and the household flow need the Firestore emulator (Java). From `tests/`: `npm install`, then `npm run test:rules` (12 checks), and with the repo served on port 8765 (`python3 -m http.server 8765` in the repo root) `npm run test:e2e` (47 checks: copy of old lists, invite, join, shared ticks, refused reuse, removal, light and dark, refresh and the update pill).
+- Security rules and the household flow need the Firestore emulator (Java 21 or later). From `tests/`: `npm ci` (installs the exact versions in `package-lock.json`), then `npm run test:rules` (12 checks), and with the repo served on port 8765 (`python3 -m http.server 8765` in the repo root) `npm run test:e2e` (47 checks: copy of old lists, invite, join, shared ticks, refused reuse, removal, light and dark, refresh and the update pill).
 
 ## How it works
 
