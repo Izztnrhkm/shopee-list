@@ -694,8 +694,8 @@ function productView(listId, productId) {
       r && r.sources && r.sources.length
         ? h('details', { class: 'sources' },
           h('summary', {}, `Sources (${r.sources.length})${r.researchedAt ? ` · researched ${formatDate(r.researchedAt)}` : ''}`),
-          h('ul', {}, r.sources.map((s) => h('li', {},
-            h('a', { href: s.url, target: '_blank', rel: 'noopener noreferrer' }, s.title || new URL(s.url).hostname)))))
+          h('ul', {}, r.sources.filter((s) => cleanUrl(s.url)).map((s) => h('li', {},
+            h('a', { href: cleanUrl(s.url), target: '_blank', rel: 'noopener noreferrer' }, s.title || new URL(s.url).hostname)))))
         : (r && r.researchedAt ? h('p', { class: 'muted tiny', style: 'margin-top: 8px' }, `Researched ${formatDate(r.researchedAt)}`) : null))
     : null;
 
@@ -814,7 +814,7 @@ function listingCard(product, l, all) {
     l.voucher ? h('span', { class: 'line' }, `Voucher: ${l.voucher}`) : null,
     l.notes ? h('span', { class: 'line' }, l.notes) : null,
     h('div', { class: 'acts' },
-      l.url ? h('a', { class: `btn ${isChosen ? 'primary' : ''}`, href: l.url, target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee') : null,
+      cleanUrl(l.url) ? h('a', { class: `btn ${isChosen ? 'primary' : ''}`, href: cleanUrl(l.url), target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee') : null,
       isChosen ? null : h('button', {
         class: 'btn', type: 'button',
         onClick: () => save(store.updateProduct(product.id, { chosenListingId: l.id }), 'Pick changed'),
@@ -1022,7 +1022,7 @@ function buildResearchRequest({ what, list, isNew, budget, laptop, dest }) {
     laptop
       ? 'Use my shopee-compare skill and check real prices, ratings and shops on Shopee in my Chrome.'
       : 'My laptop is off: use web search only and mark prices as not verified on Shopee. I will ask for a Shopee re-check later.',
-    'Include each product photo and shop name.',
+    'Include each product photo, shop name and the link to its product page.',
     dest === 'library'
       ? 'When done, add it to the Shopee List research library (repo Izztnrhkm/shopee-list) as a pull request for me to merge.'
       : 'When done, give me a Shopee List import block to paste into the app.',
@@ -1478,8 +1478,8 @@ function withNewPrice(listing, price) {
 }
 
 function recheckDialog(product, listing) {
-  const link = listing.url
-    ? h('a', { class: 'btn outline block', href: listing.url, target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee')
+  const link = cleanUrl(listing.url)
+    ? h('a', { class: 'btn outline block', href: cleanUrl(listing.url), target: '_blank', rel: 'noopener noreferrer' }, icon('open'), 'Open in Shopee')
     : h('p', { class: 'muted small' }, 'This listing has no link saved.');
   formDialog({
     title: 'Re-check price',
