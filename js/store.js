@@ -14,7 +14,7 @@
 // Lists made before households existed stay under users/{uid}/lists and users/{uid}/products;
 // they are copied (not moved) into your household the first time you sign in after the update.
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
 import {
   initializeAuth,
   indexedDBLocalPersistence,
@@ -26,7 +26,7 @@ import {
   signInWithRedirect,
   getRedirectResult,
   signOut as fbSignOut,
-} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
 import {
   initializeFirestore,
   persistentLocalCache,
@@ -42,7 +42,7 @@ import {
   getDocs,
   setDoc,
   Timestamp,
-} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 import { firebaseConfig } from './firebase-config.js';
 
 const app = initializeApp(firebaseConfig);
