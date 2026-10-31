@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "NX150S",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Muc-Off Bike Cleaner 1L",
@@ -823,14 +823,19 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
-     "shop": "Any shop",
-     "price": 0.5,
-     "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-21",
-     "notes": "Any washable microfibre cloth",
-     "tag": "PICK"
+     "url": "https://shopee.com.my/product/132531093/23406039570",
+     "shop": "Serdang Motorcycle",
+     "price": 2.89,
+     "badge": "preferred",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "NJX Microfiber Towel variant, 1 pc. RM2.89 is the ShopeeVIP early-access price (RM2.99 otherwise)",
+     "tag": "PICK",
+     "rating": 5.0,
+     "ratingCount": "2.4k",
+     "sold": "8k+",
+     "overseas": false,
+     "image": "https://down-my.img.susercontent.com/file/my-11134207-820lf-mifad7f62pl084"
     },
     {
      "url": "https://shopee.com.my/product/145516020/2297444638",

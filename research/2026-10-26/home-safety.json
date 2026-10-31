@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Home Safety",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Smoke alarm (photoelectric, 10-year battery)",
@@ -14,26 +14,31 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i428998875.html",
      "shop": "Lazada: Daytech",
-     "price": 49.9,
+     "price": 49.4,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Check the box for EN 14604",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Daytech SM06TA, 1 pc (LazMall). Check the box for EN 14604",
      "ratingCount": 428,
-     "tag": "PICK"
+     "tag": "PICK",
+     "rating": 4.8,
+     "sold": "2.2k",
+     "image": "https://img.lazcdn.com/g/p/8362758a06649024d9905e420ba0621c.jpg_720x720q80.jpg_.webp"
     },
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i365613522.html",
      "shop": "Lazada: Kidde Worry-Free",
      "price": 119.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Long-established fire-safety brand",
+     "checked": "2026-10-31",
+     "notes": "Seller: truSafe.com.my. Long-established fire-safety brand",
      "ratingCount": 22,
-     "tag": "ALT"
+     "tag": "ALT",
+     "rating": 5.0,
+     "image": "https://img.lazcdn.com/g/p/1fe8df4071fad4d6b78b8ed89b509763.jpg_720x720q80.jpg_.webp"
     }
    ],
    "image": "https://dyn.mktgcdn.com/p/DbDxEkIjSKSDUGbdBj5McBBOMV2BweynNoi8wz-wgTg/width=1920,height=1920"

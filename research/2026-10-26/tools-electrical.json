@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Tools & Electrical",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Multimeter (Fluke 101)",
@@ -110,15 +110,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i4659411203.html",
      "shop": "Lazada (Penang)",
      "price": 169.99,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "shipsFrom": "Penang",
+     "checked": "2026-10-31",
+     "notes": "Seller: PINE64",
      "ratingCount": 13,
-     "tag": "PICK"
+     "tag": "PICK",
+     "rating": 5.0,
+     "sold": 36,
+     "image": "https://img.lazcdn.com/g/p/40581b5c8b2033dfc91efa12bc838370.jpg_720x720q80.jpg_.webp"
     }
    ],
    "image": "https://store.dremc.com.au/cdn/shop/files/pinecil-smart-mini-portable-soldering-iron-version-2-pinecil-bb2-6446351.jpg?v=1755906832"
@@ -312,14 +315,16 @@
      "overseas": false
     },
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i3728849651.html",
      "shop": "Lazada (Sarawak)",
      "price": 58.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Cheaper but only 28 sold",
-     "tag": "ALT"
+     "shipsFrom": "Sarawak",
+     "checked": "2026-10-31",
+     "notes": "Seller: JECHA STORE. Cheaper but only 28 sold, no reviews",
+     "tag": "ALT",
+     "sold": 28,
+     "image": "https://img.lazcdn.com/g/p/3a2ad401bccdcd7de0532029bfd1b569.jpg_720x720q80.jpg_.webp"
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/5f114c8c87a10b28dc4f7b7cb22fd18f"
@@ -404,15 +409,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i980586313.html",
      "shop": "Lazada",
      "price": 23.5,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Seller: CT Hardware (9 yrs). Stanley STHT33989-8, listed as \"Basic\" 5 m tape (Power Lock, yellow)",
      "ratingCount": 11,
-     "tag": "PICK"
+     "tag": "PICK",
+     "rating": 5.0,
+     "sold": 158,
+     "image": "https://img.lazcdn.com/g/p/75df1a0c3f62ec3a81c3541255b35e0a.jpg_720x720q80.jpg_.webp"
     },
     {
      "url": "https://shopee.com.my/product/708193889/21051204440",
@@ -444,15 +452,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i15720209.html",
      "shop": "Lazada",
      "price": 44.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Seller: Lion Machinery Hardware (10 yrs). Stanley 51-081",
      "ratingCount": 4,
-     "tag": "PICK"
+     "tag": "PICK",
+     "rating": 5.0,
+     "sold": 21,
+     "image": "https://img.lazcdn.com/g/p/5b5f3440cd43678372676e03d1999354.jpg_720x720q80.jpg_.webp"
     },
     {
      "url": "https://shopee.com.my/product/12944594/1495833034",
@@ -484,14 +495,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i1711450542-s11383417657.html",
      "shop": "Lazada",
-     "price": 120.0,
+     "price": 119.0,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "shipsFrom": "Melaka",
+     "checked": "2026-10-31",
+     "notes": "Seller: MAS Online (6 yrs). 4 Step single-sided variant. Shipping shown as RM30 to Kuala Lumpur",
+     "tag": "PICK",
+     "rating": 4.9,
+     "ratingCount": 307,
+     "sold": "1k",
+     "image": "https://img.lazcdn.com/g/ff/kf/S8a552950d0bd4692b21c408ab1d6ab4b3.png_720x720q80.png_.webp"
     },
     {
      "url": "https://shopee.com.my/product/205697567/6314486058",

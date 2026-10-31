@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "House Cleaning",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Cordless vacuum-mop (Dreame H13 FlexReach / H14S Ultra)",
@@ -23,13 +23,13 @@
    ],
    "listings": [
     {
-     "url": "https://www.senheng.com.my/?p=84336",
+     "url": "https://www.senheng.com.my/product/dreame-flexreach-wet-dry-vacuum/",
      "shop": "Senheng",
      "price": 1899.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "H13 FlexReach, extra 1-year warranty",
+     "checked": "2026-10-31",
+     "notes": "H13 FlexReach (SKU DRM-H13FLXRH2GL), extra 1-year warranty",
      "tag": "PICK"
     },
     {

@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Travel",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Cabin backpack (Quechua Travel 500, 30 L)",
@@ -40,28 +40,30 @@
    "sources": [],
    "listings": [
     {
-     "url": "https://www.decathlon.my/search?query=travel%20wash%20bag",
+     "url": "https://www.decathlon.my/p/travel-wash-bag-travel-grey-forclaz-8514768.html",
      "shop": "Decathlon Malaysia",
      "price": 59.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "checked": "2026-10-31",
+     "notes": "Grey",
      "rating": 4.8,
-     "ratingCount": 1466,
-     "tag": "PICK"
+     "ratingCount": 1475,
+     "tag": "PICK",
+     "image": "https://contents.mediadecathlon.com/p2621809/sq/k$cba450e262b3baab660ab2916011d3bd/travel-wash-bag-travel-grey-forclaz-8514768.jpg?f=480x480&format=auto"
     },
     {
-     "url": "https://www.decathlon.my/search?query=trekking%20foldable%20toiletry%20bag%20ultra%20light",
+     "url": "https://www.decathlon.my/p/trekking-foldable-toiletry-bag-ultra-light-forclaz-8595305.html",
      "shop": "Decathlon Malaysia",
      "price": 29.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Lighter and cheaper",
+     "checked": "2026-10-31",
+     "notes": "Trekking foldable toiletry bag, Ultra Light. Lighter and cheaper",
      "rating": 4.7,
-     "ratingCount": 1304,
-     "tag": "ALT"
+     "ratingCount": 1316,
+     "tag": "ALT",
+     "image": "https://contents.mediadecathlon.com/p2572961/sq/k$67da7f4405f741a4a5f4606ae174801b/trekking-foldable-toiletry-bag-ultra-light-forclaz-8595305.jpg?f=480x480&format=auto"
     },
     {
      "url": "https://shopee.com.my/product/476554380/8280852097",
@@ -93,16 +95,17 @@
    "sources": [],
    "listings": [
     {
-     "url": "https://www.decathlon.my/search?query=travel%20sleep%20mask",
+     "url": "https://www.decathlon.my/p/trekking-travel-sleep-mask-blue-forclaz-8493265.html",
      "shop": "Decathlon Malaysia",
      "price": 19.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "checked": "2026-10-31",
+     "notes": "Blue",
      "rating": 4.7,
-     "ratingCount": 1250,
-     "tag": "PICK"
+     "ratingCount": 1247,
+     "tag": "PICK",
+     "image": "https://contents.mediadecathlon.com/p2621055/sq/k$abdb2e2a95e824a0cb401cfc710814dd/trekking-travel-sleep-mask-blue-forclaz-8493265.jpg?f=480x480&format=auto"
     },
     {
      "url": "https://shopee.com.my/product/476554380/10820111931",
