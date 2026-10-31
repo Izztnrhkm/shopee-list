@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Car Wash",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Pressure washer (Kärcher K2 Power VPS)",
@@ -232,14 +232,19 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
-     "shop": "Lazada: Soft99 Surface Smoother",
-     "price": 48.0,
-     "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
-     "tag": "PICK"
+     "url": "https://shopee.com.my/product/180497323/5760568911",
+     "shop": "Soft99 Official Store",
+     "price": 32.88,
+     "badge": "mall",
+     "shipsFrom": "Pulau Pinang",
+     "checked": "2026-10-31",
+     "notes": "Soft99 Surface Smoother, Dark & Metallic version. Replaces the RM48 Lazada listing, which could not be found; Lazada's Soft99 sellers have under 20 reviews. White version in the same shop: RM46.33, 97 sold",
+     "tag": "PICK",
+     "rating": 5.0,
+     "ratingCount": 483,
+     "sold": "4k+",
+     "overseas": false,
+     "image": "https://down-my.img.susercontent.com/file/b312c75f5e6991201c8ef303cbd202cf"
     },
     {
      "url": "https://shopee.com.my/product/77712325/22273421540",
@@ -269,14 +274,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i2198115343-s9593199389.html",
      "shop": "Lazada",
      "price": 24.9,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "108 reviews, 441 sold",
-     "tag": "PICK"
+     "shipsFrom": "Kedah",
+     "checked": "2026-10-31",
+     "notes": "Seller: Parfum In D'House (5 yrs). Medium Duty variant, 500 ml premix; Heavy Duty is RM29.90",
+     "tag": "PICK",
+     "rating": 4.9,
+     "ratingCount": 108,
+     "sold": 442,
+     "image": "https://img.lazcdn.com/g/p/6c143568e3b1f2a3d5399a97f747ab30.jpg_720x720q80.jpg_.webp"
     },
     {
      "url": "https://shopee.com.my/product/47438187/3290766336",

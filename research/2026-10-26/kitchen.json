@@ -1,7 +1,7 @@
 {
  "shopeeList": 1,
  "list": "Kitchen",
- "researchedAt": "2026-10-28",
+ "researchedAt": "2026-10-31",
  "items": [
   {
    "name": "Rice cooker 1.8 L (Panasonic SR-DA182)",
@@ -86,14 +86,18 @@
      "overseas": false
     },
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i4009907906.html",
      "shop": "Lazada",
-     "price": 286.0,
+     "price": 263.12,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Lazada price for comparison",
-     "tag": "ALT"
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Seller: Philips Official eStore (LazMall). RM299 less a 12% promotion on 2026-10-31",
+     "tag": "ALT",
+     "rating": 5.0,
+     "ratingCount": 165,
+     "sold": 471,
+     "image": "https://img.lazcdn.com/g/ff/kf/S7caef4c72b1c4965bd52137306f1b93cJ.jpg_720x720q80.jpg_.webp"
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/sg-11134201-8257y-mt13rovk63no14"
@@ -232,14 +236,18 @@
      "ratingCount": 1900
     },
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i636458330.html",
      "shop": "Lazada",
-     "price": 123.0,
+     "price": 127.4,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "RM7 cheaper on Lazada",
-     "tag": "ALT"
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Seller: Tefal (official store, 9 yrs). RM2.60 cheaper than Shopee; Lazada app only",
+     "tag": "ALT",
+     "rating": 4.9,
+     "ratingCount": 804,
+     "sold": "2.6k",
+     "image": "https://img.lazcdn.com/g/ff/kf/Sa8751aca37a041488632ac00941a900dB.jpg_720x720q80.jpg_.webp"
     }
    ],
    "image": "https://down-my.img.susercontent.com/file/my-11134207-7qul0-lhq145jay19p81"
@@ -255,14 +263,18 @@
    "sources": [],
    "listings": [
     {
-     "url": "",
+     "url": "https://www.lazada.com.my/products/pdp-i4474675886.html",
      "shop": "Lazada",
-     "price": 125.0,
+     "price": 126.42,
      "badge": "none",
-     "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "Shopee price not checked",
-     "tag": "PICK"
+     "shipsFrom": "Selangor",
+     "checked": "2026-10-31",
+     "notes": "Seller: Tefal (official store, 9 yrs). Lazada app only. Shopee price not checked",
+     "tag": "PICK",
+     "rating": 5.0,
+     "ratingCount": 95,
+     "sold": 235,
+     "image": "https://img.lazcdn.com/g/p/ded3f857635e2094291cc73df8ece625.jpg_720x720q80.jpg_.webp"
     },
     {
      "url": "https://shopee.com.my/product/26881612/19382028602",
@@ -294,16 +306,17 @@
    "sources": [],
    "listings": [
     {
-     "url": "https://www.ikea.com/my/en/search/?q=legitim",
+     "url": "https://www.ikea.com/my/en/p/legitim-chopping-board-white-30202266/",
      "shop": "IKEA",
      "price": 12.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "checked": "2026-10-31",
+     "notes": "Single board, white, 34x24 cm",
      "rating": 4.7,
      "ratingCount": 146,
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://www.ikea.com/my/en/images/products/legitim-chopping-board-white__0712856_pe729106_s5.jpg"
     },
     {
      "url": "https://shopee.com.my/product/31513931/29362366280",
@@ -361,16 +374,17 @@
    "sources": [],
    "listings": [
     {
-     "url": "https://www.ikea.com/my/en/search/?q=365%2B%20pot",
+     "url": "https://www.ikea.com/my/en/p/ikea-365-pot-with-lid-stainless-steel-40484251/",
      "shop": "IKEA",
      "price": 79.0,
      "badge": "none",
      "shipsFrom": "",
-     "checked": "2026-10-26",
-     "notes": "",
+     "checked": "2026-10-31",
+     "notes": "5.0 l size",
      "rating": 4.7,
      "ratingCount": 121,
-     "tag": "PICK"
+     "tag": "PICK",
+     "image": "https://www.ikea.com/my/en/images/products/ikea-365-pot-with-lid-stainless-steel__1006173_pe825758_s5.jpg"
     },
     {
      "url": "https://shopee.com.my/product/1720802540/49454361609",
